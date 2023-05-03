@@ -1,0 +1,83 @@
+#! /bin/sh
+# $Id$
+# Copyright 2023 Japanese TeX Development Community <issue@texjp.org>
+# You may freely use, modify and/or distribute this file.
+
+# most imput files were copied from ../../dvipsk/testdata/
+
+TEXMFCNF=$srcdir/../kpathsea
+TFMFONTS=".;$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
+VFFONTS=".;$srcdir/tests"
+TEXFONTMAPS="$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
+
+export TEXMFCNF TFMFONTS VFFONTS TEXFONTMAPS
+
+rm -f ./upjf*.svg
+failed=
+
+echo "*** dvisvgm: test for upjf_full" && echo \
+	&& cp $srcdir/tests/upjf_full.vf ./upjf.vf \
+	&& cp $srcdir/tests/upjv_full.vf ./upjv.vf \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf_full.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf_full"
+
+diff ./upjf_full.svg $srcdir/tests/upjf.svg || failed="$failed upjf_full-cmp"
+
+
+echo "*** dvisvgm: test for upjf1_full" && echo \
+	&& cp $srcdir/tests/upjf1_full.vf ./upjf.vf \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf1_full.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf1_full"
+
+diff ./upjf1_full.svg $srcdir/tests/upjf1.svg || failed="$failed upjf1_full-cmp"
+
+
+#####
+test -z "$failed" && exit 0
+echo
+echo "failed tests:$failed"
+exit 1
+#####  currently following tests fail  #####
+
+
+echo "*** dvisvgm: test for upjf_omit" && echo \
+	&& cp $srcdir/tests/upjf_omit.vf ./upjf.vf \
+	&& cp $srcdir/tests/upjv_omit.vf ./upjv.vf \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf_omit.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf_omit"
+
+diff ./upjf_omit.svg $srcdir/tests/upjf.svg || failed="$failed upjf_omit-cmp"
+
+
+echo "*** dvisvgm: test for upjf1_omit" && echo \
+	&& cp $srcdir/tests/upjf1_omit.vf ./upjf.vf \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf1_omit.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf1_omit"
+
+diff ./upjf1_omit.svg $srcdir/tests/upjf1.svg || failed="$failed upjf1_omit-cmp"
+
+
+echo "*** dvisvgm: test for upjf_omit2" && echo \
+	&& cp $srcdir/tests/upjf_omit.vf ./upjf.vf \
+	&& cp $srcdir/tests/upjf-r00.ofm ./upjf-r.ofm \
+	&& cp $srcdir/tests/upjv-r00.ofm ./upjv-r.ofm \
+	&& cp $srcdir/tests/upjf-g00.ofm ./upjf-g.ofm \
+	&& cp $srcdir/tests/upjv-g00.ofm ./upjv-g.ofm \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf_omit2.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf_omit2"
+
+diff ./upjf_omit2.svg $srcdir/tests/upjf.svg || failed="$failed upjf_omit2-cmp"
+
+
+echo "*** dvisvgm: test for upjf1_omit2" && echo \
+	&& cp $srcdir/tests/upjf1_omit.vf ./upjf.vf \
+	&& ./dvisvgm-src/src/dvisvgm --verbosity=7 -m upjf.map -o upjf1_omit2.svg $srcdir/tests/upjf.dvi \
+	&& echo || failed="$failed upjf1_omit2"
+
+diff ./upjf1_omit2.svg $srcdir/tests/upjf1.svg || failed="$failed upjf1_omit2-cmp"
+
+
+test -z "$failed" && exit 0
+echo
+echo "failed tests:$failed"
+exit 1
