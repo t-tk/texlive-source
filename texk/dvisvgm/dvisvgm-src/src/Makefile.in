@@ -153,7 +153,7 @@ am_libdvisvgm_la_OBJECTS = BasicDVIReader.lo Bezier.lo \
 	Ghostscript.lo HashFunction.lo HtmlSpecialHandler.lo \
 	HyperlinkManager.lo ImageToSVG.lo InputBuffer.lo \
 	InputReader.lo JFM.lo Length.lo MapLine.lo Matrix.lo \
-	Message.lo MetafontWrapper.lo NoPsSpecialHandler.lo Opacity.lo \
+	Message.lo MetafontWrapper.lo NoPsSpecialHandler.lo OFM.lo Opacity.lo \
 	PageRanges.lo PageSize.lo PapersizeSpecialHandler.lo \
 	PathClipper.lo PDFHandler.lo PDFParser.lo PdfSpecialHandler.lo \
 	PDFToSVG.lo PreScanDVIReader.lo Process.lo psdefs.lo \
@@ -222,7 +222,7 @@ am__depfiles_remade = ./$(DEPDIR)/BasicDVIReader.Plo \
 	./$(DEPDIR)/JFM.Plo ./$(DEPDIR)/Length.Plo \
 	./$(DEPDIR)/MapLine.Plo ./$(DEPDIR)/Matrix.Plo \
 	./$(DEPDIR)/Message.Plo ./$(DEPDIR)/MetafontWrapper.Plo \
-	./$(DEPDIR)/NoPsSpecialHandler.Plo ./$(DEPDIR)/Opacity.Plo \
+	./$(DEPDIR)/NoPsSpecialHandler.Plo ./$(DEPDIR)/OFM.Plo ./$(DEPDIR)/Opacity.Plo \
 	./$(DEPDIR)/PDFHandler.Plo ./$(DEPDIR)/PDFParser.Plo \
 	./$(DEPDIR)/PDFToSVG.Plo ./$(DEPDIR)/PSInterpreter.Plo \
 	./$(DEPDIR)/PSPattern.Plo ./$(DEPDIR)/PSPreviewFilter.Plo \
@@ -604,6 +604,7 @@ libdvisvgm_la_SOURCES = \
 	MetafontWrapper.hpp          MetafontWrapper.cpp \
 	NoPsSpecialHandler.hpp       NoPsSpecialHandler.cpp \
 	NumericRanges.hpp \
+	OFM.hpp                      OFM.cpp \
 	Opacity.hpp                  Opacity.cpp \
 	PageRanges.hpp               PageRanges.cpp \
 	PageSize.hpp                 PageSize.cpp \
@@ -837,6 +838,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Message.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MetafontWrapper.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/NoPsSpecialHandler.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OFM.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Opacity.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PDFHandler.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PDFParser.Plo@am__quote@ # am--include-marker
@@ -1173,6 +1175,7 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/Message.Plo
 	-rm -f ./$(DEPDIR)/MetafontWrapper.Plo
 	-rm -f ./$(DEPDIR)/NoPsSpecialHandler.Plo
+	-rm -f ./$(DEPDIR)/OFM.Plo
 	-rm -f ./$(DEPDIR)/Opacity.Plo
 	-rm -f ./$(DEPDIR)/PDFHandler.Plo
 	-rm -f ./$(DEPDIR)/PDFParser.Plo
@@ -1316,6 +1319,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/Message.Plo
 	-rm -f ./$(DEPDIR)/MetafontWrapper.Plo
 	-rm -f ./$(DEPDIR)/NoPsSpecialHandler.Plo
+	-rm -f ./$(DEPDIR)/OFM.Plo
 	-rm -f ./$(DEPDIR)/Opacity.Plo
 	-rm -f ./$(DEPDIR)/PDFHandler.Plo
 	-rm -f ./$(DEPDIR)/PDFParser.Plo

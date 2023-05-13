@@ -9,8 +9,9 @@ TEXMFCNF=$srcdir/../kpathsea
 TFMFONTS=".;$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
 VFFONTS=".;$srcdir/tests"
 TEXFONTMAPS="$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
+PSHEADERS=".;$srcdir/dvisvgm-src/tests/data"
 
-export TEXMFCNF TFMFONTS VFFONTS TEXFONTMAPS
+export TEXMFCNF TFMFONTS VFFONTS TEXFONTMAPS PSHEADERS
 
 rm -f ./upjf*.svg
 failed=
@@ -33,10 +34,10 @@ diff ./upjf1_full.svg $srcdir/tests/upjf1.svg || failed="$failed upjf1_full-cmp"
 
 
 #####
-test -z "$failed" && exit 0
-echo
-echo "failed tests:$failed"
-exit 1
+#test -z "$failed" && exit 0
+#echo
+#echo "failed tests:$failed"
+#exit 1
 #####  currently following tests fail  #####
 
 
