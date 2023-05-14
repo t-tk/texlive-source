@@ -8,10 +8,14 @@
 TEXMFCNF=$srcdir/../kpathsea
 TFMFONTS=".;$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
 VFFONTS=".;$srcdir/tests"
+OPENTYPEFONTS=".;$srcdir/tests"
 TEXFONTMAPS="$srcdir/dvisvgm-src/tests/data;$srcdir/tests"
-PSHEADERS=".;$srcdir/dvisvgm-src/tests/data"
+PSHEADERS=".;$srcdir/dvisvgm-src/tests/data;$srcdir/dvipdfm-x/tests"
 
-export TEXMFCNF TFMFONTS VFFONTS TEXFONTMAPS PSHEADERS
+export TEXMFCNF TFMFONTS VFFONTS OPENTYPEFONTS TEXFONTMAPS PSHEADERS
+
+kpsewhich HaranoAjiMincho-Regular.otf
+kpsewhich HaranoAjiGothic-Regular.otf
 
 rm -f ./upjf*.svg
 failed=
