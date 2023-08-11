@@ -19,16 +19,16 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./source/Work/libs/{zlib,libpng,libpaper}
-          cd ${{ github.workspace }}/source/Work/libs/zlib
+          mkdir -p ./Work/libs/{zlib,libpng,libpaper}
+          cd ${{ github.workspace }}/Work/libs/zlib
           ../../../libs/zlib/configure
           make
           make check
-          cd ${{ github.workspace }}/source/Work/libs/libpng
+          cd ${{ github.workspace }}/Work/libs/libpng
           ../../../libs/libpng/configure
           make
           make check
-          cd ${{ github.workspace }}/source/Work/libs/libpaper
+          cd ${{ github.workspace }}/Work/libs/libpaper
           ../../../libs/libpaper/configure
           make
           make check
@@ -36,20 +36,20 @@ jobs:
       - name: make kpathsea, ptexenc
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/{kpathsea,ptexenc}
-          cd ${{ github.workspace }}/source/Work/texk/kpathsea
+          mkdir -p ./Work/texk/{kpathsea,ptexenc}
+          cd ${{ github.workspace }}/Work/texk/kpathsea
           ../../../texk/kpathsea/configure
           make
           make check
-          cd ${{ github.workspace }}/source/Work/texk/ptexenc
+          cd ${{ github.workspace }}/Work/texk/ptexenc
           ../../../texk/ptexenc/configure
           make
 
       - name: bibtex-x
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/bibtex-x
-          cd ./source/Work/texk/bibtex-x
+          mkdir -p ./Work/texk/bibtex-x
+          cd ./Work/texk/bibtex-x
           ../../../texk/bibtex-x/configure \
             --with-system-icu
           make
@@ -60,8 +60,8 @@ jobs:
       - name: upmendex
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/upmendex
-          cd ./source/Work/texk/upmendex
+          mkdir -p ./Work/texk/upmendex
+          cd ./Work/texk/upmendex
           ../../../texk/upmendex/configure \
             --with-system-icu
           make
@@ -71,8 +71,8 @@ jobs:
       - name: dvipdfm-x
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/dvipdfm-x
-          cd ./source/Work/texk/dvipdfm-x
+          mkdir -p ./Work/texk/dvipdfm-x
+          cd ./Work/texk/dvipdfm-x
           ../../../texk/dvipdfm-x/configure
           make
           make check
@@ -80,8 +80,8 @@ jobs:
       - name: dvipsk
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/dvipsk
-          cd ./source/Work/texk/dvipsk
+          mkdir -p ./Work/texk/dvipsk
+          cd ./Work/texk/dvipsk
           ../../../texk/dvipsk/configure
           make
           make check
@@ -89,8 +89,8 @@ jobs:
       - name: makejvf
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/makejvf
-          cd ./source/Work/texk/makejvf
+          mkdir -p ./Work/texk/makejvf
+          cd ./Work/texk/makejvf
           ../../../texk/makejvf/configure
           make
           make check
@@ -98,8 +98,8 @@ jobs:
       - name: mendex
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/mendexk
-          cd ./source/Work/texk/mendexk
+          mkdir -p ./Work/texk/mendexk
+          cd ./Work/texk/mendexk
           ../../../texk/mendexk/configure
           make
           make check
@@ -107,8 +107,8 @@ jobs:
       - name: dviout-util
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/dviout-util
-          cd ./source/Work/texk/dviout-util
+          mkdir -p ./Work/texk/dviout-util
+          cd ./Work/texk/dviout-util
           ../../../texk/dviout-util/configure
           make
           make check
@@ -116,8 +116,8 @@ jobs:
       - name: dvi2tty
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/dvi2tty
-          cd ./source/Work/texk/dvi2tty
+          mkdir -p ./Work/texk/dvi2tty
+          cd ./Work/texk/dvi2tty
           ../../../texk/dvi2tty/configure
           make
           make check
@@ -125,8 +125,8 @@ jobs:
       - name: seetex
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/seetexk
-          cd ./source/Work/texk/seetexk
+          mkdir -p ./Work/texk/seetexk
+          cd ./Work/texk/seetexk
           ../../../texk/seetexk/configure
           make
           make check
@@ -134,8 +134,8 @@ jobs:
       - name: dvidvi
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/dvidvi
-          cd ./source/Work/texk/dvidvi
+          mkdir -p ./Work/texk/dvidvi
+          cd ./Work/texk/dvidvi
           ../../../texk/dvidvi/configure
           make
           make check
@@ -143,12 +143,12 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./source/Work/libs/{gmp,mpfr}
-          cd ${{ github.workspace }}/source/Work/libs/gmp
+          mkdir -p ./Work/libs/{gmp,mpfr}
+          cd ${{ github.workspace }}/Work/libs/gmp
           ../../../libs/gmp/configure
           make
           make check
-          cd ${{ github.workspace }}/source/Work/libs/mpfr
+          cd ${{ github.workspace }}/Work/libs/mpfr
           ../../../libs/mpfr/configure
           make
           make check
@@ -156,8 +156,8 @@ jobs:
       - name: web2c
         shell: bash
         run: |
-          mkdir -p ./source/Work/texk/web2c
-          cd ./source/Work/texk/web2c
+          mkdir -p ./Work/texk/web2c
+          cd ./Work/texk/web2c
           ../../../texk/web2c/configure \
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \

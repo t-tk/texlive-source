@@ -35,25 +35,25 @@ jobs:
       - name: make libs
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work
-          mkdir ./source/Work/libs
+          mkdir ./Work
+          mkdir ./Work/libs
 
-          mkdir ./source/Work/libs/zlib
-          cd ./source/Work/libs/zlib
+          mkdir ./Work/libs/zlib
+          cd ./Work/libs/zlib
           ../../../libs/zlib/configure
           make
           make check
 
           cd ../../../..
-          mkdir ./source/Work/libs/libpng
-          cd ./source/Work/libs/libpng
+          mkdir ./Work/libs/libpng
+          cd ./Work/libs/libpng
           ../../../libs/libpng/configure
           make
           make check
 
           cd ../../../..
-          mkdir ./source/Work/libs/libpaper
-          cd ./source/Work/libs/libpaper
+          mkdir ./Work/libs/libpaper
+          cd ./Work/libs/libpaper
           ../../../libs/libpaper/configure
           make
           make check
@@ -61,25 +61,25 @@ jobs:
       - name: make kpathsea, ptexenc
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk
+          mkdir ./Work/texk
 
-          mkdir ./source/Work/texk/kpathsea
-          cd ./source/Work/texk/kpathsea
+          mkdir ./Work/texk/kpathsea
+          cd ./Work/texk/kpathsea
           ../../../texk/kpathsea/configure
           make
           make check
 
           cd ../../../..
-          mkdir ./source/Work/texk/ptexenc
-          cd ./source/Work/texk/ptexenc
+          mkdir ./Work/texk/ptexenc
+          cd ./Work/texk/ptexenc
           ../../../texk/ptexenc/configure
           make
 
       - name: upmendex
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/upmendex
-          cd ./source/Work/texk/upmendex
+          mkdir ./Work/texk/upmendex
+          cd ./Work/texk/upmendex
           ../../../texk/upmendex/configure \
             --with-system-icu
           make
@@ -89,8 +89,8 @@ jobs:
       - name: dvipdfm-x
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/dvipdfm-x
-          cd ./source/Work/texk/dvipdfm-x
+          mkdir ./Work/texk/dvipdfm-x
+          cd ./Work/texk/dvipdfm-x
           ../../../texk/dvipdfm-x/configure
           make
           make check
@@ -98,8 +98,8 @@ jobs:
       - name: dvipsk
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/dvipsk
-          cd ./source/Work/texk/dvipsk
+          mkdir ./Work/texk/dvipsk
+          cd ./Work/texk/dvipsk
           ../../../texk/dvipsk/configure
           make
           make check
@@ -107,8 +107,8 @@ jobs:
       - name: makejvf
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/makejvf
-          cd ./source/Work/texk/makejvf
+          mkdir ./Work/texk/makejvf
+          cd ./Work/texk/makejvf
           ../../../texk/makejvf/configure
           make
           make check
@@ -116,8 +116,8 @@ jobs:
       - name: mendex
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/mendexk
-          cd ./source/Work/texk/mendexk
+          mkdir ./Work/texk/mendexk
+          cd ./Work/texk/mendexk
           ../../../texk/mendexk/configure
           make
           make check
@@ -125,8 +125,8 @@ jobs:
       - name: dviout-util
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/dviout-util
-          cd ./source/Work/texk/dviout-util
+          mkdir ./Work/texk/dviout-util
+          cd ./Work/texk/dviout-util
           ../../../texk/dviout-util/configure
           make
           make check
@@ -134,8 +134,8 @@ jobs:
       - name: dvi2tty
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/dvi2tty
-          cd ./source/Work/texk/dvi2tty
+          mkdir ./Work/texk/dvi2tty
+          cd ./Work/texk/dvi2tty
           ../../../texk/dvi2tty/configure
           make
           make check
@@ -143,8 +143,8 @@ jobs:
       - name: seetex
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/seetexk
-          cd ./source/Work/texk/seetexk
+          mkdir ./Work/texk/seetexk
+          cd ./Work/texk/seetexk
           ../../../texk/seetexk/configure
           make
           export ExeExt=.exe
@@ -153,8 +153,8 @@ jobs:
       - name: dvidvi
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/dvidvi
-          cd ./source/Work/texk/dvidvi
+          mkdir ./Work/texk/dvidvi
+          cd ./Work/texk/dvidvi
           ../../../texk/dvidvi/configure
           make
           make check
@@ -164,8 +164,8 @@ jobs:
       - name: bibtex-x
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/bibtex-x
-          cd ./source/Work/texk/bibtex-x
+          mkdir ./Work/texk/bibtex-x
+          cd ./Work/texk/bibtex-x
           ../../../texk/bibtex-x/configure \
             --with-system-icu
           make
@@ -183,8 +183,8 @@ jobs:
       - name: web2c
         shell: msys2 {0}
         run: |
-          mkdir ./source/Work/texk/web2c
-          cd ./source/Work/texk/web2c
+          mkdir ./Work/texk/web2c
+          cd ./Work/texk/web2c
           ../../../texk/web2c/configure \
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
@@ -317,7 +317,7 @@ jobs:
       - name: web2c version check
         shell: msys2 {0}
         run: |
-          cd ./source/Work/texk/web2c
+          cd ./Work/texk/web2c
           ./ctie.exe --version || echo "ctie"
           echo ""
           ./ctwill.exe --version || echo "ctwill"
@@ -375,7 +375,7 @@ jobs:
       - name: web2c check
         shell: msys2 {0}
         run: |
-          cd ./source/Work/texk/web2c
+          cd ./Work/texk/web2c
           $srcdir/ctiedir/ctie.test   || echo -e "**\n** failed: ctie.test\n**"
           echo ""
           $srcdir/cwebdir/ctwill.test || echo -e "**\n** failed: ctwill.test\n**"
