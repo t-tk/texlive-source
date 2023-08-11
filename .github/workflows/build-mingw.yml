@@ -44,14 +44,14 @@ jobs:
           make
           make check
 
-          cd ../../../..
+          cd ../../..
           mkdir ./Work/libs/libpng
           cd ./Work/libs/libpng
           ../../../libs/libpng/configure
           make
           make check
 
-          cd ../../../..
+          cd ../../..
           mkdir ./Work/libs/libpaper
           cd ./Work/libs/libpaper
           ../../../libs/libpaper/configure
@@ -69,7 +69,7 @@ jobs:
           make
           make check
 
-          cd ../../../..
+          cd ../../..
           mkdir ./Work/texk/ptexenc
           cd ./Work/texk/ptexenc
           ../../../texk/ptexenc/configure
