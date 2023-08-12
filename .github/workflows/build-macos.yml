@@ -19,7 +19,7 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./Work/libs/{zlib,libpng,libpaper,potrace,gd}
+          mkdir -p ./Work/libs/{zlib,libpng,libpaper,potrace,freetype2,gd}
           cd ${{ github.workspace }}/Work/libs/zlib
           ../../../libs/zlib/configure
           make
@@ -30,6 +30,10 @@ jobs:
           make check
           cd ${{ github.workspace }}/Work/libs/libpaper
           ../../../libs/libpaper/configure
+          make
+          make check
+          cd ${{ github.workspace }}/Work/libs/freetyp2
+          ../../../libs/freetype2/configure
           make
           make check
           cd ${{ github.workspace }}/Work/libs/gd
@@ -123,8 +127,7 @@ jobs:
           prog='dvipng'
           mkdir -p ./Work/texk/$prog
           cd ./Work/texk/$prog
-          ../../../texk/$prog/configure \
-            --with-system-freetype2
+          ../../../texk/$prog/configure
           make
           make check
 
