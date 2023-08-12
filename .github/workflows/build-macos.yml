@@ -19,7 +19,7 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./Work/libs/{zlib,libpng,libpaper,potrace,freetype2,gd}
+          mkdir -p ./Work/libs/{zlib,libpng,libpaper,freetype2,gd,potrace}
           cd ${{ github.workspace }}/Work/libs/zlib
           ../../../libs/zlib/configure
           make
@@ -40,10 +40,10 @@ jobs:
           ../../../libs/gd/configure
           make
           make check
-#          cd ${{ github.workspace }}/Work/libs/potrace
-#          ../../../libs/potrace/configure
-#          make
-#          make check
+          cd ${{ github.workspace }}/Work/libs/potrace
+          ../../../libs/potrace/configure
+          make
+          make check
 #          cd ${{ github.workspace }}/Work/libs/icu
 #          ../../../libs/icu/configure
 #          make
@@ -141,16 +141,15 @@ jobs:
           make
           make check
 
-      #- name: dvisvgm
-      #  shell: bash
-      #  run: |
-      #    prog='dvisvgm'
-      #    mkdir -p ./Work/texk/$prog
-      #    cd ./Work/texk/$prog
-      #    ../../../texk/$prog/configure \
-      #      --with-system-freetype2
-      #    make
-      #    make check
+      - name: dvisvgm
+        shell: bash
+        run: |
+          prog='dvisvgm'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
 
       - name: gregorio
         shell: bash
