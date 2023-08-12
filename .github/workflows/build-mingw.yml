@@ -418,68 +418,45 @@ jobs:
 
           export KPSEWHICH="./kpsewhich.exe"
           $srcdir/dvicopy.test        || echo -e "**\n** failed: dvicopy.test\n**"
-          echo ""
           $srcdir/dvitype.test        || echo -e "**\n** failed: dvitype.test\n**"
           echo ""
 
           $srcdir/gftodvi.test        || echo -e "**\n** failed: gftodvi.test\n**"
-          echo ""
           $srcdir/gftopk.test         || echo -e "**\n** failed: gftopk.test\n**"
-          echo ""
           $srcdir/gftype.test         || echo -e "**\n** failed: gftype.test\n**"
           echo ""
           $srcdir/mft.test            || echo -e "**\n** failed: mft.test\n**"
           echo ""
           $srcdir/patgen.test         || echo -e "**\n** failed: patgen.test\n**"
-          echo ""
           $srcdir/pktogf.test         || echo -e "**\n** failed: pktogf.test\n**"
-          echo ""
           $srcdir/pktype.test         || echo -e "**\n** failed: pktype.test\n**"
-          echo ""
           $srcdir/pltotf.test         || echo -e "**\n** failed: pltotf.test\n**"
           echo ""
-          $srcdir/pooltype.test       || echo -e "**\n** failed: pooltype.test\n**"
-          echo ""
 
+          $srcdir/pooltype.test       || echo -e "**\n** failed: pooltype.test\n**"
           $srcdir/tftopl.test         || echo -e "**\n** failed: tftopl.test\n**"
-          echo ""
           $srcdir/vftovp.test         || echo -e "**\n** failed: vftovp.test\n**"
-          echo ""
           $srcdir/vptovf.test         || echo -e "**\n** failed: vptovf.test\n**"
           echo ""
           $srcdir/weave.test          || echo -e "**\n** failed: weave.test\n**"
-          echo ""
-
           $srcdir/tangle.test         || echo -e "**\n** failed: tangle.test\n**"
-          echo ""
           $srcdir/twill.test          || echo -e "**\n** failed: twill.test\n**"
           echo ""
 
           $srcdir/ptexdir/pver.test     || echo -e "**\n** failed: pver.test\n**"
-          echo ""
           $srcdir/eptexdir/epver.test   || echo -e "**\n** failed: epver.test\n**"
-          echo ""
           $srcdir/uptexdir/upver.test   || echo -e "**\n** failed: upver.test\n**"
-          echo ""
           $srcdir/uptexdir/upkcat.test  || echo -e "**\n** failed: upkcat.test\n**"
-          echo ""
           $srcdir/euptexdir/eupver.test || echo -e "**\n** failed: eupver.test\n**"
-          echo ""
           # $srcdir/uptexdir/sample.test  || echo -e "**\n** failed: sample.test\n**"
           # echo ""
           $srcdir/uptexdir/updvitype.test  || echo -e "**\n** failed: updvitype.test\n**"
-          echo ""
           $srcdir/uptexdir/uppltotf.test  || echo -e "**\n** failed: uppltotf.test\n**"
-          echo ""
           $srcdir/uptexdir/uptftopl.test  || echo -e "**\n** failed: uptftopl.test\n**"
-          echo ""
           $srcdir/uptexdir/yokotate.test  || echo -e "**\n** failed: yokotate.test\n**"
-          echo ""
           $srcdir/uptexdir/upbibtex.test  || echo -e "**\n** failed: upbibtex.test\n**"
-          echo ""
           # $srcdir/uptexdir/upbibtex-mem.test  || echo -e "**\n** failed: upbibtex-mem.test\n**"
           # echo ""
-
           $srcdir/uptexdir/upbibtex-openout-test.pl  || echo -e "**\n** failed: upbibtex-openout-test.pl\n**"
           $srcdir/uptexdir/upbibtex-longline-test.pl || echo -e "**\n** failed: upbibtex-longline-test.pl\n**"
           $srcdir/uptexdir/nissya.test    || echo -e "**\n** failed: nissya.test\n**"
@@ -492,19 +469,12 @@ jobs:
           $srcdir/mftraptest.test            || echo -e "**\n** failed: mftraptest.test\n**"
           echo ""
           $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
-          echo ""
           $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
-          echo ""
           $srcdir/eptexdir/pdfprimitive.test || echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**"
-          echo ""
           $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
-          echo ""
           $srcdir/uptexdir/ptriptest.test    || echo -e "**\n** failed: uptexdir/ptriptest.test\n**"
-          echo ""
           $srcdir/uptexdir/uptriptest.test   || echo -e "**\n** failed: uptexdir/uptriptest.test\n**"
-          echo ""
           $srcdir/eptexdir/eptriptest.test   || echo -e "**\n** failed: eptexdir/eptriptest.test\n**"
-          echo ""
           $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
           echo ""
           $srcdir/ptexdir/wcfname.test       || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
@@ -514,7 +484,7 @@ jobs:
           echo ""
           $srcdir/tests/tex-closeout.test    || echo -e "**\n** failed: tex-closeout.test\n**"
           echo ""
-          $srcdir/tests/bibtex.test          || echo -e "**\n** failed: bibtex.test\n**"
+          $srcdir/bibtex.test                || echo -e "**\n** failed: bibtex.test\n**"
           echo ""
           $srcdir/tests/bibtex-auxinclude.test || echo -e "**\n** failed: bibtex-auxinclude.test\n**"
           echo ""
@@ -542,5 +512,65 @@ jobs:
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
+
+      - name: afm2pl
+        shell: bash
+        run: |
+          prog='afm2pl'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: chktex
+        shell: bash
+        run: |
+          prog='chktex'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: cjkutils
+        shell: bash
+        run: |
+          prog='cjkutils'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: detex
+        shell: bash
+        run: |
+          prog='detex'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dtl
+        shell: bash
+        run: |
+          prog='dtl'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dviljk
+        shell: bash
+        run: |
+          prog='dviljk'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
 
       - run: echo "⛄ This job's status is ${{ job.status }}."

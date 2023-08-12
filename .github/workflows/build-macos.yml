@@ -135,7 +135,9 @@ jobs:
           prog='dvisvgm'
           mkdir -p ./Work/texk/$prog
           cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
+          ../../../texk/$prog/configure \
+            --with-system-freetype2 \
+            --with-system-potrace
           make
           make check
 
