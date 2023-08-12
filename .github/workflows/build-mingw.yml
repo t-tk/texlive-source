@@ -198,22 +198,23 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
+            --enable-tex \
             --enable-ptex \
             --enable-eptex \
             --enable-uptex \
             --enable-euptex \
             --enable-pmp \
             --enable-upmp \
+            --enable-tex-synctex \
             --enable-ptex-synctex \
             --enable-eptex-synctex \
             --enable-uptex-synctex \
             --enable-euptex-synctex \
             --enable-pdftex \
             --enable-pdftex-synctex \
-            --disable-mf \
-            --disable-mf-nowin \
-            --enable-tex \
-            --enable-tex-synctex \
+            --enable-web-progs \
+            --enable-mf \
+            --enable-mf-nowin \
             --disable-etex \
             --disable-etex-synctex \
             --disable-aleph \
@@ -236,7 +237,6 @@ jobs:
             --disable-suntoolswin \
             --disable-tektronixwin \
             --disable-unitermwin \
-            --enable-web-progs \
             --disable-synctex \
             --disable-missing \
             --with-gnu-ld \
