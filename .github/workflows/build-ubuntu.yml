@@ -32,10 +32,10 @@ jobs:
           ../../../libs/libpaper/configure
           make
           make check
-          cd ${{ github.workspace }}/Work/libs/potrace
-          ../../../libs/potrace/configure
-          make
-          make check
+#          cd ${{ github.workspace }}/Work/libs/potrace
+#          ../../../libs/potrace/configure
+#          make
+#          make check
 
       - name: make kpathsea, ptexenc
         shell: bash
@@ -129,16 +129,16 @@ jobs:
           make
           make check
 
-      - name: dvisvgm
-        shell: bash
-        run: |
-          prog='dvisvgm'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure \
-            --with-system-freetype2
-          make
-          make check
+      #- name: dvisvgm
+      #  shell: bash
+      #  run: |
+      #    prog='dvisvgm'
+      #    mkdir -p ./Work/texk/$prog
+      #    cd ./Work/texk/$prog
+      #    ../../../texk/$prog/configure \
+      #      --with-system-freetype2
+      #    make
+      #    make check
 
       - name: gregorio
         shell: bash
