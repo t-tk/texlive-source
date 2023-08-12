@@ -8,7 +8,7 @@ on:
 jobs:
   Build-on-mingw:
     runs-on: windows-latest
-    timeout-minutes: 120
+    timeout-minutes: 80
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -90,295 +90,6 @@ jobs:
           ../../../texk/ptexenc/configure
           make
 
-      - name: chktex
-        shell: msys2 {0}
-        run: |
-          prog='chktex'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: chktex\n**"
-
-      - name: cjkutils
-        shell: msys2 {0}
-        run: |
-          prog='cjkutils'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: cjkutils\n**"
-
-      - name: detex
-        shell: msys2 {0}
-        run: |
-          prog='detex'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: detex\n**"
-
-      - name: dtl
-        shell: msys2 {0}
-        run: |
-          prog='dtl'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: dtl\n**"
-          cat dtl.log || echo
-
-      - name: dviljk
-        shell: msys2 {0}
-        run: |
-          prog='dviljk'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: dviljk\n**"
-
-      - name: dvipng
-        shell: msys2 {0}
-        run: |
-          prog='dvipng'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: dvipng\n**"
-
-      - name: dvipos
-        shell: msys2 {0}
-        run: |
-          prog='dvipos'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: dvipos\n**"
-
-      #- name: dvisvgm
-      #  shell: msys2 {0}
-      #  run: |
-      #    prog='dvisvgm'
-      #    mkdir -p ./Work/texk/$prog
-      #    cd ./Work/texk/$prog
-      #    ../../../texk/$prog/configure \
-      #      --with-system-freetype2
-      #    make
-      #    make check
-
-      - name: gregorio
-        shell: msys2 {0}
-        run: |
-          prog='gregorio'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: gregorio\n**"
-
-      - name: gsftopk
-        shell: msys2 {0}
-        run: |
-          prog='gsftopk'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: gsftopk\n**"
-
-      - name: lcdf-typetools
-        shell: msys2 {0}
-        run: |
-          prog='lcdf-typetools'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: lcdf-typetools\n**"
-          cat tests/tfm.log || echo
-
-      - name: makeindex
-        shell: msys2 {0}
-        run: |
-          prog='makeindexk'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: makeindex\n**"
-
-      - name: musixtnt
-        shell: msys2 {0}
-        run: |
-          prog='musixtnt'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: musixtnt\n**"
-
-      - name: ps2pk
-        shell: msys2 {0}
-        run: |
-          prog='ps2pk'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: ps2pk\n**"
-
-      - name: psutils
-        shell: msys2 {0}
-        run: |
-          prog='psutils'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: psutils\n**"
-          cat psutils.log || echo
-
-      - name: tex4htk
-        shell: msys2 {0}
-        run: |
-          prog='tex4htk'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: tex4ht\n**"
-
-      - name: texlive
-        shell: msys2 {0}
-        run: |
-          prog='texlive'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: texlive\n**"
-
-      - name: ttfdump
-        shell: msys2 {0}
-        run: |
-          prog='ttfdump'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: ttfdump\n**"
-
-      - name: upmendex
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/upmendex
-          cd ./Work/texk/upmendex
-          ../../../texk/upmendex/configure \
-            --with-system-icu
-          make
-          ./upmendex --help
-          make check
-
-      - name: dvipdfm-x
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/dvipdfm-x
-          cd ./Work/texk/dvipdfm-x
-          ../../../texk/dvipdfm-x/configure
-          make
-          make check
-
-      - name: dvipsk
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/dvipsk
-          cd ./Work/texk/dvipsk
-          ../../../texk/dvipsk/configure
-          make
-          make check
-
-      - name: makejvf
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/makejvf
-          cd ./Work/texk/makejvf
-          ../../../texk/makejvf/configure
-          make
-          make check
-
-      - name: mendex
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/mendexk
-          cd ./Work/texk/mendexk
-          ../../../texk/mendexk/configure
-          make
-          make check
-
-      - name: dviout-util
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/dviout-util
-          cd ./Work/texk/dviout-util
-          ../../../texk/dviout-util/configure
-          make
-          make check
-
-      - name: dvi2tty
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/dvi2tty
-          cd ./Work/texk/dvi2tty
-          ../../../texk/dvi2tty/configure
-          make
-          make check
-
-      - name: seetex
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/seetexk
-          cd ./Work/texk/seetexk
-          ../../../texk/seetexk/configure
-          make
-          export ExeExt=.exe
-          make check
-
-      - name: dvidvi
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/dvidvi
-          cd ./Work/texk/dvidvi
-          ../../../texk/dvidvi/configure
-          make
-          make check
-        env:
-          TEXMFCNF: "../../../texk/kpathsea"
-
-      - name: bibtex-x
-        shell: msys2 {0}
-        run: |
-          mkdir ./Work/texk/bibtex-x
-          cd ./Work/texk/bibtex-x
-          ../../../texk/bibtex-x/configure \
-            --with-system-icu
-          make
-          ## link without libtool
-          echo -e "###\n### link without libtool\n###"
-          gcc -Wimplicit -Wreturn-type -g -O2   -o bibtex8.exe bibtex8-bibtex-1.o bibtex8-bibtex-2.o bibtex8-bibtex-3.o bibtex8-bibtex-4.o bibtex8-bibtex.o bibtex8-utils.o ../../texk/kpathsea/.libs/libkpathsea.a
-          g++  -g -O2   -o bibtexu.exe bibtexu-bibtex-1.o bibtexu-bibtex-2.o bibtexu-bibtex-3.o bibtexu-bibtex-4.o bibtexu-bibtex.o bibtexu-utils.o ../../texk/kpathsea/.libs/libkpathsea.a -L/mingw64/lib  -licuio -licuin -licuuc -licudt -lpthread -lm
-          ./bibtex8.exe --version
-          ./bibtexu.exe --version
-          make check
-        env:
-          ExeExt: ".exe"
-          TEXMFCNF: "../../../texk/kpathsea"
-
       - name: make libs
         shell: msys2 {0}
         run: |
@@ -397,46 +108,22 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
-            --enable-tex \
-            --enable-ptex \
-            --enable-eptex \
-            --enable-uptex \
-            --enable-euptex \
-            --enable-pmp \
-            --enable-upmp \
-            --enable-tex-synctex \
-            --enable-ptex-synctex \
-            --enable-eptex-synctex \
-            --enable-uptex-synctex \
-            --enable-euptex-synctex \
-            --enable-pdftex \
-            --enable-pdftex-synctex \
-            --enable-web-progs \
-            --enable-mf \
-            --enable-mf-nowin \
-            --disable-etex \
-            --disable-etex-synctex \
+            --enable-tex  --enable-tex-synctex \
+            --enable-ptex  --enable-ptex-synctex \
+            --enable-eptex  --enable-eptex-synctex \
+            --enable-uptex  --enable-uptex-synctex \
+            --enable-euptex  --enable-euptex-synctex \
+            --disable-mp  --enable-pmp  --enable-upmp \
+            --enable-pdftex  --enable-pdftex-synctex \
+            --enable-web-progs  --enable-synctex \
+            --enable-mf  --enable-mf-nowin \
+            --disable-etex  --disable-etex-synctex \
             --disable-aleph \
-            --disable-luatex \
-            --disable-luajittex \
-            --disable-luahbtex \
-            --disable-luajithbtex \
-            --disable-mp \
-            --disable-xetex \
-            --disable-xetex-synctex \
-            --disable-mflua \
-            --disable-mflua-nowin \
-            --disable-mfluajit \
-            --disable-mfluajit-nowin \
-            --disable-epsfwin \
-            --disable-hp2627win \
-            --disable-mftalkwin \
-            --disable-nextwin \
-            --disable-regiswin \
-            --disable-suntoolswin \
-            --disable-tektronixwin \
-            --disable-unitermwin \
-            --disable-synctex \
+            --disable-luatex  --disable-luajittex  --disable-luahbtex  --disable-luajithbtex \
+            --disable-xetex  --disable-xetex-synctex \
+            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
+            --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
+            --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
             --with-gnu-ld \
             --without-x \
@@ -610,11 +297,8 @@ jobs:
         run: |
           cd ./Work/texk/web2c
           $srcdir/ctiedir/ctie.test   || echo -e "**\n** failed: ctie.test\n**"
-          echo ""
           $srcdir/cwebdir/ctwill.test || echo -e "**\n** failed: ctwill.test\n**"
-          echo ""
           $srcdir/cwebdir/cweave.test || echo -e "**\n** failed: cweave.test\n**"
-          echo ""
           $srcdir/tiedir/tie.test     || echo -e "**\n** failed: tie.test\n**"
           echo ""
 
@@ -687,15 +371,10 @@ jobs:
           $srcdir/tests/tex-closeout.test    || echo -e "**\n** failed: tex-closeout.test\n**"
           echo ""
           $srcdir/bibtex.test                || echo -e "**\n** failed: bibtex.test\n**"
-          echo ""
           $srcdir/tests/bibtex-auxinclude.test || echo -e "**\n** failed: bibtex-auxinclude.test\n**"
-          echo ""
           $srcdir/tests/bibtex-bigauth.test  || echo -e "**\n** failed: bibtex-bigauth.test\n**"
-          echo ""
           # $srcdir/tests/bibtex-mem.test      || echo -e "**\n** failed: bibtex-mem.test\n**"
-          # echo ""
           $srcdir/tests/bibtex-openout-test.pl  || echo -e "**\n** failed: bibtex-openout-test.pl\n**"
-          echo ""
           $srcdir/tests/bibtex-longline-test.pl || echo -e "**\n** failed: bibtex-longline-test.pl\n**"
           echo ""
           $srcdir/hitexdir/tests/hello.test    || echo -e "**\n** failed: hitex hello.test\n**"
@@ -714,27 +393,5 @@ jobs:
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
-
-      #- name: afm2pl
-      #  shell: msys2 {0}
-      #  run: |
-      #    prog='afm2pl'
-      #    mkdir -p ./Work/texk/$prog
-      #    cd ./Work/texk/$prog
-      #    ../../../texk/$prog/configure
-      #    make
-      #    make check
-
-      - name: ttf2pk2
-        shell: msys2 {0}
-        run: |
-          prog='ttf2pk2'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure \
-            --with-system-freetype2
-          make
-          make check || echo -e "**\n** failed: ttf2pk2\n**"
-          cat tests/ttf2pk.log || echo
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
