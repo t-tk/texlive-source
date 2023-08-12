@@ -8,7 +8,7 @@ on:
 jobs:
   Build-on-ubuntu:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -211,6 +211,206 @@ jobs:
             --without-system-icu \
             --without-system-graphite2 \
             --without-system-harfbuzz
+          make
+          make check
+
+      - name: afm2pl
+        shell: bash
+        run: |
+          prog='afm2pl'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: chktex
+        shell: bash
+        run: |
+          prog='chktex'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: cjkutils
+        shell: bash
+        run: |
+          prog='cjkutils'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: detex
+        shell: bash
+        run: |
+          prog='detex'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dtl
+        shell: bash
+        run: |
+          prog='dtl'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dviljk
+        shell: bash
+        run: |
+          prog='dviljk'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dvipng
+        shell: bash
+        run: |
+          prog='dvipng'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dvipos
+        shell: bash
+        run: |
+          prog='dvipos'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: dvisvgm
+        shell: bash
+        run: |
+          prog='dvisvgm'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: gregorio
+        shell: bash
+        run: |
+          prog='gregorio'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: gsftopk
+        shell: bash
+        run: |
+          prog='gsftopk'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: lcdf-typetools
+        shell: bash
+        run: |
+          prog='lcdf-typetools'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: makeindex
+        shell: bash
+        run: |
+          prog='makeindex'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: musixtnt
+        shell: bash
+        run: |
+          prog='musixtnt'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: ps2pk
+        shell: bash
+        run: |
+          prog='ps2pk'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: psutils
+        shell: bash
+        run: |
+          prog='psutils'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: tex4htk
+        shell: bash
+        run: |
+          prog='tex4htk'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: texlive
+        shell: bash
+        run: |
+          prog='texlive'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: ttf2pk2
+        shell: bash
+        run: |
+          prog='ttf2pk2'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
+      - name: ttfdump
+        shell: bash
+        run: |
+          prog='ttfdump'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
           make
           make check
 
