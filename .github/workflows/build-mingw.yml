@@ -129,6 +129,7 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: dtl\n**"
+          cat dtl.log || echo
 
       - name: dviljk
         shell: msys2 {0}
@@ -262,18 +263,6 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: texlive\n**"
-
-      - name: ttf2pk2
-        shell: msys2 {0}
-        run: |
-          prog='ttf2pk2'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure \
-            --with-system-freetype2
-          make
-          make check || echo -e "**\n** failed: ttf2pk2\n**"
-          cat tests/ttf2pk.log || echo
 
       - name: ttfdump
         shell: msys2 {0}
@@ -735,5 +724,17 @@ jobs:
       #    ../../../texk/$prog/configure
       #    make
       #    make check
+
+      - name: ttf2pk2
+        shell: msys2 {0}
+        run: |
+          prog='ttf2pk2'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure \
+            --with-system-freetype2
+          make
+          make check || echo -e "**\n** failed: ttf2pk2\n**"
+          cat tests/ttf2pk.log || echo
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
