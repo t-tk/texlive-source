@@ -127,7 +127,7 @@ jobs:
             --without-system-poppler \
             --without-system-xpdf \
             --without-system-zziplib \
-            --without-system-teckit \
+            --with-system-teckit \
             --with-system-icu \
             --without-system-graphite2 \
             --with-system-harfbuzz
