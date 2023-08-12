@@ -173,7 +173,7 @@ jobs:
       - name: makeindex
         shell: bash
         run: |
-          prog='makeindex'
+          prog='makeindexk'
           mkdir -p ./Work/texk/$prog
           cd ./Work/texk/$prog
           ../../../texk/$prog/configure
