@@ -32,7 +32,7 @@ jobs:
           ../../../libs/libpaper/configure
           make
           make check
-          cd ${{ github.workspace }}/Work/libs/freetyp2
+          cd ${{ github.workspace }}/Work/libs/freetype2
           ../../../libs/freetype2/configure
           make
           make check
