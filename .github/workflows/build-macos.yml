@@ -240,7 +240,8 @@ jobs:
           prog='ttf2pk2'
           mkdir -p ./Work/texk/$prog
           cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
+          ../../../texk/$prog/configure \
+            --with-system-freetype2
           make
           make check
 
