@@ -195,8 +195,8 @@ jobs:
             --enable-uptex-synctex \
             --enable-euptex-synctex \
             --enable-web-progs \
-            --disable-pdftex \
-            --disable-pdftex-synctex \
+            --enable-pdftex \
+            --enable-pdftex-synctex \
             --disable-mf \
             --disable-mf-nowin \
             --disable-tex \
