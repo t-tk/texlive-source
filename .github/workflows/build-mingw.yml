@@ -8,7 +8,7 @@ on:
 jobs:
   Build-on-mingw:
     runs-on: windows-latest
-    timeout-minutes: 60
+    timeout-minutes: 80
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -322,6 +322,7 @@ jobs:
           make pmpopst.exe || echo "fail to make pmpopst.exe"
           make upmpopst.exe || echo "fail to make upmpopst.exe"
           make pdftex.exe || echo "fail to make pdftex.exe"
+          make mf.exe || echo "fail to make mf.exe"
           echo "!!! make complete !!!"
 
       - name: web2c version check
@@ -385,6 +386,10 @@ jobs:
           ./upmpost.exe --version || echo "upmpost"
           echo ""
           ./pdftex.exe --version || echo "pdftex"
+          echo ""
+          ./mf.exe --version || echo "mf"
+          echo ""
+          ls -l ./*.exe
         env:
           TEXMFCNF: "../../../texk/kpathsea"
 
