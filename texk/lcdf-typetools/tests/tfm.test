@@ -3,6 +3,14 @@
 # Copyright 2012 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
+# pre-generated test results in the repository are stored in LF
+# but the output might be written in CRLF on some platform.
+# if 'diff --strip-trailing-cr' is available, exploit it.
+# (useful for tests on win32 binaries run on MSYS shell)
+DIFF="diff"
+$DIFF --strip-trailing-cr $0 $0 \
+  && DIFF="diff --strip-trailing-cr" || echo
+
 LC_ALL=C; export LC_ALL;  LANGUAGE=C; export LANGUAGE
 
 PATH=$LCDF_TYPETOOLS_TREE/cfftot1:$PATH		# May need to run cfftot1, ...
@@ -18,9 +26,9 @@ $LCDF_TYPETOOLS_TREE/otftotfm/otftotfm -e texnansx --glyphlist=$srcdir/$LCDF_TYP
 	-p -fkern -fliga \
 	$srcdir/tests/antpolt-regular.otf Ant >Ant.map \
 	&& sed -e '1d' Ant.pl >Ant.plx \
-	&& diff Ant.plx $srcdir/tests/Ant.pl \
-	&& diff Ant.map $srcdir/tests/Ant.map \
+	&& $DIFF Ant.plx $srcdir/tests/Ant.pl \
+	&& $DIFF Ant.map $srcdir/tests/Ant.map \
 	&& sed -e '4d;/line:/,/Ant/d' a_enhg3c.enc >Ant.enc \
-	&& diff Ant.enc $srcdir/tests/Ant.enc \
+	&& $DIFF Ant.enc $srcdir/tests/Ant.enc \
 	&& cmp -s AntPolt-Regular.pfb $srcdir/tests/Ant.pfb || exit 1
 

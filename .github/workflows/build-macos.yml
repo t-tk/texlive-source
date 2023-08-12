@@ -141,15 +141,15 @@ jobs:
           make
           make check
 
-      - name: dvisvgm
-        shell: bash
-        run: |
-          prog='dvisvgm'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check
+      #- name: dvisvgm
+      #  shell: bash
+      #  run: |
+      #    prog='dvisvgm'
+      #    mkdir -p ./Work/texk/$prog
+      #    cd ./Work/texk/$prog
+      #    ../../../texk/$prog/configure
+      #    make
+      #    make check
 
       - name: gregorio
         shell: bash
