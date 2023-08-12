@@ -1,5 +1,5 @@
 name: Build on MinGW
-run-name: ${{ github.actor }} is building and testing on MinGW
+run-name: building & testing on MinGW
 on:
   push:
     branches:
@@ -200,6 +200,7 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: lcdf-typetools\n**"
+          cat tests/tfm.log || echo
 
       - name: makeindex
         shell: msys2 {0}
@@ -240,6 +241,7 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: psutils\n**"
+          cat psutils.log || echo
 
       - name: tex4htk
         shell: msys2 {0}
@@ -271,6 +273,7 @@ jobs:
             --with-system-freetype2
           make
           make check || echo -e "**\n** failed: ttf2pk2\n**"
+          cat tests/ttf2pk.log || echo
 
       - name: ttfdump
         shell: msys2 {0}

@@ -13,12 +13,12 @@ $DIFF --strip-trailing-cr $0 $0 \
 
 LC_ALL=C; export LC_ALL;  LANGUAGE=C; export LANGUAGE
 
-PATH=$LCDF_TYPETOOLS_TREE/cfftot1:$PATH		# May need to run cfftot1, ...
-PATH=$LCDF_TYPETOOLS_TREE/t1dotlessj:$PATH	# ... t1dotlessj, ...
-PATH=$LCDF_TYPETOOLS_TREE/ttftotype42:$PATH	# ... or ttftotype42.
-export PATH 
-TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF 
-ENCFONTS=.:$srcdir/tests; export ENCFONTS
+PATH=$LCDF_TYPETOOLS_TREE/cfftot1'\;'$PATH		# May need to run cfftot1, ...
+PATH=$LCDF_TYPETOOLS_TREE/t1dotlessj'\;'$PATH	# ... t1dotlessj, ...
+PATH=$LCDF_TYPETOOLS_TREE/ttftotype42'\;'$PATH	# ... or ttftotype42.
+export PATH
+TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
+ENCFONTS=".;$srcdir/tests"; export ENCFONTS
 
 rm -f Ant* a_enhg3c.enc
 

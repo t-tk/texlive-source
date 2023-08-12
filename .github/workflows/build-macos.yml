@@ -1,5 +1,5 @@
 name: Build on MacOS
-run-name: ${{ github.actor }} is building and testing on MacOS
+run-name: building & testing on MacOS
 on:
   push:
     branches:
