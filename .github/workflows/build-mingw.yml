@@ -59,6 +59,20 @@ jobs:
           make
           make check
 
+          cd ../../..
+          mkdir ./Work/libs/freetype2
+          cd ./Work/libs/freetype2
+          ../../../libs/freetype2/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/gd
+          cd ./Work/libs/gd
+          ../../../libs/gd/configure
+          make
+          make check
+
       - name: make kpathsea, ptexenc
         shell: msys2 {0}
         run: |
@@ -126,15 +140,15 @@ jobs:
           make
           make check
 
-      #- name: dvipng
-      #  shell: msys2 {0}
-      #  run: |
-      #    prog='dvipng'
-      #    mkdir -p ./Work/texk/$prog
-      #    cd ./Work/texk/$prog
-      #    ../../../texk/$prog/configure
-      #    make
-      #    make check
+      - name: dvipng
+        shell: msys2 {0}
+        run: |
+          prog='dvipng'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
 
       - name: dvipos
         shell: msys2 {0}
