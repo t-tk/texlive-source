@@ -19,7 +19,7 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./Work/libs/{zlib,libpng,libpaper}
+          mkdir -p ./Work/libs/{zlib,libpng,libpaper,potrace}
           cd ${{ github.workspace }}/Work/libs/zlib
           ../../../libs/zlib/configure
           make
@@ -30,6 +30,10 @@ jobs:
           make check
           cd ${{ github.workspace }}/Work/libs/libpaper
           ../../../libs/libpaper/configure
+          make
+          make check
+          cd ${{ github.workspace }}/Work/libs/potrace
+          ../../../libs/potrace/configure
           make
           make check
 #          cd ${{ github.workspace }}/Work/libs/icu
@@ -136,8 +140,7 @@ jobs:
           mkdir -p ./Work/texk/$prog
           cd ./Work/texk/$prog
           ../../../texk/$prog/configure \
-            --with-system-freetype2 \
-            --with-system-potrace
+            --with-system-freetype2
           make
           make check
 
