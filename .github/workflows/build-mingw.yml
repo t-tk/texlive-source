@@ -30,6 +30,8 @@ jobs:
             mingw-w64-x86_64-gmp
             mingw-w64-x86_64-mpfr
             mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-harfbuzz
+            mingw-w64-x86_64-fontconfig
             bison
             texinfo
 
@@ -120,7 +122,7 @@ jobs:
             --disable-etex  --disable-etex-synctex \
             --disable-aleph \
             --disable-luatex  --disable-luajittex  --disable-luahbtex  --disable-luajithbtex \
-            --disable-xetex  --disable-xetex-synctex \
+            --enable-xetex  --enable-xetex-synctex \
             --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
@@ -141,9 +143,9 @@ jobs:
             --without-system-xpdf \
             --without-system-zziplib \
             --without-system-teckit \
-            --without-system-icu \
+            --with-system-icu \
             --without-system-graphite2 \
-            --without-system-harfbuzz
+            --with-system-harfbuzz
           make ctie.exe
           make ctwill.exe
           make ctwill-refsort.exe || echo ""
@@ -216,6 +218,7 @@ jobs:
           make hitex.exe || echo "fail to make hitex.exe"
           make synctex.exe || echo "fail to make synctex.exe"
           make ttf2afm.exe || echo "fail to make ttf2afm.exe"
+          make xetex.exe || echo "fail to make xetex.exe"
           echo "!!! make complete !!!"
 
       - name: web2c version check

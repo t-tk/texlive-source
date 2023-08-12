@@ -95,7 +95,7 @@ jobs:
             --disable-etex  --disable-etex-synctex \
             --disable-aleph \
             --disable-luatex  --disable-luajittex  --disable-luahbtex  --disable-luajithbtex \
-            --disable-xetex  --disable-xetex-synctex \
+            --enable-xetex  --enable-xetex-synctex \
             --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
@@ -116,9 +116,9 @@ jobs:
             --without-system-xpdf \
             --without-system-zziplib \
             --without-system-teckit \
-            --without-system-icu \
+            --with-system-icu \
             --without-system-graphite2 \
-            --without-system-harfbuzz
+            --with-system-harfbuzz
           make
           make check
 
