@@ -180,6 +180,15 @@ jobs:
           ExeExt: ".exe"
           TEXMFCNF: "../../../texk/kpathsea"
 
+      - name: make libs
+        shell: msys2 {0}
+        run: |
+          mkdir ./Work/libs/xpdf
+          cd ./Work/libs/xpdf
+          ../../../libs/xpdf/configure
+          make
+          make check
+
       - name: web2c
         shell: msys2 {0}
         run: |
