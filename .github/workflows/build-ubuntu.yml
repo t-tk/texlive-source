@@ -166,37 +166,23 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
-            --enable-tex \
-            --enable-ptex \
-            --enable-eptex \
-            --enable-uptex \
-            --enable-euptex \
-            --enable-pmp \
-            --enable-upmp \
-            --enable-tex-synctex \
-            --enable-ptex-synctex \
-            --enable-eptex-synctex \
-            --enable-uptex-synctex \
-            --enable-euptex-synctex \
-            --enable-pdftex \
-            --enable-pdftex-synctex \
-            --enable-web-progs \
-            --enable-mf \
-            --enable-mf-nowin \
-            --disable-etex \
-            --disable-etex-synctex \
+            --disable-tex  --disable-tex-synctex \
+            --enable-ptex  --enable-ptex-synctex \
+            --enable-eptex  --enable-eptex-synctex \
+            --enable-uptex  --enable-uptex-synctex \
+            --enable-euptex  --enable-euptex-synctex \
+            --enable-pmp  --enable-upmp \
+            --enable-pdftex  --enable-pdftex-synctex \
+            --enable-web-progs  --enable-synctex \
+            --disable-mf  --disable-mf-nowin \
+            --disable-etex  --disable-etex-synctex \
             --disable-aleph \
-            --disable-luatex \
-            --disable-luajittex \
-            --disable-luahbtex \
-            --disable-luajithbtex \
+            --disable-luatex  --disable-luajittex \
+            --disable-luahbtex  --disable-luajithbtex \
             --disable-mp \
-            --disable-xetex \
-            --disable-xetex-synctex \
-            --disable-mflua \
-            --disable-mflua-nowin \
-            --disable-mfluajit \
-            --disable-mfluajit-nowin \
+            --disable-xetex  --disable-xetex-synctex \
+            --disable-mflua  --disable-mflua-nowin \
+            --disable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin \
             --disable-hp2627win \
             --disable-mftalkwin \
@@ -205,7 +191,6 @@ jobs:
             --disable-suntoolswin \
             --disable-tektronixwin \
             --disable-unitermwin \
-            --enable-synctex \
             --disable-missing \
             --with-gnu-ld \
             --without-x \
