@@ -522,6 +522,7 @@ jobs:
           make mf.exe || echo "fail to make mf.exe"
           make hitex.exe || echo "fail to make hitex.exe"
           make synctex.exe || echo "fail to make synctex.exe"
+          make ttf2afm.exe || echo "fail to make ttf2afm.exe"
           echo "!!! make complete !!!"
 
       - name: web2c version check
@@ -591,6 +592,8 @@ jobs:
           ./synctex.exe --version || echo "synctex"
           echo ""
           ./hitex.exe --version || echo "hitex"
+          echo ""
+          ./ttf2afm.exe -v || echo "ttf2afm"
           echo ""
           ls -l ./*.exe
         env:

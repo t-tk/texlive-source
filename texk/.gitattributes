@@ -10,6 +10,7 @@
 *.pl  text eol=lf
 *.typ text eol=lf
 *.p   text eol=lf
+*.vpl text eol=lf
 
 # for dvi2tty
 *.tty text eol=lf
