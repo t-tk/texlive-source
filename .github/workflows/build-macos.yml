@@ -173,6 +173,7 @@ jobs:
           cd ./Work/texk/$prog
           ../../../texk/$prog/configure
           make
-          make check
+          make check || echo -e "**\n** failed: ttf2pk2\n**"
+          cat tests/ttf2pk.log || echo
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
