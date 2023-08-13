@@ -150,4 +150,14 @@ jobs:
           make
           make check
 
+      - name: ttf2pk2
+        shell: bash
+        run: |
+          prog='ttf2pk2'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
       - run: echo "⛄ This job's status is ${{ job.status }}."

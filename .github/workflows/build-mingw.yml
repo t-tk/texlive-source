@@ -517,4 +517,15 @@ jobs:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
 
+      - name: ttf2pk2
+        shell: msys2 {0}
+        run: |
+          prog='ttf2pk2'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check || echo -e "**\n** failed: ttf2pk2\n**"
+          cat tests/ttf2pk.log || echo
+
       - run: echo "⛄ This job's status is ${{ job.status }}."
