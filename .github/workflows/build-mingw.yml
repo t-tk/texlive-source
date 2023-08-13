@@ -136,7 +136,20 @@ jobs:
           cd ./Work/libs/harfbuzz
           ../../../libs/harfbuzz/configure
           make
-          make check || echo -e "**\n** failed: harfbuzz\n**"
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/lua53
+          cd ./Work/libs/lua53
+          ../../../libs/lua53/configure
+          make
+          make check || echo -e "**\n** failed: lua53\n**"
+
+          cd ../../..
+          cd ./Work/libs/luajit
+          ../../../libs/luajit/configure
+          make
+          make check || echo -e "**\n** failed: luajit\n**"
 
       - name: web2c
         shell: msys2 {0}
@@ -492,8 +505,8 @@ jobs:
           echo ""
           $srcdir/luatexdir/luatex.test         || echo -e "**\n** failed: luatexdir/luatex.test\n**"
           $srcdir/luatexdir/luaimage.test       || echo -e "**\n** failed: luatexdir/luaimage.test\n**"
-          $srcdir/luatexdir/luajittex.test      || echo -e "**\n** failed: luatexdir/luajittex.testn**"
-          $srcdir/luatexdir/luajitimage.test    || echo -e "**\n** failed: luatexdir/luajitimage.test"
+          $srcdir/luatexdir/luajittex.test      || echo -e "**\n** failed: luatexdir/luajittex.test\n**"
+          $srcdir/luatexdir/luajitimage.test    || echo -e "**\n** failed: luatexdir/luajitimage.test\n**"
           echo ""
           $srcdir/alephdir/aleph.test           || echo -e "**\n** failed: alephdir/aleph.test\n**"
           echo ""
