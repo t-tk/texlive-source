@@ -4,6 +4,10 @@
 # Copyright 2009 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_detex=$BinDir/detex$ExeExt
+
 # pre-generated test results in the repository are stored in LF
 # but the output might be written in CRLF on some platform.
 # if 'diff --strip-trailing-cr' is available, exploit it.
@@ -14,15 +18,15 @@ $DIFF --strip-trailing-cr $0 $0 \
 
 echo '#' >texmf.cnf
 
-./detex $srcdir/test.tex >test.out \
+$_detex $srcdir/test.tex >test.out \
 	&& $DIFF test.out $srcdir/test.lout \
 	|| exit 1
 
-./detex -l $srcdir/test.tex >test.out \
+$_detex -l $srcdir/test.tex >test.out \
 	&& $DIFF test.out $srcdir/test.lout \
 	|| exit 2
 
-./detex -t $srcdir/test.tex >test.out \
+$_detex -t $srcdir/test.tex >test.out \
 	&& $DIFF test.out $srcdir/test.tout \
 	|| exit 3
 

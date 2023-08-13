@@ -3,6 +3,10 @@
 # Copyright 2021 TANAKA Takuji
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_dvipos=$BinDir/dvipos$ExeExt
+
 # pre-generated test results in the repository are stored in LF
 # but the output might be written in CRLF on some platform.
 # if 'diff --strip-trailing-cr' is available, exploit it.
@@ -18,7 +22,7 @@ export TEXMFCNF TFMFONTS
 ## play.dvi has no "pos:" specials
 rm -rf play*.*
 cp $srcdir/tests/play.dvi .
-./dvipos -b -o play.loc play.dvi || exit 1
+$_dvipos -b -o play.loc play.dvi || exit 1
 diff play.loc $srcdir/tests/play.loc || exit 2
 
 grep -v 'Processing_data_and_time' $srcdir/tests/play.pos > play_0.pos \
