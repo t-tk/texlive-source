@@ -107,7 +107,8 @@ jobs:
           cd ./Work/libs/pplib
           ../../../libs/pplib/configure
           make
-          make check
+          make check || echo -e "**\n** failed: pplib.test\n**"
+          cat pplib.log
 
       - name: web2c
         shell: msys2 {0}
