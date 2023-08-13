@@ -3,6 +3,10 @@
 # Copyright 2015 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_msxlint=$BinDir/msxlint$ExeExt
+
 # pre-generated test results in the repository are stored in LF
 # but the output might be written in CRLF on some platform.
 # if 'diff --strip-trailing-cr' is available, exploit it.
@@ -14,24 +18,24 @@ $DIFF --strip-trailing-cr $0 $0 \
 LC_ALL=C; export LC_ALL;  LANGUAGE=C; export LANGUAGE
 
 echo && echo "*** msxlint --help"
-./msxlint --help || exit 1
+$_msxlint --help || exit 1
 
 echo && echo "*** msxlint --version"
-./msxlint --version || exit 1
+$_msxlint --version || exit 1
 
 : ${testsrc:=$srcdir/tests}
 
 echo && echo "*** msxlint -d tests/badtest"
-./msxlint -d $testsrc/badtest && exit 1
+$_msxlint -d $testsrc/badtest && exit 1
 
 echo && echo "*** msxlint tests/linttest >linttest.out1"
-./msxlint $testsrc/linttest | sed '/^This/,/^Processing/d' >linttest.out1 || exit 1
+$_msxlint $testsrc/linttest | sed '/^This/,/^Processing/d' >linttest.out1 || exit 1
 
 echo && echo "*** diff tests/linttest.out linttest.out1"
 $DIFF $testsrc/linttest.out linttest.out1 || exit 1
 
 echo && echo "*** cat tests/linttest.tex | msxlint >linttest.out2"
-cat $testsrc/linttest.tex | ./msxlint | sed '/^This/,/^Processing/d' >linttest.out2 || exit 1
+cat $testsrc/linttest.tex | $_msxlint | sed '/^This/,/^Processing/d' >linttest.out2 || exit 1
 
 echo && echo "*** diff tests/linttest.out linttest.out2"
 $DIFF $testsrc/linttest.out linttest.out2 || exit 1
