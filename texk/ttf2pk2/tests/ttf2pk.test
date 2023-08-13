@@ -27,7 +27,7 @@ TEXMFCNF=$srcdir/../kpathsea
 TEXFONTS=".;$srcdir/tests"
 TTF2PKINPUTS=$srcdir/tests
 SFDFONTS="$srcdir/data;$srcdir/tests"
-PATH=.:$PATH
+PATH=../web2c:$PATH
 
 export TEXMFCNF TEXFONTS TTF2PKINPUTS SFDFONTS PATH
 
