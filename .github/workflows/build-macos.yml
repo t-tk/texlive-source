@@ -120,6 +120,7 @@ jobs:
           mkdir -p ./Work/texk/web2c
           cd ./Work/texk/web2c
           CFLAGS=-I$ICU_PREFIX/include \
+          CXXFLAGS=-I$ICU_PREFIX/include \
           LDFLAGS=-L$ICU_PREFIX/lib \
           LIBS="-licuio -licui18n -licuuc -licudata" \
           ../../../texk/web2c/configure \
