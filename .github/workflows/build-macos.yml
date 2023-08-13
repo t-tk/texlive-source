@@ -89,6 +89,22 @@ jobs:
           ../../../libs/pplib/configure
           make
           make check
+          cd ${{ github.workspace }}/Work/libs/zziplib
+          ../../../libs/zziplib/configure
+          make
+          make check
+          cd ${{ github.workspace }}/Work/libs/teckit
+          ../../../libs/teckit/configure
+          make
+          make check
+          cd ${{ github.workspace }}/Work/libs/graphite2
+          ../../../libs/graphite2/configure
+          make
+          make check
+          cd ${{ github.workspace }}/Work/libs/harfbuzz
+          ../../../libs/harfbuzz/configure
+          make
+          make check
 
       - name: web2c
         shell: bash
@@ -130,11 +146,11 @@ jobs:
             --without-system-mpfr \
             --without-system-poppler \
             --without-system-xpdf \
-            --with-system-zziplib \
-            --with-system-teckit \
+            --without-system-zziplib \
+            --without-system-teckit \
             --with-system-icu \
-            --with-system-graphite2 \
-            --with-system-harfbuzz
+            --without-system-graphite2 \
+            --without-system-harfbuzz
           make
           make check
 

@@ -110,6 +110,34 @@ jobs:
           make check || echo -e "**\n** failed: pplib.test\n**"
           cat pplib.log
 
+          cd ../../..
+          mkdir ./Work/libs/zziplib
+          cd ./Work/libs/zziplib
+          ../../../libs/zziplib/configure
+          make
+          make check || echo -e "**\n** failed: zziplib\n**"
+
+          cd ../../..
+          mkdir ./Work/libs/teckit
+          cd ./Work/libs/teckit
+          ../../../libs/teckit/configure
+          make
+          make check || echo -e "**\n** failed: teckit\n**"
+
+          cd ../../..
+          mkdir ./Work/libs/graphite2
+          cd ./Work/libs/graphite2
+          ../../../libs/graphite2/configure
+          make
+          make check || echo -e "**\n** failed: graphite2\n**"
+
+          cd ../../..
+          mkdir ./Work/libs/harfbuzz
+          cd ./Work/libs/harfbuzz
+          ../../../libs/harfbuzz/configure
+          make
+          make check || echo -e "**\n** failed: harfbuzz\n**"
+
       - name: web2c
         shell: msys2 {0}
         run: |
@@ -150,11 +178,11 @@ jobs:
             --with-system-mpfr \
             --without-system-poppler \
             --without-system-xpdf \
-            --with-system-zziplib \
-            --with-system-teckit \
+            --without-system-zziplib \
+            --without-system-teckit \
             --with-system-icu \
-            --with-system-graphite2 \
-            --with-system-harfbuzz
+            --without-system-graphite2 \
+            --without-system-harfbuzz
           make ctie.exe
           make ctwill.exe
           make ctwill-refsort.exe || echo ""
