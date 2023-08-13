@@ -102,6 +102,13 @@ jobs:
           make
           make check
 
+          cd ../../..
+          mkdir ./Work/libs/pplib
+          cd ./Work/libs/pplib
+          ../../../libs/pplib/configure
+          make
+          make check
+
       - name: web2c
         shell: msys2 {0}
         run: |
