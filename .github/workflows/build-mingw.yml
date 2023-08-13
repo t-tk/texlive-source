@@ -122,14 +122,14 @@ jobs:
           cd ./Work/libs/teckit
           ../../../libs/teckit/configure
           make
-          make check || echo -e "**\n** failed: teckit\n**"
+          make check
 
           cd ../../..
           mkdir ./Work/libs/graphite2
           cd ./Work/libs/graphite2
           ../../../libs/graphite2/configure
           make
-          make check || echo -e "**\n** failed: graphite2\n**"
+          make check
 
           cd ../../..
           mkdir ./Work/libs/harfbuzz
@@ -256,6 +256,15 @@ jobs:
           make synctex.exe || echo "fail to make synctex.exe"
           make ttf2afm.exe || echo "fail to make ttf2afm.exe"
           make xetex.exe || echo "fail to make xetex.exe"
+
+          make wofm2opl.exe || echo "fail to make wofm2opl.exe"
+          make wopl2ofm.exe || echo "fail to make wopl2ofm.exe"
+          make wovf2ovp.exe || echo "fail to make wovf2ovp.exe"
+          make wovp2ovf.exe || echo "fail to make wovp2ovf.exe"
+          make odvicopy.exe || echo "fail to make odvicopy.exe"
+          make odvitype.exe || echo "fail to make odvitype.exe"
+          make otangle.exe  || echo "fail to make otangle.exe"
+
           echo "!!! make complete !!!"
 
       - name: web2c version check
@@ -327,6 +336,22 @@ jobs:
           ./hitex.exe --version || echo "hitex"
           echo ""
           ./ttf2afm.exe -v || echo "ttf2afm"
+          echo ""
+          ./xetex.exe --version || echo "xetex"
+          echo ""
+          ./wofm2opl.exe --version || echo "wofm2opl"
+          echo ""
+          ./wopl2ofm.exe --version || echo "wopl2ofm"
+          echo ""
+          ./wovf2ovp.exe --version || echo "wovf2ovp"
+          echo ""
+          ./wovp2ovf.exe --version || echo "wovp2ovf"
+          echo ""
+          ./odvicopy.exe --version || echo "odvicopy"
+          echo ""
+          ./odvitype.exe --version || echo "odvitype"
+          echo ""
+          ./otangle.exe --version || echo "otangle"
           echo ""
           ls -l ./*.exe
         env:
@@ -429,6 +454,33 @@ jobs:
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/pdftexdir/ttf2afm.test        || echo -e "**\n** failed: pdftexdir/ttf2afm.test\n**"
           $srcdir/pdftexdir/pdftosrc.test       || echo -e "**\n** failed: pdftexdir/pdftosrc.test\n**"
+          echo ""
+          $srcdir/xetexdir/xetex-filedump.test  || echo -e "**\n** failed: xetexdir/xetex-filedump.test\n**"
+          $srcdir/xetexdir/xetex-bug73.test     || echo -e "**\n** failed: xetexdir/xetex-bug73.test\n**"
+          $srcdir/xetexdir/xetex.test           || echo -e "**\n** failed: xetexdir/xetex.test\n**"
+          $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
+          echo ""
+          $srcdir/omegaware/odvicopy.test       || echo -e "**\n** failed: omegaware/odvicopy.test\n**"
+          $srcdir/omegaware/odvitype.test       || echo -e "**\n** failed: omegaware/odvitype.test\n**"
+          $srcdir/omegaware/otangle.test        || echo -e "**\n** failed: omegaware/otangle.test\n**"
+          $srcdir/omegaware/bad.test            || echo -e "**\n** failed: omegaware/bad.test\n**"
+          $srcdir/omegaware/charwd.test         || echo -e "**\n** failed: omegaware/charwd.test\n**"
+          $srcdir/omegaware/check.test          || echo -e "**\n** failed: omegaware/check.test\n**"
+          $srcdir/omegaware/help.test           || echo -e "**\n** failed: omegaware/help.test\n**"
+          $srcdir/omegaware/level1.test         || echo -e "**\n** failed: omegaware/level1.test\n**"
+          $srcdir/omegaware/ligkern.test        || echo -e "**\n** failed: omegaware/ligkern.test\n**"
+          $srcdir/omegaware/ofonts.test         || echo -e "**\n** failed: omegaware/ofonts.test\n**"
+          $srcdir/omegaware/omfonts.test        || echo -e "**\n** failed: omegaware/omfonts.test\n**"
+          $srcdir/omegaware/overbmp.test        || echo -e "**\n** failed: omegaware/overbmp.test\n**"
+          $srcdir/omegaware/realnum.test        || echo -e "**\n** failed: omegaware/realnum.test\n**"
+          $srcdir/omegaware/repeat.test         || echo -e "**\n** failed: omegaware/repeat.test\n**"
+          $srcdir/omegaware/selectfont.test     || echo -e "**\n** failed: omegaware/selectfont.test\n**"
+          $srcdir/omegaware/shorten.test        || echo -e "**\n** failed: omegaware/shorten.test\n**"
+          $srcdir/omegaware/specialhex.test     || echo -e "**\n** failed: omegaware/specialhex.test\n**"
+          $srcdir/omegaware/version.test        || echo -e "**\n** failed: omegaware/version.test\n**"
+          $srcdir/omegaware/vrepeat.test        || echo -e "**\n** failed: omegaware/vrepeat.test\n**"
+          $srcdir/omegaware/yannis.test         || echo -e "**\n** failed: omegaware/yannis.test\n**"
+          echo ""
           $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
         env:
           srcdir: "../../../texk/web2c"
