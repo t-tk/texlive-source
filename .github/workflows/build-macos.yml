@@ -126,7 +126,7 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
-            --disable-tex  --disable-tex-synctex \
+            --enable-tex  --disable-tex-synctex \
             --disable-ptex  --disable-ptex-synctex \
             --disable-eptex  --disable-eptex-synctex \
             --disable-uptex  --disable-uptex-synctex \
@@ -139,7 +139,7 @@ jobs:
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
             --disable-xetex  --disable-xetex-synctex \
-            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
+            --enable-mflua  --disable-mflua-nowin  --enable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
