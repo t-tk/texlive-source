@@ -112,10 +112,10 @@ jobs:
             --disable-all-pkgs \
             --enable-debug \
             --disable-tex  --disable-tex-synctex \
-            --disable-ptex  --disable-ptex-synctex \
-            --disable-eptex  --disable-eptex-synctex \
-            --disable-uptex  --disable-uptex-synctex \
-            --disable-euptex  --disable-euptex-synctex \
+            --enable-ptex  --enable-ptex-synctex \
+            --enable-eptex  --enable-eptex-synctex \
+            --enable-uptex  --enable-uptex-synctex \
+            --enable-euptex  --enable-euptex-synctex \
             --disable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
@@ -123,7 +123,7 @@ jobs:
             --disable-etex  --disable-etex-synctex \
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
-            --disable-xetex  --disable-xetex-synctex \
+            --enable-xetex  --enable-xetex-synctex \
             --enable-mflua  --disable-mflua-nowin  --enable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
