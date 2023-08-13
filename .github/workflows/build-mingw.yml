@@ -8,7 +8,7 @@ on:
 jobs:
   Build-on-mingw:
     runs-on: windows-latest
-    timeout-minutes: 80
+    timeout-minutes: 90
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -167,7 +167,7 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --disable-mp  --enable-pmp  --enable-upmp \
+            --enable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --enable-mf  --enable-mf-nowin \
@@ -175,7 +175,7 @@ jobs:
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
             --enable-xetex  --enable-xetex-synctex \
-            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
+            --enable-mflua  --disable-mflua-nowin  --enable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
@@ -287,6 +287,9 @@ jobs:
 
           make aleph.exe       || echo "fail to make aleph.exe"
 
+          make mflua.exe       || echo "fail to make mflua.exe"
+          make mfluajit.exe    || echo "fail to make mfluajit.exe"
+
           echo "!!! make complete !!!"
 
       - name: web2c version check
@@ -376,6 +379,10 @@ jobs:
           ./otangle.exe --version  || echo "otangle"
           echo ""
           ./aleph.exe --version    || echo "aleph"
+          echo ""
+          ./mflua.exe --version    || echo "mflua"
+          echo ""
+          ./mfluajit.exe --version || echo "mfluajit"
           echo ""
           ls -l ./*.exe
         env:
@@ -513,6 +520,8 @@ jobs:
           $srcdir/alephdir/aleph.test           || echo -e "**\n** failed: alephdir/aleph.test\n**"
           echo ""
           $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
+          echo ""
+          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
