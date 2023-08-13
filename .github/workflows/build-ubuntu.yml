@@ -60,7 +60,7 @@ jobs:
       - name: make libs
         shell: bash
         run: |
-          mkdir -p ./Work/libs/{gmp,mpfr,xpdf,pplib}
+          mkdir -p ./Work/libs/{gmp,mpfr,xpdf,pplib,zziplib,teckit,graphite2,harfbuzz}
           cd ${{ github.workspace }}/Work/libs/gmp
           ../../../libs/gmp/configure
           make
