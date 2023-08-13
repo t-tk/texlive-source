@@ -144,8 +144,10 @@ jobs:
           ../../../libs/lua53/configure
           make
           make check || echo -e "**\n** failed: lua53\n**"
+          cat luaerror.log
 
           cd ../../..
+          mkdir ./Work/libs/luajit
           cd ./Work/libs/luajit
           ../../../libs/luajit/configure
           make

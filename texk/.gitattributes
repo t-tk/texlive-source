@@ -11,6 +11,8 @@
 *.typ text eol=lf
 *.p   text eol=lf
 *.vpl text eol=lf
+*.opl text eol=lf
+*.out text eol=lf
 
 # for dvi2tty
 *.tty text eol=lf
@@ -39,9 +41,6 @@
 *.map text eol=lf
 *.tables text eol=lf
 *.info   text eol=lf
-
-# for msxlint
-*.out text eol=lf
 
 # for ps2pk
 *.hex text eol=lf
