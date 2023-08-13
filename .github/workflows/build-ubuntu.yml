@@ -118,7 +118,7 @@ jobs:
             --without-system-mpfr \
             --without-system-poppler \
             --without-system-xpdf \
-            --without-system-zziplib \
+            --with-system-zziplib \
             --with-system-teckit \
             --with-system-icu \
             --with-system-graphite2 \
