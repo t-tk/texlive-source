@@ -117,7 +117,7 @@ jobs:
             --without-system-zziplib \
             --with-system-teckit \
             --with-system-icu \
-            --without-system-graphite2 \
+            --with-system-graphite2 \
             --with-system-harfbuzz
           make
           make check
