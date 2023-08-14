@@ -10,25 +10,26 @@ _xetex=$BinDir/xetex$ExeExt
 test -d xetests || mkdir -p xetests
 rm -f xetests/fn*.log xetests/fn*.txt xetests/fn*.tex fn*.tex
 
-rc=0
-err1=
-err2=
+rc=0; err1=; err2=
 
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
 TEXINPUTS="xetests;."; export TEXINPUTS
-
-perl -s $srcdir/tests/fn-generate.perl -windows xetests
-pret=$?
-if [ $pret != 0 ] && [ $pret != 239 ]; then
-  exit 128
-fi
-rm -f xetests/fn*-euc.tex xetests/fn*-sjis.tex
 
 if [ "$COMSPEC" != "" ]; then
   echo "*** We guess OS is Windows."
   command_line_encoding=utf8
   export command_line_encoding
+  opt_win=-windows
+else
+  opt_win=
 fi
+
+perl -s $srcdir/tests/fn-generate.perl $opt_win xetests
+pret=$?
+if [ $pret != 0 ] && [ $pret != 239 ]; then
+  exit 77
+fi
+rm -f xetests/fn*-euc.tex xetests/fn*-sjis.tex
 
 fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do

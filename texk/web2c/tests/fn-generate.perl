@@ -30,6 +30,7 @@ sub make_str ($$;$) {
     my ($src);
 
     my ($fnameT) = $fname0;
+    my $cmnt = $windows ? '%' : ''; # comment out if option -windows
     $fnameT =~ s/\.tex$/-tmp.tex/;
 
 $src = <<END;
@@ -49,10 +50,8 @@ $src = <<END;
 \\immediate\\closeout1
 
 % current directory
+$cmnt\\input "|cat $fnameT"
 \\input $fnameT
-END
-$src .= <<END unless $windows; # omit if option -windows
-\\input "|cat $fnameT"
 END
 
 $src .= <<END if $fname1;
