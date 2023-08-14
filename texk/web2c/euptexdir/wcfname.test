@@ -18,6 +18,7 @@ TEXINPUTS="euptests;."; export TEXINPUTS
 for loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8 ja_JP.UTF-8 ja_JP.utf8; do
   locale -a | grep "^$loc\$"
   ret=$?
+  # For Slackware linux, we need to replace from utf8 to UTF-8
   if [ -f /etc/slackware-version ]; then
     loc=`echo $loc | sed -e "s/utf8/UTF-8/"`
   fi
@@ -60,7 +61,7 @@ for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc; do
   fi
 
   if [ $MyOS = Windows ]; then
-    if [ $ienc = uptex ]; then
+    if [ $ienc = uptex ] || [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
       command_line_encoding=utf8
       export command_line_encoding
     else
@@ -94,6 +95,10 @@ for doc in fnさざ波-$fenc; do
     export command_line_encoding
   else
     if [ $fenc != sjis ]; then ienc="euc"; fi
+  fi
+  if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+    command_line_encoding=utf8
+    export command_line_encoding
   fi
   if [ $ienc != uptex ]; then
     guess_input_kanji_encoding=1
