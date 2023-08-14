@@ -36,7 +36,7 @@ if [ $ret != 0 ]; then
   LC_ALL=$loc; LANGUAGE=$loc; export LC_ALL LANGUAGE
 fi
 
-perl $srcdir/tests/fn-generate.perl euptests
+perl -s $srcdir/tests/fn-generate.perl -windows euptests
 pret=$?
 if [ $pret != 0 ] && [ $pret != 239 ]; then
   exit 128

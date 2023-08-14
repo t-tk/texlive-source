@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/env perl -s
 #
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
@@ -9,6 +9,7 @@ use 5.008;
 use Encode;
 
 my $st = 0;
+our $windows; # option -windows
 
 foreach $_ (<DATA>) {
     chomp;
@@ -48,8 +49,10 @@ $src = <<END;
 \\immediate\\closeout1
 
 % current directory
-%\\input "|cat $fnameT"
 \\input $fnameT
+END
+$src .= <<END unless $windows; # omit if option -windows
+\\input "|cat $fnameT"
 END
 
 $src .= <<END if $fname1;

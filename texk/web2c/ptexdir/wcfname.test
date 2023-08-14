@@ -37,7 +37,7 @@ if [ $ret != 0 ]; then
   LC_ALL=$loc; LANGUAGE=$loc; export LC_ALL LANGUAGE
 fi
 
-perl $srcdir/tests/fn-generate.perl ptests
+perl -s $srcdir/tests/fn-generate.perl -windows ptests
 pret=$?
 if [ $pret != 0 ] && [ $pret != 239 ]; then
   exit 128

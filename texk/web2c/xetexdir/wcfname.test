@@ -17,7 +17,7 @@ err2=
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
 TEXINPUTS="xetests;."; export TEXINPUTS
 
-perl $srcdir/tests/fn-generate.perl xetests
+perl -s $srcdir/tests/fn-generate.perl -windows xetests
 pret=$?
 if [ $pret != 0 ] && [ $pret != 239 ]; then
   exit 128
