@@ -48,7 +48,7 @@ $src = <<END;
 \\immediate\\closeout1
 
 % current directory
-\\input "|cat $fnameT"
+%\\input "|cat $fnameT"
 \\input $fnameT
 END
 

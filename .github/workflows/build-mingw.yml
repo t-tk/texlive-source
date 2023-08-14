@@ -8,7 +8,7 @@ on:
 jobs:
   Build-on-mingw:
     runs-on: windows-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -225,15 +225,31 @@ jobs:
           make ptex.web
           make ptex.p
           make ptex.exe
+          ## link without libtool
+          echo -e "###\n### link without libtool  ptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o ptex.exe ptexdir/ptex-ptexextra.o ptex-ptexini.o ptex-ptex0.o ptex-ptex-pool.o libkanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/libptexenc.la lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a -lwsock32
+
           make uptex.web
           make uptex.p
           make uptex.exe
+          ## link without libtool
+          echo -e "###\n### link without libtool  uptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o uptex.exe uptexdir/uptex-uptexextra.o uptex-uptexini.o uptex-uptex0.o uptex-uptex-pool.o libukanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/libptexenc.la lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a -lwsock32
+
           make eptex.web
           make eptex.p
           make eptex.exe
+          ## link without libtool
+          echo -e "###\n### link without libtool  eptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o eptex.exe eptexdir/eptex-eptexextra.o synctexdir/eptex-synctex.o eptex-eptexini.o eptex-eptex0.o eptex-eptex-pool.o libkanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/libptexenc.la lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 libmd5.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a
+
           make euptex.web
           make euptex.p
           make euptex.exe
+          ## link without libtool
+          echo -e "###\n### link without libtool  euptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o euptex.exe euptexdir/euptex-euptexextra.o synctexdir/euptex-synctex.o euptex-euptexini.o euptex-euptex0.o euptex-euptex-pool.o libukanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/libptexenc.la lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 libmd5.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a
+
           make upbibtex.web
           make upbibtex.p
           make upbibtex.c
@@ -265,12 +281,21 @@ jobs:
           # make upmp.exe
           make pmpopst.exe || echo "fail to make pmpopst.exe"
           make upmpopst.exe || echo "fail to make upmpopst.exe"
+
           make pdftex.exe || echo "fail to make pdftex.exe"
+          ## link without libtool
+          echo -e "###\n### link without libtool  pdftex.exe\n###"
+          g++ -Wreturn-type -Wno-write-strings -g -O2   -o pdftex.exe pdftexdir/pdftex-pdftexextra.o synctexdir/pdftex-synctex.o pdftex-pdftexini.o pdftex-pdftex0.o pdftex-pdftex-pool.o libpdftex.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/xpdf/libxpdf.a -lgdi32 libmd5.a lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32
+
           make mf.exe || echo "fail to make mf.exe"
           make hitex.exe || echo "fail to make hitex.exe"
           make synctex.exe || echo "fail to make synctex.exe"
           make ttf2afm.exe || echo "fail to make ttf2afm.exe"
+
           make xetex.exe || echo "fail to make xetex.exe"
+          ## link without libtool
+          echo -e "###\n### link without libtool  xetex.exe\n###"
+          g++  -g -O2   -o xetex.exe xetexdir/xetex-xetexextra.o synctexdir/xetex-synctex.o xetex-xetexini.o xetex-xetex0.o xetex-xetex-pool.o libxetex.a /d/a/texlive-source/texlive-source/Work/libs/harfbuzz/libharfbuzz.a /d/a/texlive-source/texlive-source/Work/libs/graphite2/libgraphite2.a -L/mingw64/lib -licuin -licuuc -licudt -lpthread -lm     /d/a/texlive-source/texlive-source/Work/libs/teckit/libTECkit.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/freetype2/libfreetype.a /d/a/texlive-source/texlive-source/Work/libs/pplib/libpplib.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a libmd5.a -lfontconfig -lfreetype lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32
 
           make wofm2opl.exe || echo "fail to make wofm2opl.exe"
           make wopl2ofm.exe || echo "fail to make wopl2ofm.exe"

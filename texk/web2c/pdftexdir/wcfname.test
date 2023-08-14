@@ -3,13 +3,19 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_pdftex=$BinDir/pdftex$ExeExt
+
 test -d pdftests || mkdir -p pdftests
 rm -f pdftests/fn*.log pdftests/fn*.txt pdftests/fn*.tex fn*.tex
 
 rc=0
+err1=
+err2=
 
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
-TEXINPUTS=pdftests:.; export TEXINPUTS
+TEXINPUTS="pdftests;."; export TEXINPUTS
 
 perl $srcdir/tests/fn-generate.perl pdftests
 pret=$?
@@ -28,12 +34,18 @@ fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
-  ./pdftex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >pdftests/$doc-term.log || rc=1
+  $_pdftex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >pdftests/$doc-term.log || { rc=1 ; err1=$err1" $fenc:$doc" ; }
   mv $doc.txt $doc.log pdftests/
 ##   It does not work.
-##  diff pdftests/$doc.txt $srcdir/tests/fn-$enc.txt || rc=2
+##  diff pdftests/$doc.txt $srcdir/tests/fn-$enc.txt || { rc=2 ; err2=$err2" $fenc:$doc" ; }
 
 done
 
 
+if [ $rc -gt 0 ]; then
+  if [ -n "$err1" ]; then echo ERROR1 $err1; fi
+  if [ -n "$err2" ]; then echo ERROR2 $err2; fi
+else
+  echo SUCCESS
+fi
 exit $rc

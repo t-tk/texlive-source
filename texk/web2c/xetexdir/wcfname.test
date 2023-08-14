@@ -3,13 +3,19 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_xetex=$BinDir/xetex$ExeExt
+
 test -d xetests || mkdir -p xetests
 rm -f xetests/fn*.log xetests/fn*.txt xetests/fn*.tex fn*.tex
 
 rc=0
+err1=
+err2=
 
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
-TEXINPUTS=xetests:.; export TEXINPUTS
+TEXINPUTS="xetests;."; export TEXINPUTS
 
 perl $srcdir/tests/fn-generate.perl xetests
 pret=$?
@@ -28,11 +34,17 @@ fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
-  ./xetex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >xetests/$doc-term.log || rc=1
+  $_xetex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >xetests/$doc-term.log || { rc=1 ; err1=$err1" $fenc:$doc" ; }
   mv $doc.txt $doc.log xetests/
-  diff xetests/$doc.txt $srcdir/tests/fn-utf8.txt || rc=2
+  diff xetests/$doc.txt $srcdir/tests/fn-utf8.txt || { rc=2 ; err2=$err2" $fenc:$doc" ; }
 
 done
 
 
+if [ $rc -gt 0 ]; then
+  if [ -n "$err1" ]; then echo ERROR1 $err1; fi
+  if [ -n "$err2" ]; then echo ERROR2 $err2; fi
+else
+  echo SUCCESS
+fi
 exit $rc
