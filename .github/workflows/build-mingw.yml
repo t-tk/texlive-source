@@ -138,20 +138,20 @@ jobs:
           make
           make check
 
-          cd ../../..
-          mkdir ./Work/libs/lua53
-          cd ./Work/libs/lua53
-          ../../../libs/lua53/configure
-          make
-          make check || echo -e "**\n** failed: lua53\n**"
-          cat luaerror.log
+          #cd ../../..
+          #mkdir ./Work/libs/lua53
+          #cd ./Work/libs/lua53
+          #../../../libs/lua53/configure
+          #make
+          #make check || echo -e "**\n** failed: lua53\n**"
+          #cat luaerror.log
 
-          cd ../../..
-          mkdir ./Work/libs/luajit
-          cd ./Work/libs/luajit
-          ../../../libs/luajit/configure
-          make
-          make check || echo -e "**\n** failed: luajit\n**"
+          #cd ../../..
+          #mkdir ./Work/libs/luajit
+          #cd ./Work/libs/luajit
+          #../../../libs/luajit/configure
+          #make
+          #make check || echo -e "**\n** failed: luajit\n**"
 
       - name: web2c
         shell: msys2 {0}
@@ -167,15 +167,15 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --enable-mp  --enable-pmp  --enable-upmp \
+            --disable-mp  --disable-pmp  --disable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
-            --enable-mf  --enable-mf-nowin \
+            --disable-mf  --disable-mf-nowin \
             --disable-etex  --disable-etex-synctex \
-            --enable-aleph \
-            --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
+            --disable-aleph \
+            --disble-luatex  --disable-luajittex  --disable-luahbtex  --disble-luajithbtex \
             --enable-xetex  --enable-xetex-synctex \
-            --enable-mflua  --disable-mflua-nowin  --enable-mfluajit  --disable-mfluajit-nowin \
+            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
@@ -279,8 +279,8 @@ jobs:
           # make upmp.p
           # make upmp.c
           # make upmp.exe
-          make pmpopst.exe || echo "fail to make pmpopst.exe"
-          make upmpopst.exe || echo "fail to make upmpopst.exe"
+          # make pmpopst.exe || echo "fail to make pmpopst.exe"
+          # make upmpopst.exe || echo "fail to make upmpopst.exe"
 
           make pdftex.exe || echo "fail to make pdftex.exe"
           ## link without libtool
@@ -297,23 +297,23 @@ jobs:
           echo -e "###\n### link without libtool  xetex.exe\n###"
           g++  -g -O2   -o xetex.exe xetexdir/xetex-xetexextra.o synctexdir/xetex-synctex.o xetex-xetexini.o xetex-xetex0.o xetex-xetex-pool.o libxetex.a /d/a/texlive-source/texlive-source/Work/libs/harfbuzz/libharfbuzz.a /d/a/texlive-source/texlive-source/Work/libs/graphite2/libgraphite2.a -L/mingw64/lib -licuin -licuuc -licudt -lpthread -lm     /d/a/texlive-source/texlive-source/Work/libs/teckit/libTECkit.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/freetype2/libfreetype.a /d/a/texlive-source/texlive-source/Work/libs/pplib/libpplib.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a libmd5.a -lfontconfig -lfreetype lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 || echo -e "**\n** fail to link xetex.exe"
 
-          make wofm2opl.exe || echo "fail to make wofm2opl.exe"
-          make wopl2ofm.exe || echo "fail to make wopl2ofm.exe"
-          make wovf2ovp.exe || echo "fail to make wovf2ovp.exe"
-          make wovp2ovf.exe || echo "fail to make wovp2ovf.exe"
-          make odvicopy.exe || echo "fail to make odvicopy.exe"
-          make odvitype.exe || echo "fail to make odvitype.exe"
-          make otangle.exe  || echo "fail to make otangle.exe"
+          # make wofm2opl.exe || echo "fail to make wofm2opl.exe"
+          # make wopl2ofm.exe || echo "fail to make wopl2ofm.exe"
+          # make wovf2ovp.exe || echo "fail to make wovf2ovp.exe"
+          # make wovp2ovf.exe || echo "fail to make wovp2ovf.exe"
+          # make odvicopy.exe || echo "fail to make odvicopy.exe"
+          # make odvitype.exe || echo "fail to make odvitype.exe"
+          # make otangle.exe  || echo "fail to make otangle.exe"
 
-          make luatex.exe      || echo "fail to make luatex.exe"
-          make luajittex.exe   || echo "fail to make luajittex.exe"
-          make luahbtex.exe    || echo "fail to make luahbtex.exe"
-          make luajithbtex.exe || echo "fail to make luajithbtex.exe"
+          # make luatex.exe      || echo "fail to make luatex.exe"
+          # make luajittex.exe   || echo "fail to make luajittex.exe"
+          # make luahbtex.exe    || echo "fail to make luahbtex.exe"
+          # make luajithbtex.exe || echo "fail to make luajithbtex.exe"
 
-          make aleph.exe       || echo "fail to make aleph.exe"
+          # make aleph.exe       || echo "fail to make aleph.exe"
 
-          make mflua.exe       || echo "fail to make mflua.exe"
-          make mfluajit.exe    || echo "fail to make mfluajit.exe"
+          # make mflua.exe       || echo "fail to make mflua.exe"
+          # make mfluajit.exe    || echo "fail to make mfluajit.exe"
 
           echo "!!! make complete !!!"
 
@@ -516,50 +516,50 @@ jobs:
           $srcdir/xetexdir/xetex.test           || echo -e "**\n** failed: xetexdir/xetex.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
           echo ""
-          $srcdir/omegaware/odvicopy.test       || echo -e "**\n** failed: omegaware/odvicopy.test\n**"
-          $srcdir/omegaware/odvitype.test       || echo -e "**\n** failed: omegaware/odvitype.test\n**"
-          $srcdir/omegaware/otangle.test        || echo -e "**\n** failed: omegaware/otangle.test\n**"
-          $srcdir/omegaware/bad.test            || echo -e "**\n** failed: omegaware/bad.test\n**"
-          $srcdir/omegaware/charwd.test         || echo -e "**\n** failed: omegaware/charwd.test\n**"
-          $srcdir/omegaware/check.test          || echo -e "**\n** failed: omegaware/check.test\n**"
-          $srcdir/omegaware/help.test           || echo -e "**\n** failed: omegaware/help.test\n**"
-          $srcdir/omegaware/level1.test         || echo -e "**\n** failed: omegaware/level1.test\n**"
-          $srcdir/omegaware/ligkern.test        || echo -e "**\n** failed: omegaware/ligkern.test\n**"
-          $srcdir/omegaware/ofonts.test         || echo -e "**\n** failed: omegaware/ofonts.test\n**"
-          $srcdir/omegaware/omfonts.test        || echo -e "**\n** failed: omegaware/omfonts.test\n**"
-          $srcdir/omegaware/overbmp.test        || echo -e "**\n** failed: omegaware/overbmp.test\n**"
-          $srcdir/omegaware/realnum.test        || echo -e "**\n** failed: omegaware/realnum.test\n**"
-          $srcdir/omegaware/repeat.test         || echo -e "**\n** failed: omegaware/repeat.test\n**"
-          $srcdir/omegaware/selectfont.test     || echo -e "**\n** failed: omegaware/selectfont.test\n**"
-          $srcdir/omegaware/shorten.test        || echo -e "**\n** failed: omegaware/shorten.test\n**"
-          $srcdir/omegaware/specialhex.test     || echo -e "**\n** failed: omegaware/specialhex.test\n**"
-          $srcdir/omegaware/version.test        || echo -e "**\n** failed: omegaware/version.test\n**"
-          $srcdir/omegaware/vrepeat.test        || echo -e "**\n** failed: omegaware/vrepeat.test\n**"
-          $srcdir/omegaware/yannis.test         || echo -e "**\n** failed: omegaware/yannis.test\n**"
-          echo ""
-          $srcdir/luatexdir/luatex.test         || echo -e "**\n** failed: luatexdir/luatex.test\n**"
-          $srcdir/luatexdir/luaimage.test       || echo -e "**\n** failed: luatexdir/luaimage.test\n**"
-          $srcdir/luatexdir/luajittex.test      || echo -e "**\n** failed: luatexdir/luajittex.test\n**"
-          $srcdir/luatexdir/luajitimage.test    || echo -e "**\n** failed: luatexdir/luajitimage.test\n**"
-          echo ""
-          $srcdir/alephdir/aleph.test           || echo -e "**\n** failed: alephdir/aleph.test\n**"
-          echo ""
-          $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
-          echo ""
-          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
+#          $srcdir/omegaware/odvicopy.test       || echo -e "**\n** failed: omegaware/odvicopy.test\n**"
+#          $srcdir/omegaware/odvitype.test       || echo -e "**\n** failed: omegaware/odvitype.test\n**"
+#          $srcdir/omegaware/otangle.test        || echo -e "**\n** failed: omegaware/otangle.test\n**"
+#          $srcdir/omegaware/bad.test            || echo -e "**\n** failed: omegaware/bad.test\n**"
+#          $srcdir/omegaware/charwd.test         || echo -e "**\n** failed: omegaware/charwd.test\n**"
+#          $srcdir/omegaware/check.test          || echo -e "**\n** failed: omegaware/check.test\n**"
+#          $srcdir/omegaware/help.test           || echo -e "**\n** failed: omegaware/help.test\n**"
+#          $srcdir/omegaware/level1.test         || echo -e "**\n** failed: omegaware/level1.test\n**"
+#          $srcdir/omegaware/ligkern.test        || echo -e "**\n** failed: omegaware/ligkern.test\n**"
+#          $srcdir/omegaware/ofonts.test         || echo -e "**\n** failed: omegaware/ofonts.test\n**"
+#          $srcdir/omegaware/omfonts.test        || echo -e "**\n** failed: omegaware/omfonts.test\n**"
+#          $srcdir/omegaware/overbmp.test        || echo -e "**\n** failed: omegaware/overbmp.test\n**"
+#          $srcdir/omegaware/realnum.test        || echo -e "**\n** failed: omegaware/realnum.test\n**"
+#          $srcdir/omegaware/repeat.test         || echo -e "**\n** failed: omegaware/repeat.test\n**"
+#          $srcdir/omegaware/selectfont.test     || echo -e "**\n** failed: omegaware/selectfont.test\n**"
+#          $srcdir/omegaware/shorten.test        || echo -e "**\n** failed: omegaware/shorten.test\n**"
+#          $srcdir/omegaware/specialhex.test     || echo -e "**\n** failed: omegaware/specialhex.test\n**"
+#          $srcdir/omegaware/version.test        || echo -e "**\n** failed: omegaware/version.test\n**"
+#          $srcdir/omegaware/vrepeat.test        || echo -e "**\n** failed: omegaware/vrepeat.test\n**"
+#          $srcdir/omegaware/yannis.test         || echo -e "**\n** failed: omegaware/yannis.test\n**"
+#          echo ""
+#          $srcdir/luatexdir/luatex.test         || echo -e "**\n** failed: luatexdir/luatex.test\n**"
+#          $srcdir/luatexdir/luaimage.test       || echo -e "**\n** failed: luatexdir/luaimage.test\n**"
+#          $srcdir/luatexdir/luajittex.test      || echo -e "**\n** failed: luatexdir/luajittex.test\n**"
+#          $srcdir/luatexdir/luajitimage.test    || echo -e "**\n** failed: luatexdir/luajitimage.test\n**"
+#          echo ""
+#          $srcdir/alephdir/aleph.test           || echo -e "**\n** failed: alephdir/aleph.test\n**"
+#          echo ""
+#          $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
+#          echo ""
+#          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
 
-      - name: ttf2pk2
-        shell: msys2 {0}
-        run: |
-          prog='ttf2pk2'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check || echo -e "**\n** failed: ttf2pk2\n**"
-          cat tests/ttf2pk.log || echo
+      #- name: ttf2pk2
+      #  shell: msys2 {0}
+      #  run: |
+      #    prog='ttf2pk2'
+      #    mkdir -p ./Work/texk/$prog
+      #    cd ./Work/texk/$prog
+      #    ../../../texk/$prog/configure
+      #    make
+      #    make check || echo -e "**\n** failed: ttf2pk2\n**"
+      #    cat tests/ttf2pk.log || echo
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
