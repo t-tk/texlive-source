@@ -3,8 +3,10 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
+KpsDir=${KpsDir:-../kpathsea}
 BinDir=${BinDir:-.}
 ExeExt=${ExeExt:-}
+_kpsewhich=$KpsDir/kpsewhich$ExeExt
 _xetex=$BinDir/xetex$ExeExt
 
 test -d xetests || mkdir -p xetests
@@ -35,9 +37,15 @@ fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
-  $_xetex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >xetests/$doc-term.log || { rc=1 ; err1=$err1" $fenc:$doc" ; }
+  $_kpsewhich -progname=xetex $doc.tex || rc=10
+  $_kpsewhich -progname=xetex fn±×÷§¶-utf8.tex || rc=11
+  $_xetex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >xetests/$doc-term.log || \
+      { rc=1 ; err1=$err1" $fenc:$doc" ; }
+  $_kpsewhich -progname=xetex $doc-tmp.tex || rc=12
+  $_kpsewhich -progname=xetex fn±×÷§¶-utf8-tmp.tex || rc=13
   mv $doc.txt $doc.log xetests/
-  diff xetests/$doc.txt $srcdir/tests/fn-utf8.txt || { rc=2 ; err2=$err2" $fenc:$doc" ; }
+  diff xetests/$doc.txt $srcdir/tests/fn-utf8.txt || \
+      { rc=2 ; err2=$err2" $fenc:$doc" ; }
 
 done
 

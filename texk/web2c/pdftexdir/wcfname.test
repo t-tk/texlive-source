@@ -3,8 +3,10 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
+KpsDir=${KpsDir:-../kpathsea}
 BinDir=${BinDir:-.}
 ExeExt=${ExeExt:-}
+_kpsewhich=$KpsDir/kpsewhich$ExeExt
 _pdftex=$BinDir/pdftex$ExeExt
 
 test -d pdftests || mkdir -p pdftests
@@ -35,10 +37,16 @@ fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
-  $_pdftex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >pdftests/$doc-term.log || { rc=1 ; err1=$err1" $fenc:$doc" ; }
+  $_kpsewhich -progname=pdftex $doc.tex || rc=10
+  $_kpsewhich -progname=pdftex fn±×÷§¶-utf8.tex || rc=11
+  $_pdftex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >pdftests/$doc-term.log || \
+      { rc=1 ; err1=$err1" $fenc:$doc" ; }
+  $_kpsewhich -progname=pdftex $doc-tmp.tex || rc=12
+  $_kpsewhich -progname=pdftex fn±×÷§¶-utf8-tmp.tex || rc=13
   mv $doc.txt $doc.log pdftests/
 ##   It does not work.
-##  diff pdftests/$doc.txt $srcdir/tests/fn-$enc.txt || { rc=2 ; err2=$err2" $fenc:$doc" ; }
+##  diff pdftests/$doc.txt $srcdir/tests/fn-$fenc.txt || \
+##      { rc=2 ; err2=$err2" $fenc:$doc" ; }
 
 done
 
