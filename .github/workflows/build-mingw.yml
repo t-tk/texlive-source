@@ -558,6 +558,10 @@ jobs:
         run: |
           chcp 932
 
+      - name: check codepage
+        run: |
+          chcp
+
       - name: web2c check under CP932
         shell: msys2 {0}
         run: |
@@ -568,6 +572,9 @@ jobs:
           $srcdir/euptexdir/wcfname.test     || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
           $srcdir/pdftexdir/wcfname.test     || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test      || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
+        env:
+          srcdir: "../../../texk/web2c"
+          TEXMFCNF: "../../../texk/kpathsea"
 
       #- name: ttf2pk2
       #  shell: msys2 {0}
