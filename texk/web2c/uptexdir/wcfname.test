@@ -52,7 +52,7 @@ else
   MyOS=nonWindows
   try_ienc="euc sjis"
 fi
-if [ $ExeExt = ".exe" ]; then
+if [ "$ExeExt" = ".exe" ]; then
   opt_win=-windows
 else
   opt_win=
