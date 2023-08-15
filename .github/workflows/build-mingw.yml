@@ -85,6 +85,9 @@ jobs:
           cd ./Work/texk/kpathsea
           ../../../texk/kpathsea/configure
           make
+          ## link without libtool
+          echo -e "###\n### link without libtool  kpsewhich.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o kpsewhich.exe kpsewhich.o .libs/libkpathsea.a
           make check
 
           cd ../../..
