@@ -834,7 +834,8 @@ main (int argc,  string *argv)
      || strstr(kpse->program_name,"dvips") || strstr(kpse->program_name,"upmendex")
      || strstr(kpse->program_name,"bibtex8") || strstr(kpse->program_name,"bibtexu"))
   {
-    if (strstr(kpse->program_name,"upmendex"))
+    if (strstr(kpse->program_name,"upmendex")
+     || strstr(kpse->program_name,"xetex") || strstr(kpse->program_name,"xelatex"))
       enc = "utf-8";
     else
       enc = kpathsea_var_value (kpse, "command_line_encoding");
