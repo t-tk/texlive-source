@@ -554,6 +554,21 @@ jobs:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
 
+      - name: set codepage CP932 (Japanese)
+        run: |
+          chcp 932
+
+      - name: web2c check under CP932
+        shell: msys2 {0}
+        run: |
+          cd ./Work/texk/web2c
+          $srcdir/ptexdir/wcfname.test       || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
+          $srcdir/uptexdir/wcfname.test      || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
+          $srcdir/eptexdir/wcfname.test      || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
+          $srcdir/euptexdir/wcfname.test     || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
+          $srcdir/pdftexdir/wcfname.test     || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
+          $srcdir/xetexdir/wcfname.test      || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
+
       #- name: ttf2pk2
       #  shell: msys2 {0}
       #  run: |
