@@ -17,6 +17,11 @@ rc=0; err1=; err2=; err3=; err4=
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
 TEXINPUTS="eptests;."; export TEXINPUTS
 
+$_kpsewhich -var-value=TEXMFCNF
+$_kpsewhich -progname=eptex -var-value=TEXINPUTS
+$_kpsewhich -progname=eptex -var-value=command_line_encoding
+$_kpsewhich -progname=eptex -var-value=guess_input_kanji_encoding
+
 for loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8 ja_JP.UTF-8 ja_JP.utf8; do
   locale -a | grep "^$loc\$"
   ret=$?
