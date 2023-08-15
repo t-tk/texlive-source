@@ -3,23 +3,26 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
+engine=pdftex
+testdir=pdftests
+
 KpsDir=${KpsDir:-../kpathsea}
 BinDir=${BinDir:-.}
 ExeExt=${ExeExt:-}
 _kpsewhich=$KpsDir/kpsewhich$ExeExt
-_pdftex=$BinDir/pdftex$ExeExt
+_tex=$BinDir/$engine$ExeExt
 
-test -d pdftests || mkdir -p pdftests
-rm -f pdftests/fn*.log pdftests/fn*.txt pdftests/fn*.tex fn*.tex
+test -d $testdir || mkdir -p $testdir
+rm -f $testdir/fn*.log $testdir/fn*.txt $testdir/fn*.tex fn*.tex
 
 rc=0; err1=; err2=
 
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
-TEXINPUTS="pdftests;."; export TEXINPUTS
+TEXINPUTS="$testdir;."; export TEXINPUTS
 
 $_kpsewhich -var-value=TEXMFCNF
-$_kpsewhich -progname=pdftex -var-value=TEXINPUTS
-$_kpsewhich -progname=pdftex -var-value=command_line_encoding
+$_kpsewhich -progname=$engine -var-value=TEXINPUTS
+$_kpsewhich -progname=$engine -var-value=command_line_encoding
 
 for loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8 ja_JP.UTF-8 ja_JP.utf8; do
   locale -a | grep "^$loc\$"
@@ -48,26 +51,26 @@ else
   opt_win=
 fi
 
-perl -s $srcdir/tests/fn-generate.perl $opt_win pdftests
+perl -s $srcdir/tests/fn-generate.perl $opt_win $testdir
 pret=$?
 if [ $pret != 0 ] && [ $pret != 239 ]; then
   exit 77
 fi
-rm -f pdftests/fn*-euc.tex pdftests/fn*-sjis.tex
+rm -f $testdir/fn*-euc.tex $testdir/fn*-sjis.tex
 
 fenc="utf8"
 for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
-  $_kpsewhich -progname=pdftex $doc.tex || rc=10
-  $_kpsewhich -progname=pdftex fn±×÷§¶-utf8.tex || rc=11
-  $_pdftex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >pdftests/$doc-term.log || \
+  $_kpsewhich -progname=$engine $doc.tex || rc=10
+  $_kpsewhich -progname=$engine fn±×÷§¶-utf8.tex || rc=11
+  $_tex -ini -interaction nonstopmode -jobname=$doc --shell-escape $doc.tex >$testdir/$doc-term.log || \
       { rc=1 ; err1=$err1" $fenc:$doc" ; }
-  $_kpsewhich -progname=pdftex $doc-tmp.tex || rc=12
-  $_kpsewhich -progname=pdftex fn±×÷§¶-utf8-tmp.tex || rc=13
-  mv $doc.txt $doc.log pdftests/
+  $_kpsewhich -progname=$engine $doc-tmp.tex || rc=12
+  $_kpsewhich -progname=$engine fn±×÷§¶-utf8-tmp.tex || rc=13
+  mv $doc.txt $doc.log $testdir/
 ##   It does not work.
-##  diff pdftests/$doc.txt $srcdir/tests/fn-$fenc.txt || \
+##  diff $testdir/$doc.txt $srcdir/tests/fn-$fenc.txt || \
 ##      { rc=2 ; err2=$err2" $fenc:$doc" ; }
 
 done
