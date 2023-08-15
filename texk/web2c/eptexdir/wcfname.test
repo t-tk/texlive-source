@@ -46,13 +46,16 @@ fi
 if [ "$COMSPEC" != "" ]; then
   echo "*** We guess OS is Windows."
   MyOS=Windows
-  opt_win=-windows
   try_ienc="sjis"
 else
   echo "*** We guess OS is not Windows."
   MyOS=nonWindows
-  opt_win=
   try_ienc="euc sjis"
+fi
+if [ $ExeExt = ".exe" ]; then
+  opt_win=-windows
+else
+  opt_win=
 fi
 
 perl -s $srcdir/tests/fn-generate.perl $opt_win $testdir

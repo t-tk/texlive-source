@@ -46,6 +46,8 @@ if [ "$COMSPEC" != "" ]; then
   echo "*** We guess OS is Windows."
   command_line_encoding=utf8
   export command_line_encoding
+fi
+if [ $ExeExt = ".exe" ]; then
   opt_win=-windows
 else
   opt_win=
