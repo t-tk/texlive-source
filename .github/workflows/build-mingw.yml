@@ -560,14 +560,16 @@ jobs:
           cd ./Work/texk/web2c
           chcp.com
           $srcdir/ptexdir/wcfname.test          || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
-          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
           $srcdir/eptexdir/wcfname.test         || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
-          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
+          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
+          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
           chcp.com 932
           $srcdir/ptexdir/wcfname.test          || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
-          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
           $srcdir/eptexdir/wcfname.test         || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
+          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
           $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
+          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
+          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
@@ -579,13 +581,13 @@ jobs:
         run: |
           cd ./Work/texk/web2c
           chcp.com
-          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
-          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
+          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
+          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
           chcp.com 932
-          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
-          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
+          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
+          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
         env:
