@@ -91,7 +91,6 @@ for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc; do
   mv $doc-$ienc.txt $doc-$ienc.log $testdir/
   diff $testdir/$doc-$ienc.txt $srcdir/tests/fn-$fenc.txt || \
       { rc=2 ; err2=$err2" $fenc:$ienc:$doc" ; }
-  rm -f $testdir/fn±×÷§¶-utf8-tmp.tex
 
 done
 done
