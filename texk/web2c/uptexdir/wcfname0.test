@@ -4,7 +4,7 @@
 # You may freely use, modify and/or distribute this file.
 
 engine=uptex
-testdir=uptests
+testdir=up0tests
 
 KpsDir=${KpsDir:-../kpathsea}
 BinDir=${BinDir:-.}
@@ -67,20 +67,11 @@ fi
 # upTeX internal encoding
 fenc="utf8"
 for ienc in $try_ienc; do
-for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc; do
-
-  if [ $ienc != uptex -a $doc = fn£¥µÆÇñß-$fenc ]; then
-    continue
-  fi
+for doc in fn-$fenc fnさざ波-$fenc; do
 
   if [ $MyOS = Windows ]; then
-    if [ $ienc = uptex ]; then
-      command_line_encoding=utf8
-      export command_line_encoding
-    else
-      command_line_encoding=none
-      export command_line_encoding
-    fi
+    command_line_encoding=none
+    export command_line_encoding
   fi
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc '  Internal Encoding:'$ienc
@@ -116,10 +107,8 @@ for doc in fnさざ波-$fenc; do
   else
     if [ $fenc != sjis ]; then ienc="euc"; fi
   fi
-  if [ $ienc != uptex ]; then
-    guess_input_kanji_encoding=1
-    export guess_input_kanji_encoding
-  fi
+  guess_input_kanji_encoding=1
+  export guess_input_kanji_encoding
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc '  Internal Encoding:'$ienc
   $_kpsewhich -progname=$engine $doc.tex || rc=20
