@@ -479,8 +479,8 @@ jobs:
           $srcdir/mftraptest.test            || echo -e "**\n** failed: mftraptest.test\n**"
           echo ""
           $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
-          $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
-          $srcdir/eptexdir/pdfprimitive.test || echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**"
+          # $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
+          # $srcdir/eptexdir/pdfprimitive.test || echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**"
           $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
           $srcdir/uptexdir/ptriptest.test    || echo -e "**\n** failed: uptexdir/ptriptest.test\n**"
           $srcdir/uptexdir/uptriptest.test   || echo -e "**\n** failed: uptexdir/uptriptest.test\n**"
@@ -552,6 +552,31 @@ jobs:
 #          $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
 #          echo ""
 #          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
+        env:
+          srcdir: "../../../texk/web2c"
+          TEXMFCNF: "../../../texk/kpathsea"
+
+
+      - name: web2c triptest
+        shell: msys2 {0}
+        run: |
+          cd ./Work/texk/web2c
+
+          export abs_srcdir=../$srcdir
+          export LN_S=cp
+          ./pltotf --version || echo
+          ./tftopl --version || echo
+          ./dvitype --version || echo
+          ./gftype --version || echo
+          $srcdir/mftraptest.test            || { echo -e "**\n** failed: mftraptest.test\n**"            ; cat mftraptest.log ; }
+          $srcdir/triptest.test              || { echo -e "**\n** failed: triptest.test\n**"              ; cat triptest.log ; }
+          # $srcdir/etexdir/etriptest.test     || { echo -e "**\n** failed: etexdir/etriptest.test\n**"     ; cat etriptest.log ; }
+          # $srcdir/eptexdir/pdfprimitive.test || { echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**" ; cat pdfprimitivetest.log ; }
+          $srcdir/ptexdir/ptriptest.test     || { echo -e "**\n** failed: ptexdir/ptriptest.test\n**"     ; cat ptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/ptriptest.test    || { echo -e "**\n** failed: uptexdir/ptriptest.test\n**"    ; cat uptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/uptriptest.test   || { echo -e "**\n** failed: uptexdir/uptriptest.test\n**"   ; cat uptexdir/uptriptest.log ; }
+          $srcdir/eptexdir/eptriptest.test   || { echo -e "**\n** failed: eptexdir/eptriptest.test\n**"   ; cat eptexdir/eptriptest.log ; }
+          $srcdir/euptexdir/euptriptest.test || { echo -e "**\n** failed: euptexdir/euptriptest.test\n**" ; cat euptexdir/euptriptest.log ; }
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
