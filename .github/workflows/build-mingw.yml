@@ -488,8 +488,10 @@ jobs:
           $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
           echo ""
           $srcdir/ptexdir/wcfname.test       || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
-          $srcdir/uptexdir/wcfname.test      || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
           $srcdir/eptexdir/wcfname.test      || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
+          $srcdir/uptexdir/wcfname0.test     || echo -e "**\n** failed: uptexdir/wcfname0.test\n**"
+          $srcdir/euptexdir/wcfname0.test    || echo -e "**\n** failed: euptexdir/wcfname0.test\n**"
+          $srcdir/uptexdir/wcfname.test      || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
           $srcdir/euptexdir/wcfname.test     || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
           echo ""
           $srcdir/tests/tex-closeout.test    || echo -e "**\n** failed: tex-closeout.test\n**"
@@ -561,33 +563,33 @@ jobs:
           chcp.com
           $srcdir/ptexdir/wcfname.test          || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
           $srcdir/eptexdir/wcfname.test         || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
-          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
-          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
+          $srcdir/uptexdir/wcfname0.test        || echo -e "**\n** failed: uptexdir/wcfname0.test\n**"
+          $srcdir/euptexdir/wcfname0.test       || echo -e "**\n** failed: euptexdir/wcfname0.test\n**"
           chcp.com 932
           $srcdir/ptexdir/wcfname.test          || echo -e "**\n** failed: ptexdir/wcfname.test\n**"
           $srcdir/eptexdir/wcfname.test         || echo -e "**\n** failed: eptexdir/wcfname.test\n**"
-          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
-          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
-          $srcdir/uptexdir/wcfname2.test        || echo -e "**\n** failed: uptexdir/wcfname2.test\n**"
-          $srcdir/euptexdir/wcfname2.test       || echo -e "**\n** failed: euptexdir/wcfname2.test\n**"
+          $srcdir/uptexdir/wcfname0.test        || echo -e "**\n** failed: uptexdir/wcfname0.test\n**"
+          $srcdir/euptexdir/wcfname0.test       || echo -e "**\n** failed: euptexdir/wcfname0.test\n**"
+          locale -a
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
           guess_input_kanji_encoding: "1"
           command_line_encoding: "none"
+          ExeExt: ".exe"
 
       - name: web2c check upTeX
         shell: msys2 {0}
         run: |
           cd ./Work/texk/web2c
           chcp.com
-          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
-          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
+          $srcdir/uptexdir/wcfname.test         || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
+          $srcdir/euptexdir/wcfname.test        || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
           chcp.com 932
-          $srcdir/uptexdir/wcfname1.test        || echo -e "**\n** failed: uptexdir/wcfname1.test\n**"
-          $srcdir/euptexdir/wcfname1.test       || echo -e "**\n** failed: euptexdir/wcfname1.test\n**"
+          $srcdir/uptexdir/wcfname.test         || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
+          $srcdir/euptexdir/wcfname.test        || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
         env:
