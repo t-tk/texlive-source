@@ -119,7 +119,7 @@ jobs:
             --disable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
-            --disable-mf  --disable-mf-nowin \
+            --enable-mf  --disable-mf-nowin \
             --disable-etex  --disable-etex-synctex \
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \

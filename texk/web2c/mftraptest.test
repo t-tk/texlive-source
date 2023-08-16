@@ -41,6 +41,11 @@ cat >>filter <<-\_EOF
 	s/%CAPSULE[1-9][0-9]*/%CAPSULEnnnn/g
 	_EOF
 
+cat >>filter <<-\_EOF
+	s/METAFONT, Version 2\.71828182[^0-9].*/METAFONT, Version 2.71828182/
+	s/GFtype, Version 3\.1[^0-9].*/GFtype, Version 3.1/
+	_EOF
+
 echo ">>> Running TRAP test for Metafont." >&2
 echo ">>> See $testdir/mftrap.diffs for example of acceptable diffs." >&2
 
