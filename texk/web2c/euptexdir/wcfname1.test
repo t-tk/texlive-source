@@ -15,7 +15,7 @@ _tex=$BinDir/$engine$ExeExt
 test -d $testdir || mkdir -p $testdir
 rm -f $testdir/fn*.log $testdir/fn*.txt $testdir/fn*.tex fn*.tex
 
-rc=0; err1=; err2=; err3=; err4=
+rc=0; err1=; err2=
 
 TEXMFCNF=$srcdir/../kpathsea; export TEXMFCNF
 TEXINPUTS="$testdir;."; export TEXINPUTS
@@ -46,11 +46,9 @@ fi
 if [ "$COMSPEC" != "" ] || [ "$ExeExt" = ".exe" ]; then
   echo "*** We guess OS is Windows."
   MyOS=Windows
-  try_ienc="sjis"
 else
   echo "*** We guess OS is not Windows."
   MyOS=nonWindows
-  try_ienc="euc sjis"
 fi
 if [ "$ExeExt" = ".exe" ]; then
   opt_win=-windows
