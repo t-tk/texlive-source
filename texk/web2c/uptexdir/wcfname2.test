@@ -3,8 +3,8 @@
 # Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # You may freely use, modify and/or distribute this file.
 
-engine=ptex
-testdir=ptests
+engine=uptex
+testdir=uptests
 
 KpsDir=${KpsDir:-../kpathsea}
 BinDir=${BinDir:-.}
@@ -64,10 +64,24 @@ if [ $pret != 0 ] && [ $pret != 239 ]; then
   exit 77
 fi
 
-# pTeX internal encoding
+# upTeX internal encoding
 fenc="utf8"
 for ienc in $try_ienc; do
-for doc in fn-$fenc fnさざ波-$fenc; do
+for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc; do
+
+  if [ $ienc != uptex -a $doc = fn£¥µÆÇñß-$fenc ]; then
+    continue
+  fi
+
+  if [ $MyOS = Windows ]; then
+    if [ $ienc = uptex ]; then
+      command_line_encoding=utf8
+      export command_line_encoding
+    else
+      command_line_encoding=none
+      export command_line_encoding
+    fi
+  fi
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc '  Internal Encoding:'$ienc
   $_kpsewhich -progname=$engine $doc.tex || rc=10
@@ -90,15 +104,21 @@ if [ $pret = 239 ]; then
 fi
 
 
-# pTeX, regacy encoding
+# pTeX compatible mode, regacy encoding
 for fenc in sjis euc; do
 for doc in fnさざ波-$fenc; do
 
   ienc=$fenc
   if [ $MyOS = Windows ]; then
     ienc="sjis"
+    command_line_encoding=none
+    export command_line_encoding
   else
     if [ $fenc != sjis ]; then ienc="euc"; fi
+  fi
+  if [ $ienc != uptex ]; then
+    guess_input_kanji_encoding=1
+    export guess_input_kanji_encoding
   fi
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc '  Internal Encoding:'$ienc

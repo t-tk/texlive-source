@@ -43,7 +43,7 @@ if [ $ret != 0 ]; then
   LC_ALL=$loc; LANGUAGE=$loc; export LC_ALL LANGUAGE
 fi
 
-if [ "$COMSPEC" != "" ]; then
+if [ "$COMSPEC" != "" ] || [ "$ExeExt" = ".exe" ]; then
   echo "*** We guess OS is Windows."
   MyOS=Windows
   try_ienc="sjis"
