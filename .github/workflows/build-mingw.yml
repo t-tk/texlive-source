@@ -156,6 +156,13 @@ jobs:
           make
           make check || echo -e "**\n** failed: luajit\n**"
 
+          cd ../../..
+          mkdir ./Work/libs/potrace
+          cd ./Work/libs/potrace
+          ../../../libs/potrace/configure
+          make
+          make check || echo -e "**\n** failed: potrace\n**"
+
       - name: web2c
         shell: msys2 {0}
         run: |
