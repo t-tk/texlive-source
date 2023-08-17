@@ -564,6 +564,7 @@ jobs:
 
           export abs_srcdir=../$srcdir
           export LN_S=cp
+          export DIFF=diff
           ./pltotf --version || echo
           ./tftopl --version || echo
           ./dvitype --version || echo

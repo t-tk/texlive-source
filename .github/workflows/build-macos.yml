@@ -126,7 +126,7 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
-            --disable-tex  --disable-tex-synctex \
+            --enable-tex  --disable-tex-synctex \
             --enable-ptex  --enable-ptex-synctex \
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
