@@ -122,6 +122,6 @@ if [ $rc -gt 0 ]; then
   if [ -n "$err3" ]; then echo ERROR3 $err3; fi
   if [ -n "$err4" ]; then echo ERROR4 $err4; fi
 else
-  echo SUCCESS
+  echo PASS
 fi
 exit $rc

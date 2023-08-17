@@ -82,6 +82,6 @@ if [ $rc -gt 0 ]; then
   if [ -n "$err1" ]; then echo ERROR1 $err1; fi
   if [ -n "$err2" ]; then echo ERROR2 $err2; fi
 else
-  echo SUCCESS
+  echo PASS
 fi
 exit $rc
