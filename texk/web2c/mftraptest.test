@@ -83,8 +83,8 @@ diff $testdir/mftrap.pl mftrap.pl || is_OK=false
 $DIFF $testdir/trap.typ trap.typ
 
 for f in mftrapin.log mftrap.fot mftrap.log trap.typ; do
-  sed $testdir/$f -f filter >a/$f
-  sed $f -f filter >b/$f
+  sed -f filter $testdir/$f >a/$f
+  sed -f filter $f >b/$f
   diff a/$f b/$f || is_OK=false
 done
 
