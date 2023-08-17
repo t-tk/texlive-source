@@ -16,7 +16,6 @@
 *.out text eol=lf
 *.log text eol=lf
 *.typ text eol=lf
-*.xref text eol=lf
 
 # for dvi2tty
 *.tty text eol=lf
