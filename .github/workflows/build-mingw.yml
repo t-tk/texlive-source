@@ -170,7 +170,7 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --disable-mp  --disable-pmp  --disable-upmp \
+            --disable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --disable-mf  --disable-mf-nowin \
@@ -270,10 +270,10 @@ jobs:
           make pktogf.exe
           make pktype.exe
           make pooltype.exe
-          make tftopl.exe || echo "fail to make tftopl.exe"
-          make vftovp.exe || echo "fail to make vftovp.exe"
-          make vptovf.exe || echo "fail to make vptovf.exe"
-          make weave.exe || echo "fail to make weave.exe"
+          make tftopl.exe
+          make vftovp.exe
+          make vptovf.exe
+          make weave.exe
           # make pmp.web
           # make pmp.p
           # make pmp.c
@@ -282,8 +282,8 @@ jobs:
           # make upmp.p
           # make upmp.c
           # make upmp.exe
-          # make pmpopst.exe || echo "fail to make pmpopst.exe"
-          # make upmpopst.exe || echo "fail to make upmpopst.exe"
+          make pmpopst.exe || echo "fail to make pmpopst.exe"
+          make upmpopst.exe || echo "fail to make upmpopst.exe"
 
           make pdftex.exe || echo "fail to make pdftex.exe"
           ## link without libtool
@@ -520,6 +520,9 @@ jobs:
           $srcdir/xetexdir/xetex-bug73.test     || echo -e "**\n** failed: xetexdir/xetex-bug73.test\n**"
           $srcdir/xetexdir/xetex.test           || echo -e "**\n** failed: xetexdir/xetex.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
+          echo ""
+          $srcdir/pmpostdir/pmpost.test         || echo -e "**\n** failed: pmpostdir/pmpost.test\n**"
+          $srcdir/pmpostdir/upmpost.test        || echo -e "**\n** failed: pmpostdir/upmpost.test\n**"
           echo ""
 #          $srcdir/omegaware/odvicopy.test       || echo -e "**\n** failed: omegaware/odvicopy.test\n**"
 #          $srcdir/omegaware/odvitype.test       || echo -e "**\n** failed: omegaware/odvitype.test\n**"

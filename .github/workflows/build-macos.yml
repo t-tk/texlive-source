@@ -131,7 +131,7 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --disable-mp  --enable-pmp  --enable-upmp \
+            --enable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --enable-mf  --disable-mf-nowin \
