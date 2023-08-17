@@ -178,7 +178,7 @@ jobs:
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
             --enable-xetex  --enable-xetex-synctex \
-            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
+            --enable-mflua  --disable-mflua-nowin  --enable-mfluajit  --disable-mfluajit-nowin \
             --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
             --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
@@ -277,14 +277,6 @@ jobs:
           make vftovp.exe
           make vptovf.exe
           make weave.exe
-          # make pmp.web
-          # make pmp.p
-          # make pmp.c
-          # make pmp.exe
-          # make upmp.web
-          # make upmp.p
-          # make upmp.c
-          # make upmp.exe
           make mpost.exe || echo "fail to make mpost.exe"
           make pmpost.exe || echo "fail to make pmpost.exe"
           make upmpost.exe || echo "fail to make upmpost.exe"
@@ -642,7 +634,7 @@ jobs:
           TEXMFCNF: "../../../texk/kpathsea"
           command_line_encoding: "utf-8"
 
-      - name: web2c, make, makecheck
+      - name: web2c, make, make check
         shell: msys2 {0}
         run: |
           cd ./Work/texk/web2c
