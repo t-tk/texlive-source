@@ -22,7 +22,7 @@ cat >filter <<-\_EOF
 	(trip.tex ##,
 	s/ (TeX Live 20[^)]*)//
 	s/(preloaded format=tex)/(INITEX)/
-	s/ (Web2C 202[3-9])/ /
+	s/ (Web2C 202[3-9])//
 	s/format=trip [^)][^)]*)/format=trip)/
 	s/)  [0-9A-Z: ]*$/)/
 	s,^(\./,(,
