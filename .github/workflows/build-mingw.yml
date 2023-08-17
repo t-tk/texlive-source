@@ -201,6 +201,8 @@ jobs:
             --with-system-icu \
             --without-system-graphite2 \
             --without-system-harfbuzz
+          make tangle.exe || echo ""
+          make ctangle.exe || echo ""
           make ctie.exe
           make ctwill.exe
           make ctwill-refsort.exe || echo ""
@@ -220,6 +222,7 @@ jobs:
           make uptftopl.p
           make uptftopl.c
           make uptftopl.exe
+
           make tex.p
           make tex.exe
           # make etex.web
@@ -293,8 +296,11 @@ jobs:
 
           make mf.exe || echo "fail to make mf.exe"
           make hitex.exe || echo "fail to make hitex.exe"
-          make synctex.exe || echo "fail to make synctex.exe"
+          make hishrink.exe || echo "fail to make hishrink.exe"
+          make histretch.exe || echo "fail to make histretch.exe"
+
           make ttf2afm.exe || echo "fail to make ttf2afm.exe"
+          make pdftosrc.exe || echo "fail to make pdftosrc.exe"
 
           make xetex.exe || echo "fail to make xetex.exe"
           ## link without libtool
@@ -316,8 +322,21 @@ jobs:
 
           # make aleph.exe       || echo "fail to make aleph.exe"
 
+          make synctex.exe || echo "fail to make synctex.exe"
+
           # make mflua.exe       || echo "fail to make mflua.exe"
           # make mfluajit.exe    || echo "fail to make mfluajit.exe"
+
+          cd ./omegafonts
+          make omfonts.exe || echo "fail to make omfonts.exe"
+          cd ..
+
+          cd ./otps
+          make otp2ocp.exe || echo "fail to make otp2ocp.exe"
+          make outocp.exe || echo "fail to make outocp.exe"
+
+          cd ..
+          make md5main.exe || echo "fail to make md5main.exe"
 
           echo "!!! make complete !!!"
 
@@ -325,95 +344,85 @@ jobs:
         shell: msys2 {0}
         run: |
           cd ./Work/texk/web2c
+          ./tangle.exe --version || echo "tangle"
+          ./ctangle.exe --version || echo "ctangle"
           ./ctie.exe --version || echo "ctie"
-          echo ""
           ./ctwill.exe --version || echo "ctwill"
-          echo ""
           ./cweave.exe --version || echo "cwaeve"
-          echo ""
           ./tie.exe --version || echo "tie"
-          echo ""
           ./twill.exe --version || echo "twill"
           echo ""
           ./ptex.exe --version || echo "ptex"
-          echo ""
           ./uptex.exe --version || echo "uptex"
-          echo ""
           ./eptex.exe --version || echo "eptex"
-          echo ""
           ./euptex.exe --version || echo "euptex"
           echo ""
           ./updvitype.exe --version || echo "updvitype"
-          echo ""
           ./uppltotf.exe --version || echo "uppltotf"
-          echo ""
           ./uptftopl.exe --version || echo "uptftopl"
-          echo ""
           ./upbibtex.exe --version || echo "upbibtex"
           echo ""
           ./dvitype.exe --version || echo "dvitype"
-          echo ""
           ./dvicopy.exe --version || echo "dvicopy"
-          echo ""
+          ./gftodvi.exe --version || echo "gftodvi"
+          ./gftopk.exe --version || echo "gftopk"
+          ./gftype.exe --version || echo "gftype"
+          ./mft.exe --version || echo "mft"
+          ./patgen.exe --version || echo "patgen"
+          ./pktogf.exe --version || echo "pktogf"
+          ./pktype.exe --version || echo "pktype"
           ./pltotf.exe --version || echo "pltotf"
-          echo ""
+          ./pooltype.exe --version || echo "pooltype"
           ./tftopl.exe --version || echo "tftopl"
+          ./vftovp.exe --version || echo "vftovp"
+          ./vptovf.exe --version || echo "vptovf"
+          ./weave.exe --version || echo "weave"
           echo ""
           ./bibtex.exe --version || echo "bibtex"
           echo ""
-          ./gftodvi.exe --version || echo "gftodvi"
-          echo ""
-          ./gftopk.exe --version || echo "gftopk"
-          echo ""
-          ./gftype.exe --version || echo "gftype"
-          echo ""
-          ./mft.exe --version || echo "mft"
-          echo ""
-          ./patgen.exe --version || echo "patgen"
-          echo ""
-          ./pktogf.exe --version || echo "pktogf"
-          echo ""
-          ./pktype.exe --version || echo "pktype"
-          echo ""
-          ./pooltype.exe --version || echo "pooltype"
-          echo ""
           ./mpost.exe --version || echo "mpost"
-          echo ""
           ./pmpost.exe --version || echo "pmpost"
-          echo ""
           ./upmpost.exe --version || echo "upmpost"
-          echo ""
-          ./pdftex.exe --version || echo "pdftex"
           echo ""
           ./mf.exe --version || echo "mf"
           echo ""
-          ./synctex.exe --version || echo "synctex"
-          echo ""
           ./hitex.exe --version || echo "hitex"
+          ./hishrink.exe --version || echo "hishrink"
+          ./histretch.exe --version || echo "histretch"
           echo ""
+          ./pdftex.exe --version || echo "pdftex"
           ./ttf2afm.exe -v || echo "ttf2afm"
+          ./pdftosrc.exe || echo "pdftosrc"
           echo ""
           ./xetex.exe --version || echo "xetex"
           echo ""
-          ./wofm2opl.exe --version || echo "wofm2opl"
-          echo ""
-          ./wopl2ofm.exe --version || echo "wopl2ofm"
-          echo ""
-          ./wovf2ovp.exe --version || echo "wovf2ovp"
-          echo ""
-          ./wovp2ovf.exe --version || echo "wovp2ovf"
-          echo ""
-          ./odvicopy.exe --version || echo "odvicopy"
-          echo ""
-          ./odvitype.exe --version || echo "odvitype"
-          echo ""
           ./otangle.exe --version  || echo "otangle"
+          ./odvicopy.exe --version || echo "odvicopy"
+          ./odvitype.exe --version || echo "odvitype"
+          ./wofm2opl.exe --version || echo "wofm2opl"
+          ./wopl2ofm.exe --version || echo "wopl2ofm"
+          ./wovf2ovp.exe --version || echo "wovf2ovp"
+          ./wovp2ovf.exe --version || echo "wovp2ovf"
           echo ""
           ./aleph.exe --version    || echo "aleph"
           echo ""
-          ./mflua.exe --version    || echo "mflua"
+          ./synctex.exe --version || echo "synctex"
           echo ""
+          ./mflua.exe --version    || echo "mflua"
           ./mfluajit.exe --version || echo "mfluajit"
+          echo ""
+          #./luatex.exe --version      || echo "luatex"
+          #./luahbtex.exe --version    || echo "luahbtex"
+          #./luajittex.exe --version   || echo "luajittex"
+          #./luajithbtex.exe --version || echo "luajithbtex"
+          #echo ""
+          echo ""
+          ./omegafonts/omfonts.exe --version  || echo "omfonts"
+          echo ""
+          ./otps/otp2ocp.exe       || echo "otp2ocp"
+          ./otps/outocp.exe        || echo "outocp"
+          echo ""
+          ./md5main.exe --version  || echo "md5main"
           echo ""
           ls -l ./*.exe
         env:
@@ -444,8 +453,6 @@ jobs:
           $srcdir/pktogf.test         || echo -e "**\n** failed: pktogf.test\n**"
           $srcdir/pktype.test         || echo -e "**\n** failed: pktype.test\n**"
           $srcdir/pltotf.test         || echo -e "**\n** failed: pltotf.test\n**"
-          echo ""
-
           $srcdir/pooltype.test       || echo -e "**\n** failed: pooltype.test\n**"
           $srcdir/tftopl.test         || echo -e "**\n** failed: tftopl.test\n**"
           $srcdir/vftovp.test         || echo -e "**\n** failed: vftovp.test\n**"
@@ -479,9 +486,12 @@ jobs:
           $srcdir/uptexdir/gkhuge.test    || echo -e "**\n** failed: gkhuge.test\n**"
 
           export abs_srcdir=../$srcdir
-          $srcdir/mftraptest.test            || echo -e "**\n** failed: mftraptest.test\n**"
           echo ""
-          $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
+          $srcdir/triptest.test               || echo -e "**\n** failed: triptest.test\n**"
+          $srcdir/tests/write18-quote-test.pl || echo -e "**\n** failed: tests/write18-quote-test.pl\n**"
+          $srcdir/tests/tex-closeout.test     || echo -e "**\n** failed: tests/tex-closeout.test\n**"
+          $srcdir/mftraptest.test             || echo -e "**\n** failed: mftraptest.test\n**"
+
           # $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
           # $srcdir/eptexdir/pdfprimitive.test || echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**"
           $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
@@ -499,12 +509,12 @@ jobs:
           echo ""
           $srcdir/tests/tex-closeout.test    || echo -e "**\n** failed: tex-closeout.test\n**"
           echo ""
-          $srcdir/bibtex.test                || echo -e "**\n** failed: bibtex.test\n**"
-          $srcdir/tests/bibtex-auxinclude.test || echo -e "**\n** failed: bibtex-auxinclude.test\n**"
-          $srcdir/tests/bibtex-bigauth.test  || echo -e "**\n** failed: bibtex-bigauth.test\n**"
-          # $srcdir/tests/bibtex-mem.test      || echo -e "**\n** failed: bibtex-mem.test\n**"
+          $srcdir/bibtex.test                   || echo -e "**\n** failed: bibtex.test\n**"
           $srcdir/tests/bibtex-openout-test.pl  || echo -e "**\n** failed: bibtex-openout-test.pl\n**"
           $srcdir/tests/bibtex-longline-test.pl || echo -e "**\n** failed: bibtex-longline-test.pl\n**"
+          # $srcdir/tests/bibtex-mem.test         || echo -e "**\n** failed: bibtex-mem.test\n**"
+          $srcdir/tests/bibtex-bigauth.test     || echo -e "**\n** failed: bibtex-bigauth.test\n**"
+          $srcdir/tests/bibtex-auxinclude.test  || echo -e "**\n** failed: bibtex-auxinclude.test\n**"
           echo ""
           $srcdir/hitexdir/tests/hello.test    || echo -e "**\n** failed: hitex hello.test\n**"
           $srcdir/hitexdir/tests/rule.test     || echo -e "**\n** failed: hitex rule.test\n**"
@@ -524,8 +534,8 @@ jobs:
           $srcdir/xetexdir/xetex.test           || echo -e "**\n** failed: xetexdir/xetex.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
           echo ""
-          $srcdir/mplibdir/mptraptest.test      || echo -e "**\n** failed: mplibdir/mptraptest\n**"
           $srcdir/mplibdir/dvitomp.test         || echo -e "**\n** failed: mplibdir/dvitomp.test\n**"
+          $srcdir/mplibdir/mptraptest.test      || echo -e "**\n** failed: mplibdir/mptraptest\n**"
           echo ""
           $srcdir/pmpostdir/pmpost.test         || echo -e "**\n** failed: pmpostdir/pmpost.test\n**"
           $srcdir/pmpostdir/upmpost.test        || echo -e "**\n** failed: pmpostdir/upmpost.test\n**"
@@ -561,6 +571,12 @@ jobs:
 #          $srcdir/synctexdir/synctex.test       || echo -e "**\n** failed: synctexdir/synctex.test\n**"
 #          echo ""
 #          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
+#          $srcdir/mfluajitdir/mfluajittraptest.test   || echo -e "**\n** failed: mfluajitdir/mfluajittraptest.test\n**"
+          echo ""
+          cd ./otps
+          ../$srcdir/otps/otp2ocp.test         || echo -e "**\n** failed: otps/otp2ocp.test\n**"
+          ../$srcdir/otps/outocp.test          || echo -e "**\n** failed: otps/outocp.test\n**"
+          cd ..
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"

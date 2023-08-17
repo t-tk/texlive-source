@@ -148,11 +148,7 @@ jobs:
             --without-system-graphite2 \
             --without-system-harfbuzz
           make
-          make check || echo
-          echo "triptest.log"
-          cat triptest.log
-          echo "mftraptest.log"
-          cat mftraptest.log
+          make check
 
       #- name: ttf2pk2
       #  shell: bash
