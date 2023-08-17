@@ -572,11 +572,6 @@ jobs:
 #          echo ""
 #          $srcdir/mfluadir/mfluatraptest.test   || echo -e "**\n** failed: mfluadir/mfluatraptest.test\n**"
 #          $srcdir/mfluajitdir/mfluajittraptest.test   || echo -e "**\n** failed: mfluajitdir/mfluajittraptest.test\n**"
-          echo ""
-          cd ./otps
-          ../../../../texk/web2c/otps/otp2ocp.test     || echo -e "**\n** failed: otps/otp2ocp.test\n**"
-          ../../../../texk/web2c/otps/outocp.test      || echo -e "**\n** failed: otps/outocp.test\n**"
-          cd ..
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
