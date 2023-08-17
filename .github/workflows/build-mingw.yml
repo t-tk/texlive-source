@@ -170,7 +170,7 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --disable-mp  --enable-pmp  --enable-upmp \
+            --enable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --disable-mf  --disable-mf-nowin \
@@ -282,6 +282,7 @@ jobs:
           # make upmp.p
           # make upmp.c
           # make upmp.exe
+          make mpopst.exe || echo "fail to make mpopst.exe"
           make pmpopst.exe || echo "fail to make pmpopst.exe"
           make upmpopst.exe || echo "fail to make upmpopst.exe"
 
@@ -375,6 +376,8 @@ jobs:
           ./pktype.exe --version || echo "pktype"
           echo ""
           ./pooltype.exe --version || echo "pooltype"
+          echo ""
+          ./mpost.exe --version || echo "mpost"
           echo ""
           ./pmpost.exe --version || echo "pmpost"
           echo ""
@@ -521,6 +524,9 @@ jobs:
           $srcdir/xetexdir/xetex.test           || echo -e "**\n** failed: xetexdir/xetex.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
           echo ""
+          $srcdir/mplibdir/mptraptest.test      || echo -e "**\n** failed: mplibdir/mptraptest\n**"
+          $srcdir/mplibdir/dvitomp.test         || echo -e "**\n** failed: mplibdir/dvitomp.test\n**"
+          echo ""
           $srcdir/pmpostdir/pmpost.test         || echo -e "**\n** failed: pmpostdir/pmpost.test\n**"
           $srcdir/pmpostdir/upmpost.test        || echo -e "**\n** failed: pmpostdir/upmpost.test\n**"
           echo ""
@@ -568,6 +574,7 @@ jobs:
           export abs_srcdir=../$srcdir
           export LN_S=cp
           export DIFF=diff
+          export DIFFFLAGS="--strip-trailing-cr --ignore-matching-lines 'DVItype'"
           ./pltotf --version || echo
           ./tftopl --version || echo
           ./dvitype --version || echo
