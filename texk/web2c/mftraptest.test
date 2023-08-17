@@ -22,6 +22,7 @@ cat >filter <<-\_EOF
 	s,^\*\*(trap\.mf,** \&trap  trap \
 	(trap.mf,
 	s/ (TeX Live 20[^)]*)//
+	s/ (Web2C 202[3-9])/ /
 	s/base=trap [^)][^)]*)/base=trap)/
 	s/)  [0-9A-Z: ]*$/)/
 	s/usage [1-9][0-9&]* ([1-9][0-9&]* still/usage XX\&XX (YYY\&YYYYY still/
@@ -39,11 +40,6 @@ cat >>filter <<-\_EOF
 	s/ %CA$/ %/
 	s/^PSULE1675/CAPSULE1172/
 	s/%CAPSULE[1-9][0-9]*/%CAPSULEnnnn/g
-	_EOF
-
-cat >>filter <<-\_EOF
-	s/METAFONT, Version 2\.71828182[^0-9].*/METAFONT, Version 2.71828182/
-	s/GFtype, Version 3\.1[^0-9].*/GFtype, Version 3.1/
 	_EOF
 
 echo ">>> Running TRAP test for Metafont." >&2
