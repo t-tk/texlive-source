@@ -574,8 +574,8 @@ jobs:
 #          $srcdir/mfluajitdir/mfluajittraptest.test   || echo -e "**\n** failed: mfluajitdir/mfluajittraptest.test\n**"
           echo ""
           cd ./otps
-          ../$srcdir/otps/otp2ocp.test         || echo -e "**\n** failed: otps/otp2ocp.test\n**"
-          ../$srcdir/otps/outocp.test          || echo -e "**\n** failed: otps/outocp.test\n**"
+          ../../../../texk/web2c/otps/otp2ocp.test     || echo -e "**\n** failed: otps/otp2ocp.test\n**"
+          ../../../../texk/web2c/otps/outocp.test      || echo -e "**\n** failed: otps/outocp.test\n**"
           cd ..
         env:
           srcdir: "../../../texk/web2c"
