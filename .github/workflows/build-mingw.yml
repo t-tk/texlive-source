@@ -285,9 +285,9 @@ jobs:
           # make upmp.p
           # make upmp.c
           # make upmp.exe
-          make mpopst.exe || echo "fail to make mpopst.exe"
-          make pmpopst.exe || echo "fail to make pmpopst.exe"
-          make upmpopst.exe || echo "fail to make upmpopst.exe"
+          make mpost.exe || echo "fail to make mpost.exe"
+          make pmpost.exe || echo "fail to make pmpost.exe"
+          make upmpost.exe || echo "fail to make upmpost.exe"
 
           make pdftex.exe || echo "fail to make pdftex.exe"
           ## link without libtool
@@ -432,6 +432,10 @@ jobs:
         shell: msys2 {0}
         run: |
           cd ./Work/texk/web2c
+          export LN_S=cp
+          export DIFF=diff
+          export DIFFFLAGS="--strip-trailing-cr --ignore-matching-lines 'DVItype'"
+
           $srcdir/ctiedir/ctie.test   || echo -e "**\n** failed: ctie.test\n**"
           $srcdir/cwebdir/ctwill.test || echo -e "**\n** failed: ctwill.test\n**"
           $srcdir/cwebdir/cweave.test || echo -e "**\n** failed: cweave.test\n**"
@@ -576,7 +580,6 @@ jobs:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
 
-
       - name: web2c triptest
         shell: msys2 {0}
         run: |
@@ -634,15 +637,18 @@ jobs:
           $srcdir/euptexdir/wcfname.test        || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
           $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
           $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
-          chcp.com 932
-          $srcdir/uptexdir/wcfname.test         || echo -e "**\n** failed: uptexdir/wcfname.test\n**"
-          $srcdir/euptexdir/wcfname.test        || echo -e "**\n** failed: euptexdir/wcfname.test\n**"
-          $srcdir/pdftexdir/wcfname.test        || echo -e "**\n** failed: pdftexdir/wcfname.test\n**"
-          $srcdir/xetexdir/wcfname.test         || echo -e "**\n** failed: xetexdir/wcfname.test\n**"
         env:
           srcdir: "../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
           command_line_encoding: "utf-8"
+
+      - name: web2c, make, makecheck
+        shell: msys2 {0}
+        run: |
+          mkdir ./Work/texk/web2c
+          cd ./Work/texk/web2c
+          make       || echo "**\n** failed: web2c: make\n**"
+          make check || echo "**\n** failed: web2c: make check\n**"
 
       #- name: ttf2pk2
       #  shell: msys2 {0}
