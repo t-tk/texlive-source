@@ -3,7 +3,7 @@
 # Copyright 2019 Hironobu Yamashita <h.y.acetaminophen@gmail.com>
 # You may freely use, modify and/or distribute this file.
 
-BinDir=${BinDir:-..}
+BinDir=${BinDir:-.}
 ExeExt=${ExeExt:-}
 _eptex=$BinDir/eptex$ExeExt
 
