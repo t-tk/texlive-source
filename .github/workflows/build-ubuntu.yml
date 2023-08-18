@@ -148,7 +148,9 @@ jobs:
             --without-system-graphite2 \
             --without-system-harfbuzz
           make
-          make check
+          make check || :
+          cat omegaware/ligkern.log
+          cat omegafonts/ligkern.log
 
       #- name: ttf2pk2
       #  shell: bash

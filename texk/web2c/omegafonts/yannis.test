@@ -10,6 +10,8 @@ ExeExt=${ExeExt:-}
 _pltotf=$W2CDir/pltotf$ExeExt
 _omfonts=$BinDir/omfonts$ExeExt
 
+tests=tests
+
 test -d $tests || mkdir -p $tests
 rc=0
 

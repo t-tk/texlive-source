@@ -4,6 +4,10 @@
 # Copyright 2011-2015 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
+BinDir=${BinDir:-.}
+ExeExt=${ExeExt:-}
+_omfonts=$BinDir/omfonts$ExeExt
+
 tests=tests
 
 test -d $tests || mkdir -p $tests
