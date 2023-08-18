@@ -26,5 +26,5 @@ TEXMFCNF=$srcdir/../kpathsea \
   OFMFONTS=$srcdir/$tests \
   $_odvitype $srcdir/$tests/ofontd0 | sed '1s/ (.*)$//' >$tests/xofontd0.typ || exit 1
 
-$DIFF $srcdir/$tests/ofontd0.typ $tests/xofontd0.typ || exit 2
+diff $srcdir/$tests/ofontd0.typ $tests/xofontd0.typ || exit 2
 
