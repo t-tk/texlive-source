@@ -39,6 +39,6 @@ echo && echo "*** ofm2opl xchecked stdout (xchecked.opl)"
 $_wofm2opl $tests/xchecked >$tests/xchecked.opl || rc=4
 
 echo && echo "*** diff checked.opl xchecked.opl"
-diff $srcdir/$tests/checked.opl $tests/xchecked.opl || rc=5
+$DIFF $srcdir/$tests/checked.opl $tests/xchecked.opl || rc=5
 
 exit $rc

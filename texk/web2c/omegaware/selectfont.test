@@ -46,6 +46,6 @@ $_wovp2ovf -verbose $srcdir/$tests/sample.ovp $tests/sample2.ovf || rc=8
 
 $_wovf2ovp -verbose $tests/sample2 sample2 >$tests/xsample2.out || rc=9
 
-diff $srcdir/$tests/sample.out $tests/xsample2.out || rc=10
+$DIFF $srcdir/$tests/sample.out $tests/xsample2.out || rc=10
 
 exit $rc

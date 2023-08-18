@@ -40,11 +40,11 @@ $_omfonts -ofm2opl $tests/xligblv $tests/xligblv || { rc=5; echo '*** failed ***
 echo && echo "*** diff ligblv.opl xligblv.opl"
 diff $srcdir/$tests/ligblv.opl $tests/xligblv.opl >/dev/null || { rc=6; echo '*** failed ***'; }
 
-echo && echo "*** ofm2opl ligloop1 xligloopx"
-$_omfonts -ofm2opl $srcdir/$tests/ligloop1 $tests/xligloopx || rc=7
+echo && echo "*** ofm2opl ligloop1 xligloop1"
+$_omfonts -ofm2opl $srcdir/$tests/ligloop1 $tests/xligloop1 || rc=7
 
-echo && echo "*** diff ligloop1.opl xligloopx.opl"
-diff $srcdir/$tests/ligloop1.opl $tests/xligloopx.opl || rc=8
+echo && echo "*** diff ligloop1.opl xligloop1.opl"
+diff $srcdir/$tests/ligloop1.opl $tests/xligloop1.opl || rc=8
 
 echo && echo "*** opl2ofm xligloop1 xligloop1"
 $_omfonts -opl2ofm $tests/xligloop1 $tests/xligloop1 || rc=9
