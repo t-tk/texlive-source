@@ -147,7 +147,7 @@ jobs:
           mkdir ./Work/texk
           cd ./Work/texk
           ../../texk/configure \
-            --without-x \
+            --disable-xdvik \
             --with-system-cairo \
             --with-system-gmp \
             --with-system-icu
