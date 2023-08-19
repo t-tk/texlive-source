@@ -96,6 +96,16 @@ jobs:
           ../../../texk/ptexenc/configure
           make
 
+      - name: dvisvgm
+        shell: msys2 {0}
+        run: |
+          prog='dvisvgm'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make
+          make check
+
       - name: chktex
         shell: msys2 {0}
         run: |
@@ -166,16 +176,6 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: dvipos\n**"
-
-      - name: dvisvgm
-        shell: msys2 {0}
-        run: |
-          prog='dvisvgm'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check
 
       - name: gregorio
         shell: msys2 {0}
