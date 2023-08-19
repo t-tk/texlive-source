@@ -125,7 +125,6 @@ jobs:
           ../../../libs/lua53/configure
           make
           make check || echo -e "**\n** failed: lua53\n**"
-          cat luaerror.log
 
           cd ../../..
           mkdir ./Work/libs/luajit
@@ -146,12 +145,16 @@ jobs:
         run: |
           mkdir ./Work/texk
           cd ./Work/texk
-          ../../texk/configure \
-            --disable-xdvik \
-            --with-system-cairo \
-            --with-system-gmp \
-            --with-system-icu
-          make || echo -e "**\n** failed: make\n**"
-          make check || echo -e "**\n** failed: make check\n**"
+          for prog in web2c afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk dvisvgm gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttf2pk2 ttfdump upmendex texlive; do \
+            mkdir $prog; \
+            cd $prog; \
+            ../../../texk/$prog/configure \
+              --with-system-cairo \
+              --with-system-gmp \
+              --with-system-icu; \
+            make || echo -e "**\n** failed: make $prog\n**"; \
+            make check || echo -e "**\n** failed: make check $prog\n**"; \
+            cd ..; \
+          done
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
