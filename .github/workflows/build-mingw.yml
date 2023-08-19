@@ -145,14 +145,15 @@ jobs:
         run: |
           mkdir ./Work/texk
           cd ./Work/texk
-          for prog in web2c afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttfdump upmendex texlive; do \
+          for prog in kpathsea ptexenc web2c afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttfdump upmendex texlive; do \
             mkdir $prog; \
             cd $prog; \
             ../../../texk/$prog/configure \
               --without-x \
               --with-system-cairo \
               --with-system-gmp \
-              --with-system-icu; \
+              --with-system-icu \
+                 || echo -e "**\n** failed: configure $prog\n**"; \
             make || echo -e "**\n** failed: make $prog\n**"; \
             make check || echo -e "**\n** failed: make check $prog\n**"; \
             cd ..; \
