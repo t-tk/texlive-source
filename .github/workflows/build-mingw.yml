@@ -72,6 +72,13 @@ jobs:
           make
           make check
 
+          cd ../../..
+          mkdir ./Work/libs/potrace
+          cd ./Work/libs/potrace
+          ../../../libs/potrace/configure
+          make
+          make check || echo -e "**\n** failed: potrace\n**"
+
       - name: make kpathsea, ptexenc
         shell: msys2 {0}
         run: |
