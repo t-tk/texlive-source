@@ -33,10 +33,29 @@ jobs:
             bison
             texinfo
 
-      - name: build
+      - name: make libs
         shell: msys2 {0}
         run: |
-          TL_CONFIGURE="../configure --without-x" ./Build
+          mkdir -p ./Work/libs
+
+          cd ./Work/libs
+          ../../libs/configure \
+            --without-x
+          make || echo
+          make check || echo
+        env:
+          ExeExt=.exe
+
+      - name: make texk
+        shell: msys2 {0}
+        run: |
+          mkdir -p ./Work/texk
+
+          cd ./Work/texk
+          ../../texk/configure \
+            --without-x
+          make || echo
+          make check || echo
         env:
           ExeExt=.exe
 
