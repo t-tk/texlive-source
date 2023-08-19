@@ -41,10 +41,115 @@ jobs:
         run: |
           mkdir ./Work
           mkdir ./Work/libs
-          cd ./Work/libs
-          ../../libs/configure \
-            --without-x
-          make || echo
-          make check || echo
+
+          mkdir ./Work/libs/zlib
+          cd ./Work/libs/zlib
+          ../../../libs/zlib/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/libpng
+          cd ./Work/libs/libpng
+          ../../../libs/libpng/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/libpaper
+          cd ./Work/libs/libpaper
+          ../../../libs/libpaper/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/freetype2
+          cd ./Work/libs/freetype2
+          ../../../libs/freetype2/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/gd
+          cd ./Work/libs/gd
+          ../../../libs/gd/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/xpdf
+          cd ./Work/libs/xpdf
+          ../../../libs/xpdf/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/pplib
+          cd ./Work/libs/pplib
+          ../../../libs/pplib/configure
+          make
+          make check || echo -e "**\n** failed: pplib.test\n**"
+          cat pplib.log
+
+          cd ../../..
+          mkdir ./Work/libs/zziplib
+          cd ./Work/libs/zziplib
+          ../../../libs/zziplib/configure
+          make
+          make check || echo -e "**\n** failed: zziplib\n**"
+
+          cd ../../..
+          mkdir ./Work/libs/teckit
+          cd ./Work/libs/teckit
+          ../../../libs/teckit/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/graphite2
+          cd ./Work/libs/graphite2
+          ../../../libs/graphite2/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/harfbuzz
+          cd ./Work/libs/harfbuzz
+          ../../../libs/harfbuzz/configure
+          make
+          make check
+
+          cd ../../..
+          mkdir ./Work/libs/lua53
+          cd ./Work/libs/lua53
+          ../../../libs/lua53/configure
+          make
+          make check || echo -e "**\n** failed: lua53\n**"
+          cat luaerror.log
+
+          cd ../../..
+          mkdir ./Work/libs/luajit
+          cd ./Work/libs/luajit
+          ../../../libs/luajit/configure
+          make
+          make check || echo -e "**\n** failed: luajit\n**"
+
+          cd ../../..
+          mkdir ./Work/libs/potrace
+          cd ./Work/libs/potrace
+          ../../../libs/potrace/configure
+          make
+          make check || echo -e "**\n** failed: potrace\n**"
+
+      - name: make texk
+        shell: msys2 {0}
+        run: |
+          mkdir ./Work/texk
+          cd ./Work/texk
+          ../../texk/configure \
+            --without-x \
+            --with-system-icu
+          make || echo -e "**\n** failed: make\n**"
+          make check || echo -e "**\n** failed: make check\n**"
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
