@@ -27,6 +27,6 @@ $_pdftosrc test-13.pdf -1 \
 
 cp $src/test-15.pdf .
 $_pdftosrc test-15.pdf -1 \
-	&& diff test-15.xref $src/test-15.xref \
+	&& $DIFF test-15.xref $src/test-15.xref \
 	|| exit 2
 
