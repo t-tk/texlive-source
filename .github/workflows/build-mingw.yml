@@ -16,4 +16,24 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      - name: install tools
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: mingw64
+          install: >-
+            mingw-w64-x86_64-autotools
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-icu
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-pixman
+            mingw-w64-x86_64-cairo
+            mingw-w64-x86_64-gmp
+            mingw-w64-x86_64-mpfr
+            mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-graphite2
+            mingw-w64-x86_64-harfbuzz
+            mingw-w64-x86_64-fontconfig
+            bison
+            texinfo
+
       - run: echo "⛄ This job's status is ${{ job.status }}."
