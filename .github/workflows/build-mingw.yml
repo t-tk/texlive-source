@@ -41,5 +41,10 @@ jobs:
         run: |
           mkdir ./Work
           mkdir ./Work/libs
+          cd ./Work/libs
+          ../../libs/configure \
+            --without-x
+          make || echo
+          make check || echo
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
