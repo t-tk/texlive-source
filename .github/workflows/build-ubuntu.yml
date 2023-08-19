@@ -120,7 +120,7 @@ jobs:
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --enable-mf  --disable-mf-nowin \
-            --disable-etex  --disable-etex-synctex \
+            --enable-etex  --enable-etex-synctex \
             --enable-aleph \
             --enable-luatex  --enable-luajittex  --enable-luahbtex  --enable-luajithbtex \
             --enable-xetex  --enable-xetex-synctex \
