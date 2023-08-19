@@ -145,10 +145,11 @@ jobs:
         run: |
           mkdir ./Work/texk
           cd ./Work/texk
-          for prog in web2c afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk dvisvgm gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttf2pk2 ttfdump upmendex texlive; do \
+          for prog in web2c afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttfdump upmendex texlive; do \
             mkdir $prog; \
             cd $prog; \
             ../../../texk/$prog/configure \
+              --without-x \
               --with-system-cairo \
               --with-system-gmp \
               --with-system-icu; \
