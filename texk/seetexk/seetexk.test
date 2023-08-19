@@ -21,7 +21,7 @@ $DIFF --strip-trailing-cr $0 $0 \
 
 # check whether the binaries are Windows exe or not
 run_stdio_test=1
-if [ $ExeExt = ".exe" ]; then
+if [ "$ExeExt" = ".exe" ]; then
   echo "*** We assume EXE on Windows."
   run_stdio_test=0
 fi
