@@ -36,4 +36,10 @@ jobs:
             bison
             texinfo
 
+      - name: make libs
+        shell: msys2 {0}
+        run: |
+          mkdir ./Work
+          mkdir ./Work/libs
+
       - run: echo "⛄ This job's status is ${{ job.status }}."
