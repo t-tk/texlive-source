@@ -148,6 +148,8 @@ jobs:
           cd ./Work/texk
           ../../texk/configure \
             --without-x \
+            --with-system-cairo \
+            --with-system-gmp \
             --with-system-icu
           make || echo -e "**\n** failed: make\n**"
           make check || echo -e "**\n** failed: make check\n**"
