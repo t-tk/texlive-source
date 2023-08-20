@@ -41,121 +41,51 @@ jobs:
         run: |
           mkdir ./Work
           mkdir ./Work/libs
+          cd ./Work/libs
 
-          mkdir ./Work/libs/zlib
-          cd ./Work/libs/zlib
-          ../../../libs/zlib/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/libpng
-          cd ./Work/libs/libpng
-          ../../../libs/libpng/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/libpaper
-          cd ./Work/libs/libpaper
-          ../../../libs/libpaper/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/freetype2
-          cd ./Work/libs/freetype2
-          ../../../libs/freetype2/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/gd
-          cd ./Work/libs/gd
-          ../../../libs/gd/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/xpdf
-          cd ./Work/libs/xpdf
-          ../../../libs/xpdf/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/pplib
-          cd ./Work/libs/pplib
-          ../../../libs/pplib/configure
-          make
-          make check || echo -e "**\n** failed: pplib.test\n**"
-          cat pplib.log
-
-          cd ../../..
-          mkdir ./Work/libs/zziplib
-          cd ./Work/libs/zziplib
-          ../../../libs/zziplib/configure
-          make
-          make check || echo -e "**\n** failed: zziplib\n**"
-
-          cd ../../..
-          mkdir ./Work/libs/teckit
-          cd ./Work/libs/teckit
-          ../../../libs/teckit/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/graphite2
-          cd ./Work/libs/graphite2
-          ../../../libs/graphite2/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/harfbuzz
-          cd ./Work/libs/harfbuzz
-          ../../../libs/harfbuzz/configure
-          make
-          make check
-
-          cd ../../..
-          mkdir ./Work/libs/lua53
-          cd ./Work/libs/lua53
-          ../../../libs/lua53/configure
-          make
-          make check || echo -e "**\n** failed: lua53\n**"
-
-          cd ../../..
-          mkdir ./Work/libs/luajit
-          cd ./Work/libs/luajit
-          ../../../libs/luajit/configure
-          make
-          make check || echo -e "**\n** failed: luajit\n**"
-
-          cd ../../..
-          mkdir ./Work/libs/potrace
-          cd ./Work/libs/potrace
-          ../../../libs/potrace/configure
-          make
-          make check || echo -e "**\n** failed: potrace\n**"
+          for prog in zlib libpng libpaper freetype2 gd xpdf pplib zziplib teckit graphite2 harfbuzz lua53 luajit potrace; do \
+            mkdir $prog; \
+            cd $prog; \
+            ../../../libs/$prog/configure \
+                 || echo -e "**\n** failed: configure $prog\n**"; \
+            make || echo -e "**\n** failed: make $prog\n**"; \
+            make check || echo -e "**\n** failed: make check $prog\n**"; \
+            cd ..; \
+          done
 
       - name: make texk
         shell: msys2 {0}
         run: |
           mkdir ./Work/texk
           cd ./Work/texk
-          export run_stdio_test=0
 
-          for prog in kpathsea ptexenc; do \
+          for prog in kpathsea; do \
             mkdir $prog; \
             cd $prog; \
             ../../../texk/$prog/configure \
                  || echo -e "**\n** failed: configure $prog\n**"; \
             make || echo -e "**\n** failed: make $prog\n**"; \
+          ## link without libtool
+          echo -e "###\n### link without libtool  kpsewhich.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o kpsewhich.exe kpsewhich.o .libs/libkpathsea.a
             make check || echo -e "**\n** failed: make check $prog\n**"; \
             cd ..; \
           done
+
+          for prog in ptexenc; do \
+            mkdir $prog; \
+            cd $prog; \
+            ../../../texk/$prog/configure \
+                 || echo -e "**\n** failed: configure $prog\n**"; \
+            make || echo -e "**\n** failed: make $prog\n**"; \
+            cd ..; \
+          done
+
+      - name: make texk/web2c
+        shell: msys2 {0}
+        run: |
+          cd ./Work/texk
+          export run_stdio_test=0
 
           prog=web2c
             mkdir $prog
@@ -169,8 +99,23 @@ jobs:
               --with-system-icu \
                  || echo -e "**\n** failed: configure $prog\n**"
             make || echo -e "**\n** failed: make $prog\n**"
+          ## link without libtool
+          echo -e "###\n### link without libtool  eptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o eptex.exe eptexdir/eptex-eptexextra.o synctexdir/eptex-synctex.o eptex-eptexini.o eptex-eptex0.o eptex-eptex-pool.o libkanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/.libs/libptexenc.a lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 libmd5.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a || echo -e "**\n** fail to link eptex.exe"
+          echo -e "###\n### link without libtool  euptex.exe\n###"
+          gcc -Wimplicit -Wreturn-type -g -O2   -o euptex.exe euptexdir/euptex-euptexextra.o synctexdir/euptex-synctex.o euptex-euptexini.o euptex-euptex0.o euptex-euptex-pool.o libukanji.a lib/libp.a /d/a/texlive-source/texlive-source/Work/texk/ptexenc/.libs/libptexenc.a lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 libmd5.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a || echo -e "**\n** fail to link euptex.exe"
+          echo -e "###\n### link without libtool  pdftex.exe\n###"
+          g++ -Wreturn-type -Wno-write-strings -g -O2   -o pdftex.exe pdftexdir/pdftex-pdftexextra.o synctexdir/pdftex-synctex.o pdftex-pdftexini.o pdftex-pdftex0.o pdftex-pdftex-pool.o libpdftex.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a /d/a/texlive-source/texlive-source/Work/libs/xpdf/libxpdf.a -lgdi32 libmd5.a lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 || echo -e "**\n** fail to link pdftex.exe"
+          echo -e "###\n### link without libtool  xetex.exe\n###"
+          g++  -g -O2   -o xetex.exe xetexdir/xetex-xetexextra.o synctexdir/xetex-synctex.o xetex-xetexini.o xetex-xetex0.o xetex-xetex-pool.o libxetex.a /d/a/texlive-source/texlive-source/Work/libs/harfbuzz/libharfbuzz.a /d/a/texlive-source/texlive-source/Work/libs/graphite2/libgraphite2.a -L/mingw64/lib -licuin -licuuc -licudt -lpthread -lm     /d/a/texlive-source/texlive-source/Work/libs/teckit/libTECkit.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/freetype2/libfreetype.a /d/a/texlive-source/texlive-source/Work/libs/pplib/libpplib.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a libmd5.a -lfontconfig -lfreetype lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 || echo -e "**\n** fail to link xetex.exe"
+
             make check || echo -e "**\n** failed: make check $prog\n**"
-            cd ..
+
+      - name: make texk tools
+        shell: msys2 {0}
+        run: |
+          cd ./Work/texk
+          export run_stdio_test=0
 
           for prog in afm2pl bibtex-x chktex cjkutils detex dtl dvi2tty dvidvi dviljk dviout-util dvipdfm-x dvipng dvipos dvipsk gregorio gsftopk lcdf-typetools makeindexk makejvf mendexk musixtnt ps2pk psutils seetexk tex4htk ttfdump upmendex texlive; do \
             mkdir $prog; \
@@ -185,7 +130,11 @@ jobs:
             make check || echo -e "**\n** failed: make check $prog\n**"; \
             cd ..; \
           done
+          echo -e "**\n** afm2pl.log::"
+          cat afm2pl/afm2pl.log || :
+          echo -e "**\n** dtl.log::"
+          cat dtl/dtl.log || :
           echo -e "**\n** dvidvi.log::"
-          cat dvidvi.log
+          cat dvidvi/dvidvi.log || :
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
