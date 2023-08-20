@@ -86,6 +86,7 @@ jobs:
         run: |
           cd ./Work/texk
           export run_stdio_test=0
+          export command_line_encoding="utf-8"
 
           prog=web2c
             mkdir $prog
