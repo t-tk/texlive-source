@@ -21,22 +21,22 @@ echo && echo "*** msxlint --help"
 $_msxlint --help || exit 1
 
 echo && echo "*** msxlint --version"
-$_msxlint --version || exit 1
+$_msxlint --version || exit 2
 
 : ${testsrc:=$srcdir/tests}
 
 echo && echo "*** msxlint -d tests/badtest"
-$_msxlint -d $testsrc/badtest && exit 1
+$_msxlint -d $testsrc/badtest && exit 3
 
 echo && echo "*** msxlint tests/linttest >linttest.out1"
-$_msxlint $testsrc/linttest | sed '/^This/,/^Processing/d' >linttest.out1 || exit 1
+$_msxlint $testsrc/linttest | sed '/^This/,/^Processing/d' >linttest.out1 || exit 4
 
 echo && echo "*** diff tests/linttest.out linttest.out1"
-$DIFF $testsrc/linttest.out linttest.out1 || exit 1
+$DIFF $testsrc/linttest.out linttest.out1 || exit 5
 
 echo && echo "*** cat tests/linttest.tex | msxlint >linttest.out2"
-cat $testsrc/linttest.tex | $_msxlint | sed '/^This/,/^Processing/d' >linttest.out2 || exit 1
+cat $testsrc/linttest.tex | $_msxlint | sed '/^This/,/^Processing/d' >linttest.out2 || exit 6
 
 echo && echo "*** diff tests/linttest.out linttest.out2"
-$DIFF $testsrc/linttest.out linttest.out2 || exit 1
+$DIFF $testsrc/linttest.out linttest.out2 || exit 7
 
