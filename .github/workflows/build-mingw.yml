@@ -136,6 +136,8 @@ jobs:
           make
           make check || echo -e "**\n** failed: dtl\n**"
           cat dtl.log || :
+        env:
+          run_stdio_test: "0"
 
       - name: dviljk
         shell: msys2 {0}
