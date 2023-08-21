@@ -96,16 +96,6 @@ jobs:
           ../../../texk/ptexenc/configure
           make
 
-      - name: dvisvgm
-        shell: msys2 {0}
-        run: |
-          prog='dvisvgm'
-          mkdir -p ./Work/texk/$prog
-          cd ./Work/texk/$prog
-          ../../../texk/$prog/configure
-          make
-          make check
-
       - name: chktex
         shell: msys2 {0}
         run: |
@@ -145,7 +135,7 @@ jobs:
           ../../../texk/$prog/configure
           make
           make check || echo -e "**\n** failed: dtl\n**"
-          cat dtl.log || echo
+          cat dtl.log || :
 
       - name: dviljk
         shell: msys2 {0}
@@ -248,6 +238,8 @@ jobs:
           make
           make check || echo -e "**\n** failed: psutils\n**"
           cat psutils.log || echo
+        env:
+          run_stdio_test: "0"
 
       - name: tex4htk
         shell: msys2 {0}
@@ -351,8 +343,9 @@ jobs:
           cd ./Work/texk/seetexk
           ../../../texk/seetexk/configure
           make
-          export ExeExt=.exe
           make check
+        env:
+          run_stdio_test: "0"
 
       - name: dvidvi
         shell: msys2 {0}
@@ -362,8 +355,6 @@ jobs:
           ../../../texk/dvidvi/configure
           make
           make check
-        env:
-          TEXMFCNF: "../../../texk/kpathsea"
 
       - name: bibtex-x
         shell: msys2 {0}
@@ -383,5 +374,27 @@ jobs:
         env:
           ExeExt: ".exe"
           TEXMFCNF: "../../../texk/kpathsea"
+
+      - name: afm2pl
+        shell: msys2 {0}
+        run: |
+          prog='afm2pl'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make || echo -e "**\n** failed: make $prog\n**"
+          make check || echo -e "**\n** failed: make check $prog\n**"
+          echo -e "**\n** afm2pl.log::"
+          cat afm2pl.log || :
+
+      - name: dvisvgm
+        shell: msys2 {0}
+        run: |
+          prog='dvisvgm'
+          mkdir -p ./Work/texk/$prog
+          cd ./Work/texk/$prog
+          ../../../texk/$prog/configure
+          make || echo -e "**\n** failed: make $prog\n**"
+          make check || echo -e "**\n** failed: make check $prog\n**"
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
