@@ -35,10 +35,10 @@
 @z
 
 @x
-\def\title{CWEAVE (Version 4.9)}
+\def\title{CWEAVE (Version 4.10)}
 @y
 \def\Kpathsea/{{\mc KPATHSEA\spacefactor1000}} \ifacro\sanitizecommand\Kpathsea{KPATHSEA}\fi
-\def\title{CTWILL (Version 4.9 [\TeX~Live])}
+\def\title{CTWILL (Version 4.10 [\TeX~Live])}
 @z
 
 @x
@@ -48,9 +48,9 @@
 @z
 
 @x
-  \centerline{(Version 4.9)}
+  \centerline{(Version 4.10)}
 @y
-  \centerline{(Version 4.9 [\TeX~Live])}
+  \centerline{(Version 4.10 [\TeX~Live])}
 @z
 
 @x
@@ -77,7 +77,7 @@ Crusius, and others who have contributed improvements.
 The ``banner line'' defined here should be changed whenever \.{CWEAVE}
 is modified.
 
-@d banner "This is CWEAVE (Version 4.9)"
+@d banner "This is CWEAVE (Version 4.10)"
 @y
 This is the \.{CTWILL} program by D. E. Knuth, based
 on \.{CWEAVE} by Silvio Levy and D.~E. Knuth. It is also based on
@@ -101,7 +101,7 @@ Until then, \.{CWEAVE}'s sequence of sections will be preserved.
 The ``banner line'' defined here should be changed whenever \.{CTWILL} is
 modified. The version number parallels the corresponding version of \.{CWEAVE}.
 
-@d banner "This is CTWILL, Version 4.9"
+@d banner "This is CTWILL, Version 4.10"
   /* will be extended by the \TeX~Live |versionstring| */
 @z
 
@@ -1112,24 +1112,18 @@ out_str("}\\FI"); finish_line();
 @z
 
 @x
-if (no_xref) {
-  finish_line();
-  out_str("\\end");
-@.\\end@>
-  finish_line();
-}
+  if (show_progress) fputs("\nWriting the index...",stdout);
 @y
-if (no_xref) {
-  finish_line();
-  out_str("\\end");
-@.\\end@>
-}
+  if (show_progress) fputs(_("\nWriting the index..."),stdout);
 @z
 
 @x
-  phase=3; if (show_progress) fputs("\nWriting the index...",stdout);
+  if (change_exists) {
+    @<Tell about changed sections@>@;
+    finish_line(); flush_buffer(out_buf,false,false);
+      /* insert a blank line, it looks nice */
+  }
 @y
-  phase=3; if (show_progress) fputs(_("\nWriting the index..."),stdout);
 @z
 
 @x
@@ -1139,27 +1133,15 @@ if (no_xref) {
 @z
 
 @x
-  if (change_exists) {
-    @<Tell about changed sections@>@; finish_line(); finish_line();
-  }
-@y
-@z
-
-@x
     fatal("! Cannot open section file ",scn_file_name);
 @y
     fatal(_("! Cannot open section file "),scn_file_name);
 @z
 
 @x
-@.\\end@>
-  finish_line();
-  fclose(active_file);
-}
+fclose(active_file);
 @y
-@.\\end@>
-}
-finish_line(); fclose(active_file); active_file=tex_file=NULL;
+fclose(active_file); active_file=tex_file=NULL;
 if (check_for_change) @<Update the result when it has changed@>@;
 @z
 
