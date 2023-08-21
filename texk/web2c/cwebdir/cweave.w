@@ -2,7 +2,7 @@
 % This program by Silvio Levy and Donald E. Knuth
 % is based on a program by Knuth.
 % It is distributed WITHOUT ANY WARRANTY, express or implied.
-% Version 4.9 --- May 2023
+% Version 4.10 --- August 2023
 
 % Copyright (C) 1987,1990,1993,2000 Silvio Levy and Donald E. Knuth
 
@@ -32,11 +32,11 @@
 \def\skipxTeX{\\{skip\_\TEX/}}
 \def\copyxTeX{\\{copy\_\TEX/}}
 
-\def\title{CWEAVE (Version 4.9)}
+\def\title{CWEAVE (Version 4.10)}
 \def\topofcontents{\null\vfill
   \centerline{\titlefont The {\ttitlefont CWEAVE} processor}
   \vskip 15pt
-  \centerline{(Version 4.9)}
+  \centerline{(Version 4.10)}
   \vfill}
 \def\botofcontents{\vfill
 \noindent
@@ -67,7 +67,7 @@ Crusius, and others who have contributed improvements.
 The ``banner line'' defined here should be changed whenever \.{CWEAVE}
 is modified.
 
-@d banner "This is CWEAVE (Version 4.9)"
+@d banner "This is CWEAVE (Version 4.10)"
 
 @c
 @<Include files@>@/
@@ -4525,44 +4525,48 @@ contents.
 @c
 static void
 phase_three(void) {
-if (no_xref) {
-  finish_line();
+phase=3;
+finish_line(); /* the bulk of |tex_file| has been written */
+if (no_xref)
   out_str("\\end");
 @.\\end@>
-  finish_line();
-}
 else {
-  phase=3; if (show_progress) fputs("\nWriting the index...",stdout);
+  if (show_progress) fputs("\nWriting the index...",stdout);
 @.Writing the index...@>
-  finish_line();
-  if ((idx_file=fopen(idx_file_name,"wb"))==NULL)
-    fatal("! Cannot open index file ",idx_file_name);
-@.Cannot open index file@>
   if (change_exists) {
-    @<Tell about changed sections@>@; finish_line(); finish_line();
+    @<Tell about changed sections@>@;
+    finish_line(); flush_buffer(out_buf,false,false);
+      /* insert a blank line, it looks nice */
   }
   out_str("\\inx"); finish_line();
 @.\\inx@>
+@#
+  if ((idx_file=fopen(idx_file_name,"wb"))==NULL)
+    fatal("! Cannot open index file ",idx_file_name);
+@.Cannot open index file@>
   active_file=idx_file; /* change active file to the index file */
   @<Do the first pass of sorting@>@;
   @<Sort and output the index@>@;
   finish_line(); fclose(active_file); /* finished with |idx_file| */
+@#
   active_file=tex_file; /* switch back to |tex_file| for a tic */
   out_str("\\fin"); finish_line();
 @.\\fin@>
+@#
   if ((scn_file=fopen(scn_file_name,"wb"))==NULL)
     fatal("! Cannot open section file ",scn_file_name);
 @.Cannot open section file@>
   active_file=scn_file; /* change active file to section listing file */
   @<Output all the section names@>@;
   finish_line(); fclose(active_file); /* finished with |scn_file| */
-  active_file=tex_file;
+@#
+  active_file=tex_file; /* switch back to |tex_file| for the last time */
   if (group_found) out_str("\\con");@+else out_str("\\end");
 @.\\con@>
 @.\\end@>
-  finish_line();
-  fclose(active_file);
 }
+finish_line();
+fclose(active_file);
 if (show_happiness) {
   if (show_progress) new_line();
   fputs("Done.",stdout);
