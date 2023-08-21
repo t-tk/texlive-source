@@ -29,6 +29,7 @@ jobs:
             mingw-w64-x86_64-cairo
             mingw-w64-x86_64-gmp
             mingw-w64-x86_64-mpfr
+            mingw-w64-x86_64-binutils
             bison
             texinfo
 
