@@ -280,6 +280,9 @@ jobs:
           echo -e "###\n### link without libtool  xetex.exe\n###"
           g++  -g -O2   -o xetex.exe xetexdir/xetex-xetexextra.o synctexdir/xetex-synctex.o xetex-xetexini.o xetex-xetex0.o xetex-xetex-pool.o libxetex.a /d/a/texlive-source/texlive-source/Work/libs/harfbuzz/libharfbuzz.a /d/a/texlive-source/texlive-source/Work/libs/graphite2/libgraphite2.a -L/mingw64/lib -licuin -licuuc -licudt -lpthread -lm     /d/a/texlive-source/texlive-source/Work/libs/teckit/libTECkit.a /d/a/texlive-source/texlive-source/Work/libs/libpng/libpng.a /d/a/texlive-source/texlive-source/Work/libs/freetype2/libfreetype.a /d/a/texlive-source/texlive-source/Work/libs/pplib/libpplib.a /d/a/texlive-source/texlive-source/Work/libs/zlib/libz.a libmd5.a -lfontconfig -lfreetype lib/lib.a /d/a/texlive-source/texlive-source/Work/texk/kpathsea/.libs/libkpathsea.a -lwsock32 || echo -e "**\n** fail to link xetex.exe"
 
+          make pmpost.exe || echo "fail to make pmpost.exe"
+          make upmpost.exe || echo "fail to make upmpost.exe"
+
           echo "!!! make complete !!!"
 
       - name: web2c version check
