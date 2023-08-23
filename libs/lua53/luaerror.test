@@ -3,19 +3,11 @@
 # Copyright 2014 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
-# pre-generated test results in the repository are stored in LF
-# but the output might be written in CRLF on some platform.
-# if 'diff --strip-trailing-cr' is available, exploit it.
-# (useful for tests on win32 binaries run on MSYS shell)
-DIFF="diff"
-$DIFF --strip-trailing-cr $0 $0 \
-  && DIFF="diff --strip-trailing-cr" || echo
-
 LC_ALL=C; export LC_ALL;  LANGUAGE=C; export LANGUAGE
 
 ./luatry -e "error('test')" 2>error.tmp && exit 1
 
-sed -e 's/lt-luatry/luatry/;s,^.*/luatry,./luatry,' error.tmp >error.out
+sed -e 's/lt-luatry/luatry/;s,^.*/luatry\(\.exe\)*,./luatry,' error.tmp >error.out
 
-$DIFF $srcdir/error.exp error.out || exit 1
+diff $srcdir/error.exp error.out || exit 2
 
