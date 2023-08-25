@@ -8,7 +8,7 @@ rm -rf test
 mkdir test
 cp $srcdir/$ZZIPLIB_TREE/test/test.zip test
 
-(cd test && ../unzzip test.zip || exit 1) || exit 2
+(cd test && ../unzzip test.zip || exit 1) || exit 1
 
-diff $srcdir/$ZZIPLIB_TREE/README test/README || exit 3
+diff $srcdir/$ZZIPLIB_TREE/README test/README || exit 1
 
