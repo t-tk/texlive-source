@@ -1,4 +1,4 @@
-# CMakeLists.txt for dviout-util directory
+# CMakeLists.txt for dtl directory
 
 set(VERSION "0.6.0")
 set(PACKAGE_BUGREPORT "tex-k@tug.org")
