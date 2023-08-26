@@ -18,5 +18,5 @@ cp $srcdir/$ZZIPLIB_TREE/test/test.zip test
 
 (cd test && ../unzzip test.zip || exit 1) || exit 2
 
-$DIFF $srcdir/$ZZIPLIB_TREE/README test/README || exit 3
+diff $srcdir/$ZZIPLIB_TREE/README test/README || exit 3
 
