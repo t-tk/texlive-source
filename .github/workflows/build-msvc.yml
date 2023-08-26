@@ -176,6 +176,16 @@ jobs:
           srcroot: ".."
           TEXMFCNF: "../texk/kpathsea/tests/windows"
 
+      - name: test makeindex
+        shell: bash
+        run: |
+          cd ./Work
+          export BinDir=./Debug/bin ExeExt=.exe srcdir=../texk/makeindexk
+          $srcdir/tests/makeindex.test
+        env:
+          srcroot: ".."
+          TEXMFCNF: "../texk/kpathsea/tests/windows"
+
       - name: web2c version check
         shell: bash
         run: |
