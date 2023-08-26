@@ -4,19 +4,11 @@
 # Copyright 2010 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
 
-# pre-generated test results in the repository are stored in LF
-# but the output might be written in CRLF on some platform.
-# if 'diff --strip-trailing-cr' is available, exploit it.
-# (useful for tests on win32 binaries run on MSYS shell)
-DIFF="diff"
-$DIFF --strip-trailing-cr $0 $0 \
-  && DIFF="diff --strip-trailing-cr" || echo
-
 rm -rf test
 mkdir test
 cp $srcdir/$ZZIPLIB_TREE/test/test.zip test
 
-(cd test && ../unzzip test.zip || exit 1) || exit 2
+(cd test && ../unzzip test.zip || exit 1) || exit 1
 
-diff $srcdir/$ZZIPLIB_TREE/README test/README || exit 3
+diff $srcdir/$ZZIPLIB_TREE/README test/README || exit 1
 
