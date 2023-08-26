@@ -35,7 +35,7 @@ jobs:
           export BinDir=./Debug/bin ExeExt=.exe srcdir=../texk/kpathsea
           $srcdir/tests/cnfline.test
           $srcdir/tests/cnfnewline.test
-          $srcdir/tests/cnfnull.test || echo "**\n** failed: cnfnull.test\n**"
+          $srcdir/tests/cnfnull.test
           $srcdir/tests/cnfprog.test
           # $srcdir/tests/kpseaccess.test
           # $srcdir/tests/kpsereadlink.test
