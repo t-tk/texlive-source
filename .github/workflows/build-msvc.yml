@@ -186,6 +186,16 @@ jobs:
           srcroot: ".."
           TEXMFCNF: "../texk/kpathsea/tests/windows"
 
+      - name: test dtl
+        shell: bash
+        run: |
+          cd ./Work
+          export BinDir=./Debug/bin ExeExt=.exe srcdir=../texk/dtl
+          $srcdir/dtl.test
+        env:
+          srcroot: ".."
+          TEXMFCNF: "../texk/kpathsea/tests/windows"
+
       - name: web2c version check
         shell: bash
         run: |
