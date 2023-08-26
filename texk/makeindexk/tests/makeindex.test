@@ -26,7 +26,7 @@ $_makeindex $srcdir/tests/sample.idx -o sample.ind1 -t sample.ilg1 \
 	&& diff $srcdir/tests/sample.ind sample.ind1 || rc=1
 
 cat $srcdir/tests/sample.idx | $_makeindex >sample.ind2 2>sample.ilg2 \
-	&& $DIFF $srcdir/tests/sample.ind sample.ind2 || rc=2
+	&& diff $srcdir/tests/sample.ind sample.ind2 || rc=2
 
 
 # test for range suffix_2p, suffix_3p, suffix_mp

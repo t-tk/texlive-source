@@ -34,14 +34,14 @@ rm -f Symbol10.300pk
 diff $srcdir/tests/Symbol10.300pk Symbol10.300pk || rc=6
 
 ./pk2bm -h -ca Symbol10.300pk >Symbol.alpha.hex || rc=7
-$DIFF $srcdir/tests/Symbol.alpha.hex Symbol.alpha.hex || rc=8
+diff $srcdir/tests/Symbol.alpha.hex Symbol.alpha.hex || rc=8
 
 ./pk2bm -b -o141 Symbol10.300pk >Symbol.alpha.pix || rc=9
-$DIFF $srcdir/tests/Symbol.alpha.pix Symbol.alpha.pix || rc=10
+diff $srcdir/tests/Symbol.alpha.pix Symbol.alpha.pix || rc=10
 ./pktest -ca -W24 -H22 Symbol.alpha.pk <Symbol.alpha.pix || rc=11
 ./pk2bm -b -ca Symbol.alpha.pk | \
   sed 's/yoff : 28/yoff : 21/' >Symbol.alpha.out || rc=12
-$DIFF Symbol.alpha.pix Symbol.alpha.out || rc=13
+diff Symbol.alpha.pix Symbol.alpha.out || rc=13
 
 val1='167 240 263 288'
 val2=`./mag -r -R240 $val1` || rc=14
