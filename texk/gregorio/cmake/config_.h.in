@@ -1,0 +1,10 @@
+#define VERSION "${VERSION}"
+#define TL_VERSION "TeX Live ${TEX_LIVE_VERSION}; Visual C++"
+#define PACKAGE_URL "${PACKAGE_URL}"
+
+/* The normal alignment of `uint32_t', in bytes. */
+#define ALIGNOF_UINT32_T __alignof(uint32_t)
+
+/* Always define this. */
+#define _GNU_SOURCE 1
+#define __attribute__(x)
