@@ -3,8 +3,6 @@
 set(VERSION "0.6.0")
 set(PACKAGE_BUGREPORT "tex-k@tug.org")
 
-#cmake_policy (SET CMP0115 NEW)
-
 include(cmake/config.cmake)
 
 get_property(KPATHSEA_INCLUDES GLOBAL PROPERTY KPATHSEA_INCLUDES)
