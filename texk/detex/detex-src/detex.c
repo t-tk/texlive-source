@@ -4760,7 +4760,7 @@ UsageExit(void)
 -v  show program version and exit\n\
 \n\
 opendetex home page: https://github.com/pkubowicz/opendetex");
-	(void)printf("opendetex version %s [%s]\n", VERSION, TL_VERSION);
+	(void)printf("opendetex version %s\n", VERSION);
 	exit(0);
 }
 
@@ -4771,7 +4771,7 @@ opendetex home page: https://github.com/pkubowicz/opendetex");
 void
 VersionExit(void)
 {
-	(void)printf("\nopendetex version %s [%s]\n", VERSION, TL_VERSION);
+	(void)printf("\nopendetex version %s\n", VERSION);
 	exit(0);
 }
 
