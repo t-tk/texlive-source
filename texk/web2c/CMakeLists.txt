@@ -70,13 +70,13 @@ include(cmake/cweb.cmake)
 include(cmake/ptex.cmake)
 
 # e-pTeX
-include(cmake/eptex.cmake)
+#include(cmake/eptex.cmake)
 
 # upTeX
-#include(cmake/uptex.cmake)
+include(cmake/uptex.cmake)
 
 # e-upTeX
 #include(cmake/euptex.cmake)
 
 # libmd5
-#include(cmake/md5.cmake)
+include(cmake/md5.cmake)
