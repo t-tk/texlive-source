@@ -103,7 +103,7 @@ web2c_tie_c(etex.ch SOURCES etex.web ${etex_ch_srcs})
 add_custom_command(
   OUTPUT etex-pool.c
   DEPENDS etex.pool etexd.h makecpool
-  COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/cmake/makecpool.py"
+  COMMAND python3.exe "${CMAKE_CURRENT_SOURCE_DIR}/cmake/makecpool.py"
     "--makecpool" "$<TARGET_FILE:makecpool>"
     etex etex-pool.c
   )
