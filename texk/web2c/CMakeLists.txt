@@ -73,10 +73,10 @@ include(cmake/ptex.cmake)
 include(cmake/eptex.cmake)
 
 # upTeX
-include(cmake/uptex.cmake)
+#include(cmake/uptex.cmake)
 
 # e-upTeX
-include(cmake/euptex.cmake)
+#include(cmake/euptex.cmake)
 
 # libmd5
-include(cmake/md5.cmake)
+#include(cmake/md5.cmake)
