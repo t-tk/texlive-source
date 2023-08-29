@@ -3345,7 +3345,9 @@ safe_print(const char *str)
 
    The output format of this fuction must be the same as pdf_error in
    pdftex.web! */
+#if !defined(_MSC_VER)
 __attribute__ ((noreturn, format(printf, 1, 2)))
+#endif
 void pdftex_fail(const char *fmt, ...)
 {
     va_list args;
