@@ -34,7 +34,6 @@ set(dist_eptex_SOURCES_synctex
 set(eptex_definitions_synctex
   PRIVATE -D__SyncTeX__
   PRIVATE -DSYNCTEX_ENGINE_H=\"synctex-eptex.h\"
-  PRIVATE -diag-enable port-win
   )
 
 # e-pTeX
