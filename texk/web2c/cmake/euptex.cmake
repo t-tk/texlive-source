@@ -33,6 +33,7 @@ set(dist_euptex_SOURCES_synctex
 set(euptex_definitions_synctex
   PRIVATE -D__SyncTeX__
   PRIVATE -DSYNCTEX_ENGINE_H=\"synctex-euptex.h\"
+  PRIVATE -diag-enable port-win
   )
 
 # e-upTeX
