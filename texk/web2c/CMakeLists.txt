@@ -55,7 +55,7 @@ configure_file(
 
 add_subdirectory(lib)
 add_subdirectory(web2c)
-#add_subdirectory(omegafonts)
+add_subdirectory(omegafonts)
 
 set(web2c_texmf web2c/common.defines web2c/texmf.defines web2c/coerce.h)
 

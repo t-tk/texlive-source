@@ -121,8 +121,6 @@ static struct option long_options[] = {
 static void read_in_whole(unsigned char **, unsigned *, FILE *, const_string );
 static void init_tables(void);
 
-#define DLLPROC dllomfontsmain
-
 #if defined(WIN32) && !defined(__MINGW32__) && !defined(MIKTEX) && defined(DLLPROC)
 extern __declspec(dllexport) int DLLPROC (int argc, char *argv[]);
 #else

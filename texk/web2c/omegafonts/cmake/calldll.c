@@ -3,8 +3,9 @@
  * as -DDLLPROC=dlltexmain
  *
  */
-#include <windows.h>
-__declspec(dllimport) DLLPROC(int ac, char **av);
+//#include <windows.h>
+//__declspec(dllimport) DLLPROC(int ac, char **av);
+extern int DLLPROC(int ac, char **av);
 int main(int ac, char **av)
 {
   return (DLLPROC(ac, av));

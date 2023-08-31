@@ -62,6 +62,7 @@ if(MSVC)
     PRIVATE -D_CRT_SECURE_NO_WARNINGS=1
     PRIVATE -D_CRT_NONSTDC_NO_DEPRECATE=1
     PRIVATE -DYY_NO_UNISTD_H=1
+    PRIVATE DLLPROC=dllomfontsmain
     )
 endif()
 
@@ -77,7 +78,7 @@ if(WIN32)
   target_compile_definitions(calldll_omfonts PRIVATE DLLPROC=dllomfontsmain)
   target_link_libraries(calldll_omfonts omfonts)
 
-  foreach(name ovp2ovf ofm2opl opl2ofm ofm2opl)
+  foreach(name omfonts ovp2ovf ofm2opl opl2ofm ofm2opl)
     add_custom_command(TARGET calldll_omfonts POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E copy
         "$<TARGET_FILE_DIR:calldll_omfonts>/calldll_omfonts.exe"
