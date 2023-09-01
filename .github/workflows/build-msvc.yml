@@ -294,4 +294,29 @@ jobs:
           srcroot: ".."
           TEXMFCNF: "../texk/kpathsea/tests/windows"
 
+      - name: test web2c/omegafonts
+        shell: bash
+        run: |
+          cd ./Work
+          export BinDir=./Debug/bin ExeExt=.exe W2CDir=./Debug/bin srcdir=../texk/web2c/omegafonts
+          $srcdir/bad.test         || echo -e "**\n** failed: omegafonts/bad.test\n**"
+          $srcdir/charwd.test      || echo -e "**\n** failed: omegafonts/charwd.test\n**"
+          $srcdir/check.test       || echo -e "**\n** failed: omegafonts/check.test\n**"
+          $srcdir/help.test        || echo -e "**\n** failed: omegafonts/help.test\n**"
+          $srcdir/level1.test      || echo -e "**\n** failed: omegafonts/level1.test\n**"
+          $srcdir/ligkern.test     || echo -e "**\n** failed: omegafonts/ligkern.test\n**"
+          $srcdir/ofonts.test      || echo -e "**\n** failed: omegafonts/ofonts.test\n**"
+          $srcdir/omfonts.test     || echo -e "**\n** failed: omegafonts/omfonts.test\n**"
+          $srcdir/overbmp.test     || echo -e "**\n** failed: omegafonts/overbmp.test\n**"
+          $srcdir/realnum.test     || echo -e "**\n** failed: omegafonts/realnum.test\n**"
+          $srcdir/repeat.test      || echo -e "**\n** failed: omegafonts/repeat.test\n**"
+          $srcdir/selectfont.test  || echo -e "**\n** failed: omegafonts/selectfont.test\n**"
+          $srcdir/shorten.test     || echo -e "**\n** failed: omegafonts/shorten.test\n**"
+          $srcdir/specialhex.test  || echo -e "**\n** failed: omegafonts/specialhex.test\n**"
+          $srcdir/version.test     || echo -e "**\n** failed: omegafonts/version.test\n**"
+          $srcdir/yannis.test      || echo -e "**\n** failed: omegafonts/yannis.test\n**"
+
+        env:
+          TEXMFCNF: "../../texk/kpathsea/tests/windows"
+
       - run: echo "⛄ This job's status is ${{ job.status }}."
