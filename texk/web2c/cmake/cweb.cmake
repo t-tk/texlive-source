@@ -24,7 +24,7 @@ add_custom_command(
   )
 
 
-foreach(name dvicopy dvitype gftodvi gftopk gftype mft patgen pktogf pktype pooltype tftopl vftovp vptovf weave)
+foreach(name dvicopy dvitype gftodvi gftopk gftype mft patgen pktogf pktype pltotf pooltype tftopl vftovp vptovf weave)
 
   add_executable(${name} ${name}.c)
 
