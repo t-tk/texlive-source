@@ -318,6 +318,7 @@ jobs:
         env:
           srcroot: ".."
           TEXMFCNF: "../texk/kpathsea/tests/windows"
+          LN_S: "cp"
 
       - name: test web2c/omegafonts
         shell: bash
