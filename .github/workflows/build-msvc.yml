@@ -291,7 +291,7 @@ jobs:
         shell: bash
         run: |
           cd ./Work
-          export BinDir=./Debug/bin ExeExt=.exe KpsDir=./Debug/bin W2CDir=../Debug/bin srcdir=../texk/web2c
+          export BinDir=./Debug/bin ExeExt=.exe KpsDir=./Debug/bin W2CDir=../Debug/bin srcdir=../texk/web2c abs_srcdir=../../texk/web2c
           $srcdir/ptexdir/ptriptest.test   || echo -e "**\n** failed: p/ptriptest.test\n**"
           $srcdir/ptexdir/pver.test        || echo -e "**\n** failed: p/pver.test\n**"
           $srcdir/ptexdir/wcfname.test     || echo -e "**\n** failed: p/wcfname.test\n**"
