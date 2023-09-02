@@ -64,6 +64,7 @@ include(cmake/functions.cmake)
 # tangle and ctangle
 include(cmake/bootstrap.cmake)
 
+include(cmake/web.cmake)
 include(cmake/cweb.cmake)
 
 # pTeX
