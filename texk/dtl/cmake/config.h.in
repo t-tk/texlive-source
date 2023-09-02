@@ -1,0 +1,3 @@
+#define VERSION "${VERSION}"
+#define TL_VERSION "TeX Live ${TEX_LIVE_VERSION}; Visual C++"
+#define PACKAGE_BUGREPORT "${PACKAGE_BUGREPORT}"

@@ -7,7 +7,8 @@
   pTeX p\the\ptexversion.\the\ptexminorversion\ptexrevision
   \ifx\enablecjktoken\undefined\else -u\the\uptexversion\uptexrevision\fi
   \ifx\epTeXversion\undefined\else -\the\epTeXversion
-  -\the\eTeXversion\eTeXrevision\fi
+  \ifx\eTeXversion\undefined\else -\the\eTeXversion\fi
+  \ifx\epTeXrevision\undefined\else\eTeXrevision\fi\fi
   \space (dummy)}
 \write16{\NAME}
 \relax\end

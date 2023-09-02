@@ -25,7 +25,9 @@ static const char *copyright =
 
 #include "config.h"
 #include <stdio.h>
+#if HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <stdlib.h>
 #ifdef USE_KPSE
 #include <kpathsea/kpathsea.h>
