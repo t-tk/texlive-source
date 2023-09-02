@@ -1,3 +1,0 @@
-#define VERSION "${VERSION}"
-#define PACKAGE_BUGREPORT "tex-k@tug.org"
-#define TL_VERSION "TeX Live ${TEX_LIVE_VERSION}; Visual C++"
