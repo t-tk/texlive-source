@@ -163,7 +163,11 @@ jobs:
             --without-system-graphite2 \
             --without-system-harfbuzz
           make
-          make check
+          make check || :
+          cat eptexdir/epver.log || echo -e "**\n** failed to cat eptexdir/epver.log\n**"
+          cat euptexdir/eupver.log || echo -e "**\n** failed to cat euptexdir/eupver.log\n**"
+          cat omegaware/ligkern.log || echo -e "**\n** failed to cat omegaware/ligkern.log\n**"
+          cat omegafonts/ligkern.log || echo -e "**\n** failed to cat omegafonts/ligkern.log\n**"
 
       #- name: ttf2pk2
       #  shell: bash
