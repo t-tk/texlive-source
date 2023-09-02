@@ -276,6 +276,7 @@ jobs:
           $srcdir/patgen.test           || echo -e "**\n** failed: patgen.test\n**"
           $srcdir/pktogf.test           || echo -e "**\n** failed: pktogf.test\n**"
           $srcdir/pktype.test           || echo -e "**\n** failed: pktype.test\n**"
+          $srcdir/pltotf.test           || echo -e "**\n** failed: pltotf.test\n**"
           $srcdir/pooltype.test         || echo -e "**\n** failed: pooltype.test\n**"
           $srcdir/tftopl.test           || echo -e "**\n** failed: tftopl.test\n**"
           $srcdir/vftovp.test           || echo -e "**\n** failed: vftovp.test\n**"
