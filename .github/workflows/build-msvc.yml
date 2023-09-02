@@ -283,6 +283,15 @@ jobs:
           $srcdir/vptovf.test           || echo -e "**\n** failed: vptovf.test\n**"
           $srcdir/weave.test            || echo -e "**\n** failed: weave.test\n**"
 
+        env:
+          srcroot: ".."
+          TEXMFCNF: "../texk/kpathsea/tests/windows"
+
+      - name: test web2c/*ptex
+        shell: bash
+        run: |
+          cd ./Work
+          export BinDir=./Debug/bin ExeExt=.exe KpsDir=./Debug/bin W2CDir=../Debug/bin srcdir=../texk/web2c
           $srcdir/ptexdir/ptriptest.test   || echo -e "**\n** failed: p/ptriptest.test\n**"
           $srcdir/ptexdir/pver.test        || echo -e "**\n** failed: p/pver.test\n**"
           $srcdir/ptexdir/wcfname.test     || echo -e "**\n** failed: p/wcfname.test\n**"
