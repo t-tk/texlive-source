@@ -23,7 +23,7 @@ Section 1.
 \else
   \pdfpagewidth=\pagewd \advance\pdfpagewidth by 2cm
   \pdfpageheight=\pageht \advance\pdfpageheight by 5cm
-  \ifpdftex \pdfhorigin=1cm \pdfvorigin=1cm
+  \ifpdflua \pdfhorigin=1cm \pdfvorigin=1cm
   \else \global\hoffset=-1.54cm \global\voffset=-1.54cm \fi
 \fi
 
@@ -494,6 +494,14 @@ handles \CEE/ text with embedded comments.
 @ The |outer_xref| subroutine is like |C_xref| except that it begins
 with |next_control| |!='|'| and ends with |next_control>=format_code|.
 Thus, it handles \CEE/ text with embedded comments.
+@z
+
+Section 75.
+
+@x
+@ @<Replace `\.{@@@@}' by `\.{@@}'@>=
+@y
+@r @ @<Replace `\.{@@@@}' by `\.{@@}'@>=
 @z
 
 Section 80.
@@ -1408,7 +1416,7 @@ Section 197.
 @r @ Now here's the |reduce| procedure used in our code for productions,
 @z
 
-Section 202.
+Section 200.
 
 @x
 @ @<Print a snapsh...@>=
@@ -1417,7 +1425,17 @@ Section 202.
 @-n@>
 @%
 @$n {CTWILL}197 \&{short}@>
-@$n {CTWILL}198 \&{short}@>
+@z
+
+Section 202.
+
+@x
+@ If we get to the end of the scrap list, category codes equal to zero are
+@y
+@r @ If we get to the end of the scrap list, category codes equal to zero are
+@-j@>
+@%
+@$j {CTWILL}203 \&{scrap\_pointer}@>
 @z
 
 Section 204.
@@ -1896,7 +1914,7 @@ Section 268.
 @x
 @ A left-to-right radix sorting method is used, since this makes it easy to
 @y
-@r @ A left-to-right radix sorting method is used, since this makes it easy to
+@ A left-to-right radix sorting method is used, since this makes it easy to
 @-c@>
 @z
 
@@ -2067,8 +2085,11 @@ with the original ``\&{271.~Index}.''
 
 @q Section 2->272. @>
 @* {\tentex CTWILL} user manual.
+Here is a sort of user manual for \.{CTWILL}---which is exactly like
 @y
 @** Mogrify {\tentex CWEAVE} into {\tentex CTWILL}.
+Here is a sort of user manual for \.{CTWILL}%
+\ifluatex, \else---\fi which is exactly like
 @-s@>
 @z
 

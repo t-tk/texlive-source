@@ -17,3 +17,4 @@ TEXMFCNF=$srcdir/../kpathsea \
 grep '^\./ewprob\.tex:12: Could not open file NoSuchFile\.eps\.$' \
 	ewprob.log || exit 1
 
+exit 0
