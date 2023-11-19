@@ -1,5 +1,5 @@
 #!/bin/sh
-version=3.07
+version=3.10
 #########################################################################
 ##                                                                     ##
 ##  pdfjam: A shell-script interface to the "pdfpages" LaTeX package   ##
@@ -759,8 +759,9 @@ while test -n "${1}${2}"; do
 				*) ##  if page spec needed, assume this is it;
 		                   ##  otherwise something is wrong
 				    if test "$pageSpecAwaited" = true  ; then
+					escapedFilePath=$(printf '%s' "$1" | sed -e 's#/#\\/#g')
 					fileSpec=$(printf "%s" "$fileSpec" | \
-					    sed "s/|awaited/|$1/g")
+					    sed "s/|awaited/|${escapedFilePath}/g")
 					pageSpecAwaited=false
 				    else
 					error_exit "no PDF/JPG/PNG file found at ${1}" \
@@ -783,8 +784,9 @@ while test -n "${1}${2}"; do
 			*) ##  if page spec needed, assume this is it;
 		           ##  otherwise something is wrong
 			    if test "$pageSpecAwaited" = true  ; then
+				escapedFilePath=$(printf '%s' "$1" | sed -e 's#/#\\/#g')
 				fileSpec=$(printf "%s" "$fileSpec" | \
-				    sed "s/|awaited/|$1/g")
+				    sed "s/|awaited/|${escapedFilePath}/g")
 				pageSpecAwaited=false
 			    else
 				error_exit "no PDF/JPG/PNG file found at ${1}" \
@@ -943,7 +945,7 @@ fi
 ## A function to check if using non-Cygwin "${latex}" from Cygwin
 using_non_cygwin_latex_from_cygwin () {
     if [ -z "${__cache__using_non_cygwin_latex_from_cygwin}" ]; then
-	if [ "$(uname -o)" = "Cygwin" ] \
+	if uname | grep -q CYGWIN \
 	    && "${latex}" -version | head -1 | grep -qv Cygwin; then
 	    __cache__using_non_cygwin_latex_from_cygwin=0
 	else
@@ -1151,7 +1153,7 @@ select_pdfinfo () {
 }
 echo_hex_iconv_utf16be () {
     printf '%s' "$1" | \
-    "$iconv" -f utf8 -t utf16be | \
+    "$iconv" -f UTF-8 -t UTF-16BE | \
     od -An -v -tx1 | \
     tr -d '[:space:]'
 }
@@ -1172,7 +1174,7 @@ if test "$keepinfo" = true ; then
 fi
 echo_iconv_from_enc () {
     printf '%s' "$2" | \
-    "$iconv" -f "$1" -t utf8
+    "$iconv" -f "$1" -t UTF-8
 }
 if test -n "$pdfTitle" ; then
     pdftitl=$(echo_iconv_from_enc "$enc" "$pdfTitle")
