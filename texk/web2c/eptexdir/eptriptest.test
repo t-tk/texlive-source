@@ -114,13 +114,19 @@ diff $testdir/trip.fot cptrip.fot
 
 # We use $DIFF instead of `diff' only for those files where there
 # might actually be legitimate numerical differences.
-$DIFF $DIFFFLAGS $testdir/trip.log cptrip.log 
+$DIFF $DIFFFLAGS $testdir/trip.log cptrip.log
 
 mv tripos.tex cptripos.tex
 diff $testdir/tripos.tex cptripos.tex
 
 eval $_dvitype $dvitype_args trip.dvi >cptrip.typ || exit 1
 $DIFF $DIFFFLAGS $testdir/trip.typ cptrip.typ
+
+for f in trip.fot trip.typ; do
+  sed -f filter $testdir/$f >a/$f
+  sed -f filter cp$f >b/$f
+  diff a/$f b/$f || is_OK=false
+done
 
 mv trip.fmt ctrip.fmt
 
@@ -154,9 +160,9 @@ eval $_dvitype $dvitype_args trip.dvi >xptrip.typ || exit 1
 $DIFF $DIFFFLAGS $testdir/trip.typ xptrip.typ
 
 for f in trip.fot trip.typ; do
-  sed -f filter $testdir/$f >a/$f
-  sed -f filter xp$f | sed -f filter1 >b/$f
-  diff a/$f b/$f || is_OK=false
+  sed -f filter $testdir/$f >a/x$f
+  sed -f filter xp$f | sed -f filter1 >b/x$f
+  diff a/x$f b/x$f || is_OK=false
 done
 
 mv trip.fmt xtrip.fmt
