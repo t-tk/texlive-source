@@ -23,8 +23,8 @@ mkdir -p a b
 
 # TeX Live generic
 cat >filter <<-\_EOF
-	s,^\*\*(\./trip\.tex ##,** \&trip  trip \
-	(trip.tex ##,
+	s,^\*\*(\./trip\.tex ##,**entering extended mode\
+	## (./trip.tex,
 	s/ (TeX Live 20[^)]*)//
 	s/ (Web2C 202[3-9])//
 	s/(preloaded format=.*tex)/(INITEX)/
@@ -52,6 +52,17 @@ cat >>filter <<-\_EOF
 	s/down4 639342.../down4 639342208/
 	s/y4 2039217../y4 203921760/
 	s/y0 2039217../y0 203921760/
+	_EOF
+
+# eTeX
+cat >>filter <<-\_EOF
+	s/ before: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / before: XXX\&XXX; /
+	s/ after: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / after: XXX\&XXX; /
+	s/ still untouched: [1-9][0-9][0-9][0-9]*/ still untouched: XXX/
+	_EOF
+cat >filter1 <<-\_EOF
+	:l; N; s/ inside a group at level 1).*(end occurred when if on/ inside a group at level 1)\
+	(end occurred when if on/; b l;
 	_EOF
 
 dvitype_args="-output-level=2 -dpi=72.27 -page-start='*.*.*.*.*.*.*.*.*.*'"
@@ -126,10 +137,9 @@ diff $testdir/tripos.tex xtripos.tex
 eval $_dvitype $dvitype_args trip.dvi >xtrip.typ || exit 1
 $DIFF $DIFFFLAGS ctrip.typ xtrip.typ
 
-#for f in tripin.log trip.fot trip.log trip.typ; do
-for f in trip.typ; do
+for f in trip.fot trip.typ; do
   sed -f filter c$f >a/$f
-  sed -f filter x$f >b/$f
+  sed -f filter x$f | sed -f filter1 >b/$f
   diff a/$f b/$f || is_OK=false
 done
 
@@ -169,11 +179,10 @@ diff $etestdir/etrip.out etrip.out
 eval $_dvitype $dvitype_args etrip.dvi >etrip.typ || exit 1
 $DIFF $DIFFFLAGS $etestdir/etrip.typ etrip.typ
 
-#for f in tripin.log trip.fot trip.log trip.typ; do
 for f in trip.fot trip.typ; do
-  sed -f filter $etestdir/e$f >a/$f
-  sed -f filter e$f >b/$f
-  diff a/$f b/$f || is_OK=false
+  sed -f filter $etestdir/e$f >a/e$f
+  sed -f filter e$f >b/e$f
+  diff a/e$f b/e$f || is_OK=false
 done
 
 $is_OK || {
