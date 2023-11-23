@@ -81,6 +81,7 @@ __DATA__
 UTF-8        fn±×÷§¶-utf8.tex
 UTF-8        fn-utf8.tex             fn±×÷§¶-utf8.tex
 UTF-8        fn£¥µÆÇñß-utf8.tex      fn±×÷§¶-utf8.tex
+UTF-8        fnΔДだ打다𝕯𝜟-utf8.tex   fn±×÷§¶-utf8.tex
 UTF-8        fnさざ波-utf8.tex       fn±×÷§¶-utf8.tex
 EUC-JP       fnさざ波-euc.tex        fn±×÷§¶-utf8.tex
 Shift_JIS    fnさざ波-sjis.tex       fn±×÷§¶-utf8.tex
