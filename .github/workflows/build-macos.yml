@@ -448,7 +448,6 @@ jobs:
         shell: bash
         run: |
           cd ./Work/texk/web2c
-          export abs_srcdir=../$srcdir
           $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
           $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
           $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
@@ -457,8 +456,10 @@ jobs:
           $srcdir/eptexdir/eptriptest.test   || echo -e "**\n** failed: eptexdir/eptriptest.test\n**"
           $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
         env:
-          srcdir: "../../../texk/web2c"
+          abs_srcdir: "../../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
+          LN_S: "ln -s"
+          DIFF: "diff"
 
       - name: web2c make check
         shell: bash
