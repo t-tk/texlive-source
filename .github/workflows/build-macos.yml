@@ -456,6 +456,7 @@ jobs:
           $srcdir/eptexdir/eptriptest.test   || echo -e "**\n** failed: eptexdir/eptriptest.test\n**"
           $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
         env:
+          srcdir: "../../../texk/web2c"
           abs_srcdir: "../../../../texk/web2c"
           TEXMFCNF: "../../../texk/kpathsea"
           LN_S: "ln -s"
