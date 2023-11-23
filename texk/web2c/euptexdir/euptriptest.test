@@ -166,7 +166,7 @@ eval $_dvitype $dvitype_args trip.dvi >xuptrip.typ || exit 1
 
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/x$f
-  sed -f filter xup$f | sed -f filter1 >b/x$f
+  sed -f filter -f filter1 xup$f >b/x$f
   diff a/x$f b/x$f || is_OK=false
 done
 
