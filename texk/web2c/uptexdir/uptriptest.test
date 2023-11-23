@@ -104,7 +104,7 @@ $DIFF $testdir/tripin.log uptripin.log
 rm -f trip.log
 $_uptex --progname=uptex <$testdir/trip2.in >uptrip.fot
 sed "$P_SED1;$P_SED2" trip.log > uptrip.log
-diff $testdir/trip.fot uptrip.fot
+#diff $testdir/trip.fot uptrip.fot
 
 # We use $DIFF instead of `diff' only for those files where there
 # might actually be legitimate numerical differences.
@@ -114,9 +114,8 @@ mv tripos.tex uptripos.tex
 diff $testdir/tripos.tex uptripos.tex || is_OK=false
 
 eval $_dvitype $dvitype_args trip.dvi >uptrip.typ || exit 1
-$DIFF $DIFFFLAGS $testdir/trip.typ uptrip.typ
+#$DIFF $DIFFFLAGS $testdir/trip.typ uptrip.typ
 
-#for f in tripin.log trip.fot trip.log trip.typ; do
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/$f
   sed -f filter up$f >b/$f
