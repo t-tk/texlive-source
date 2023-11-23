@@ -65,7 +65,10 @@ cat >>filter <<-\_EOF
 	s/ still untouched: [1-9][0-9][0-9][0-9]*/ still untouched: XXX/
 	_EOF
 cat >filter1 <<-\_EOF
-	:l; N; s/ inside a group at level 1).*bottom level/ inside a group at level 1)/; b l;
+	:l
+	N
+	$!b l
+	s/ inside a group at level 1).*bottom level/ inside a group at level 1)/
 	_EOF
 
 dvitype_args="-output-level=2 -dpi=72.27 -page-start='*.*.*.*.*.*.*.*.*.*'"
@@ -99,7 +102,7 @@ diff $testdir/tripin.log ctripin.log
 # May as well test non-ini second time through.
 $_etex --progname=etex <$testdir/trip2.in >ctrip.fot
 mv trip.log ctrip.log
-diff $testdir/trip.fot ctrip.fot
+#diff $testdir/trip.fot ctrip.fot
 
 # We use $DIFF instead of `diff' only for those files where there
 # might actually be legitimate numerical differences.
@@ -109,7 +112,7 @@ mv tripos.tex ctripos.tex
 diff $testdir/tripos.tex ctripos.tex
 
 eval $_dvitype $dvitype_args trip.dvi >ctrip.typ || exit 1
-$DIFF $DIFFFLAGS $testdir/trip.typ ctrip.typ
+#$DIFF $DIFFFLAGS $testdir/trip.typ ctrip.typ
 
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/$f
@@ -134,7 +137,7 @@ diff ctripin.log xtripin.log
 # May as well test non-ini second time through.
 $_etex --progname=etex <$etestdir/trip2.in >xtrip.fot
 mv trip.log xtrip.log
-diff ctrip.fot xtrip.fot
+#diff ctrip.fot xtrip.fot
 
 # We use $DIFF instead of `diff' only for those files where there
 # might actually be legitimate numerical differences.
@@ -144,7 +147,7 @@ mv tripos.tex xtripos.tex
 diff $testdir/tripos.tex xtripos.tex
 
 eval $_dvitype $dvitype_args trip.dvi >xtrip.typ || exit 1
-$DIFF $DIFFFLAGS ctrip.typ xtrip.typ
+#$DIFF $DIFFFLAGS ctrip.typ xtrip.typ
 
 for f in trip.fot trip.typ; do
   sed -f filter c$f >a/x$f
@@ -177,7 +180,7 @@ diff $etestdir/etripin.log etripin.log
 
 # May as well test non-ini second time through.
 $_etex --progname=etex <$etestdir/etrip3.in >etrip.fot
-diff $etestdir/etrip.fot etrip.fot
+#diff $etestdir/etrip.fot etrip.fot
 
 # We use $DIFF instead of `diff' only for those files where there
 # might actually be legitimate numerical differences.
@@ -186,7 +189,7 @@ $DIFF $DIFFFLAGS $etestdir/etrip.log etrip.log
 diff $etestdir/etrip.out etrip.out
 
 eval $_dvitype $dvitype_args etrip.dvi >etrip.typ || exit 1
-$DIFF $DIFFFLAGS $etestdir/etrip.typ etrip.typ
+#$DIFF $DIFFFLAGS $etestdir/etrip.typ etrip.typ
 
 for f in trip.fot trip.typ; do
   sed -f filter $etestdir/e$f >a/e$f
