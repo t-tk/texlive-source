@@ -1,5 +1,6 @@
 #! /bin/sh -vx
 # $Id$
+# Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
 # Copyright 2017-2018 Karl Berry <tex-live@tug.org>
 # Copyright 2011-2014 Peter Breitenlohner <tex-live@tug.org>
 # Copyright 2010 Hironori Kitagawa <tex-live@tug.org>
@@ -27,9 +28,10 @@ mkdir -p a b
 
 # TeX Live generic
 cat >filter <<-\_EOF
-	/^\*\* \&trip  trip /d
-	s,^(trip\.tex ##,**entering extended mode\
-	## (./trip.tex,
+	/^\*\* \&trip  trip/d
+	/^\*\*entering extended mode/d
+	s,^(trip\.tex ##,**(./trip.tex ##,
+	s,^## (\./trip\.tex,**(./trip.tex ##,
 	s/ (TeX Live 20[^)]*)//
 	s/ (Web2C 202[3-9])//
 	s/(preloaded format=.*tex)/(INITEX)/

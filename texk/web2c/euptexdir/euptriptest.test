@@ -29,9 +29,10 @@ mkdir -p a b
 
 # TeX Live generic
 cat >filter <<-\_EOF
-	/^\*\* \&trip  trip /d
-	s,^(trip\.tex ##,**entering extended mode\
-	## (./trip.tex,
+	/^\*\* \&trip  trip/d
+	/^\*\*entering extended mode/d
+	s,^(trip\.tex ##,**(./trip.tex ##,
+	s,^## (\./trip\.tex,**(./trip.tex ##,
 	s/ (TeX Live 20[^)]*)//
 	s/ (Web2C 202[3-9])//
 	s/(preloaded format=.*tex)/(INITEX)/
@@ -126,7 +127,7 @@ $DIFF $DIFFFLAGS $testdir/trip.typ cuptrip.typ
 
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/$f
-  sed -f filter cup$f | sed -f filter1 >b/$f
+  sed -f filter cup$f >b/$f
   diff a/$f b/$f || is_OK=false
 done
 
@@ -162,9 +163,9 @@ eval $_dvitype $dvitype_args trip.dvi >xuptrip.typ || exit 1
 $DIFF $DIFFFLAGS $testdir/trip.typ xuptrip.typ
 
 for f in trip.fot trip.typ; do
-  sed -f filter $testdir/$f >a/$f
-  sed -f filter xup$f | sed -f filter1 >b/$f
-  diff a/$f b/$f || is_OK=false
+  sed -f filter $testdir/$f >a/x$f
+  sed -f filter xup$f | sed -f filter1 >b/x$f
+  diff a/x$f b/x$f || is_OK=false
 done
 
 mv trip.fmt xtrip.fmt

@@ -28,8 +28,10 @@ mkdir -p a b
 
 # TeX Live generic
 cat >filter <<-\_EOF
-	/^\*\* \&trip  trip /d
-	s,^(trip\.tex ##,\*\*(./trip.tex ##,
+	/^\*\* \&trip  trip/d
+	/^\*\*entering extended mode/d
+	s,^(trip\.tex ##,**(./trip.tex ##,
+	s,^## (\./trip\.tex,**(./trip.tex ##,
 	s/ (TeX Live 20[^)]*)//
 	s/ (Web2C 202[3-9])//
 	s/(preloaded format=.*tex)/(INITEX)/
@@ -124,7 +126,7 @@ $DIFF $DIFFFLAGS $testdir/trip.typ cptrip.typ
 
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/$f
-  sed -f filter cp$f | sed -f filter1 >b/$f
+  sed -f filter cp$f >b/$f
   diff a/$f b/$f || is_OK=false
 done
 
