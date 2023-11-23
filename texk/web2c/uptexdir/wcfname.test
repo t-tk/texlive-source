@@ -65,9 +65,9 @@ fi
 # upTeX internal encoding
 fenc="utf8"
 for ienc in uptex; do
-for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc fnΔДだ打다𝕯🎉-$fenc; do
+for doc in fn-$fenc fnさざ波-$fenc fn£¥µÆÇñß-$fenc fnΔДदダ打다𝕯🎉-$fenc; do
 
-  if [ $ienc != uptex -a \( $doc = fn£¥µÆÇñß-$fenc -o $doc = fnΔДだ打다𝕯🎉-$fenc \) ]; then
+  if [ $ienc != uptex -a \( $doc = fn£¥µÆÇñß-$fenc -o $doc = fnΔДदダ打다𝕯🎉-$fenc \) ]; then
     continue
   fi
 
