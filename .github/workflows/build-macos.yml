@@ -163,6 +163,31 @@ jobs:
             --without-system-graphite2 \
             --without-system-harfbuzz
           make
+
+      - name: web2c triptest
+        shell: bash
+        run: |
+          cd ./Work/texk/web2c
+          $srcdir/mftraptest.test            || { echo -e "**\n** failed: mftraptest.test\n**"            ; cat mftraptest.log ; }
+          $srcdir/triptest.test              || { echo -e "**\n** failed: triptest.test\n**"              ; cat triptest.log ; }
+          $srcdir/etexdir/etriptest.test     || { echo -e "**\n** failed: etexdir/etriptest.test\n**"     ; cat etriptest.log ; }
+          $srcdir/eptexdir/pdfprimitive.test || { echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**" ; cat pdfprimitivetest.log ; }
+          $srcdir/ptexdir/ptriptest.test     || { echo -e "**\n** failed: ptexdir/ptriptest.test\n**"     ; cat ptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/ptriptest.test    || { echo -e "**\n** failed: uptexdir/ptriptest.test\n**"    ; cat uptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/uptriptest.test   || { echo -e "**\n** failed: uptexdir/uptriptest.test\n**"   ; cat uptexdir/uptriptest.log ; }
+          $srcdir/eptexdir/eptriptest.test   || { echo -e "**\n** failed: eptexdir/eptriptest.test\n**"   ; cat eptexdir/eptriptest.log ; }
+          $srcdir/euptexdir/euptriptest.test || { echo -e "**\n** failed: euptexdir/euptriptest.test\n**" ; cat euptexdir/euptriptest.log ; }
+        env:
+          srcdir: "../../../texk/web2c"
+          abs_srcdir: "../../../../texk/web2c"
+          TEXMFCNF: "../../../texk/kpathsea"
+          LN_S: "ln -s"
+          DIFF: "diff"
+
+      - name: web2c make check
+        shell: bash
+        run: |
+          cd ./Work/texk/web2c
           make check || :
           cat eptexdir/epver.log || echo -e "**\n** failed to cat eptexdir/epver.log\n**"
           cat euptexdir/eupver.log || echo -e "**\n** failed to cat euptexdir/eupver.log\n**"
