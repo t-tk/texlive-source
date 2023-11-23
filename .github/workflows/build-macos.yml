@@ -402,26 +402,17 @@ jobs:
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
             --enable-euptex  --enable-euptex-synctex \
-            --enable-pmp  --enable-upmp \
+            --enable-mp  --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
             --enable-mf  --enable-mf-nowin \
             --enable-etex  --enable-etex-synctex \
             --disable-aleph \
-            --disable-luatex  --disable-luajittex \
-            --disable-luahbtex  --disable-luajithbtex \
-            --disable-mp \
+            --disable-luatex  --disable-luajittex  --disable-luahbtex  --disable-luajithbtex \
             --disable-xetex  --disable-xetex-synctex \
-            --disable-mflua  --disable-mflua-nowin \
-            --disable-mfluajit  --disable-mfluajit-nowin \
-            --disable-epsfwin \
-            --disable-hp2627win \
-            --disable-mftalkwin \
-            --disable-nextwin \
-            --disable-regiswin \
-            --disable-suntoolswin \
-            --disable-tektronixwin \
-            --disable-unitermwin \
+            --disable-mflua  --disable-mflua-nowin  --disable-mfluajit  --disable-mfluajit-nowin \
+            --disable-epsfwin  --disable-hp2627win  --disable-mftalkwin  --disable-nextwin \
+            --disable-regiswin  --disable-suntoolswin  --disable-tektronixwin  --disable-unitermwin \
             --disable-missing \
             --with-gnu-ld \
             --without-x \
@@ -448,13 +439,15 @@ jobs:
         shell: bash
         run: |
           cd ./Work/texk/web2c
-          $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
-          $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
-          $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
-          $srcdir/uptexdir/ptriptest.test    || echo -e "**\n** failed: uptexdir/ptriptest.test\n**"
-          $srcdir/uptexdir/uptriptest.test   || echo -e "**\n** failed: uptexdir/uptriptest.test\n**"
-          $srcdir/eptexdir/eptriptest.test   || echo -e "**\n** failed: eptexdir/eptriptest.test\n**"
-          $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
+          $srcdir/mftraptest.test            || { echo -e "**\n** failed: mftraptest.test\n**"            ; cat mftraptest.log ; }
+          $srcdir/triptest.test              || { echo -e "**\n** failed: triptest.test\n**"              ; cat triptest.log ; }
+          $srcdir/etexdir/etriptest.test     || { echo -e "**\n** failed: etexdir/etriptest.test\n**"     ; cat etriptest.log ; }
+          $srcdir/eptexdir/pdfprimitive.test || { echo -e "**\n** failed: eptexdir/pdfprimitive.test\n**" ; cat pdfprimitivetest.log ; }
+          $srcdir/ptexdir/ptriptest.test     || { echo -e "**\n** failed: ptexdir/ptriptest.test\n**"     ; cat ptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/ptriptest.test    || { echo -e "**\n** failed: uptexdir/ptriptest.test\n**"    ; cat uptexdir/ptriptest.log ; }
+          $srcdir/uptexdir/uptriptest.test   || { echo -e "**\n** failed: uptexdir/uptriptest.test\n**"   ; cat uptexdir/uptriptest.log ; }
+          $srcdir/eptexdir/eptriptest.test   || { echo -e "**\n** failed: eptexdir/eptriptest.test\n**"   ; cat eptexdir/eptriptest.log ; }
+          $srcdir/euptexdir/euptriptest.test || { echo -e "**\n** failed: euptexdir/euptriptest.test\n**" ; cat euptexdir/euptriptest.log ; }
         env:
           srcdir: "../../../texk/web2c"
           abs_srcdir: "../../../../texk/web2c"
