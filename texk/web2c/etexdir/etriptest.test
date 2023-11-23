@@ -23,8 +23,10 @@ mkdir -p a b
 
 # TeX Live generic
 cat >filter <<-\_EOF
-	s,^\*\*(\./trip\.tex ##,**entering extended mode\
-	## (./trip.tex,
+	/^\*\* \&trip  trip/d
+	/^\*\*entering extended mode/d
+	s,^(trip\.tex ##,**(./trip.tex ##,
+	s,^## (\./trip\.tex,**(./trip.tex ##,
 	s/ (TeX Live 20[^)]*)//
 	s/ (Web2C 202[3-9])//
 	s/(preloaded format=.*tex)/(INITEX)/
@@ -56,12 +58,14 @@ cat >>filter <<-\_EOF
 
 # eTeX
 cat >>filter <<-\_EOF
-	s/ before: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / before: XXX\&XXX; /
-	s/ after: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / after: XXX\&XXX; /
+	s/This is .*TeX,/This is *TeX,/
+	s/ Version 3\.141592653[^(]*(/ Version 3.141592653* (/
+	s/ before: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / before: XXX\&YYY; /
+	s/ after: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / after: XXX\&YYY; /
 	s/ still untouched: [1-9][0-9][0-9][0-9]*/ still untouched: XXX/
 	_EOF
 cat >filter1 <<-\_EOF
-	:l; N; s/ inside a group at level 1).*bottom level,/ inside a group at level 1)/; b l;
+	:l; N; s/ inside a group at level 1).*bottom level/ inside a group at level 1)/; b l;
 	_EOF
 
 dvitype_args="-output-level=2 -dpi=72.27 -page-start='*.*.*.*.*.*.*.*.*.*'"
@@ -107,6 +111,12 @@ diff $testdir/tripos.tex ctripos.tex
 eval $_dvitype $dvitype_args trip.dvi >ctrip.typ || exit 1
 $DIFF $DIFFFLAGS $testdir/trip.typ ctrip.typ
 
+for f in trip.fot trip.typ; do
+  sed -f filter $testdir/$f >a/$f
+  sed -f filter c$f >b/$f
+  diff a/$f b/$f || is_OK=false
+done
+
 mv trip.fmt ctrip.fmt
 
 # ==============================
@@ -137,9 +147,9 @@ eval $_dvitype $dvitype_args trip.dvi >xtrip.typ || exit 1
 $DIFF $DIFFFLAGS ctrip.typ xtrip.typ
 
 for f in trip.fot trip.typ; do
-  sed -f filter c$f >a/$f
-  sed -f filter x$f | sed -f filter1 >b/$f
-  diff a/$f b/$f || is_OK=false
+  sed -f filter c$f >a/x$f
+  sed -f filter x$f | sed -f filter1 >b/x$f
+  diff a/x$f b/x$f || is_OK=false
 done
 
 mv trip.fmt xtrip.fmt
