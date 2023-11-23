@@ -61,7 +61,7 @@ fi
 rm -f $testdir/fn*-euc.tex $testdir/fn*-sjis.tex
 
 fenc="utf8"
-for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc fnΔДだ打다𝕯𝜟-$fenc; do
+for doc in fn-$fenc fn£¥µÆÇñß-$fenc fnさざ波-$fenc fnΔДだ打다𝕯🎉-$fenc; do
 
   echo '>>> Document:'$doc '  File Encoding:'$fenc
   $_kpsewhich -progname=$engine $doc.tex || rc=10

@@ -66,7 +66,9 @@ cat >>filter <<-\_EOF
 	_EOF
 cat >filter1 <<-\_EOF
 	:l
-	N; s/ inside a group at level 1).*bottom level/ inside a group at level 1)/; b l
+	N
+	$!b l
+	s/ inside a group at level 1).*bottom level/ inside a group at level 1)/
 	_EOF
 
 dvitype_args="-output-level=2 -dpi=72.27 -page-start='*.*.*.*.*.*.*.*.*.*'"
