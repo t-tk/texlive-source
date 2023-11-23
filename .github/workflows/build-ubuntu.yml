@@ -431,6 +431,7 @@ jobs:
         shell: bash
         run: |
           cd ./Work/texk/web2c
+          export abs_srcdir=../$srcdir
           $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
           $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
           $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
