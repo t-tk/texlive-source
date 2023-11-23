@@ -397,7 +397,7 @@ jobs:
             --srcdir=../../../texk/web2c \
             --disable-all-pkgs \
             --enable-debug \
-            --disable-tex  --disable-tex-synctex \
+            --enable-tex  --disable-tex-synctex \
             --enable-ptex  --enable-ptex-synctex \
             --enable-eptex  --enable-eptex-synctex \
             --enable-uptex  --enable-uptex-synctex \
@@ -405,8 +405,8 @@ jobs:
             --enable-pmp  --enable-upmp \
             --enable-pdftex  --enable-pdftex-synctex \
             --enable-web-progs  --enable-synctex \
-            --disable-mf  --disable-mf-nowin \
-            --disable-etex  --disable-etex-synctex \
+            --enable-mf  --enable-mf-nowin \
+            --enable-etex  --enable-etex-synctex \
             --disable-aleph \
             --disable-luatex  --disable-luajittex \
             --disable-luahbtex  --disable-luajithbtex \
@@ -443,6 +443,26 @@ jobs:
             --without-system-graphite2 \
             --without-system-harfbuzz
           make
+
+      - name: web2c triptest
+        shell: bash
+        run: |
+          cd ./Work/texk/web2c
+          $srcdir/triptest.test              || echo -e "**\n** failed: triptest.test\n**"
+          $srcdir/etexdir/etriptest.test     || echo -e "**\n** failed: etexdir/etriptest.test\n**"
+          $srcdir/ptexdir/ptriptest.test     || echo -e "**\n** failed: ptexdir/ptriptest.test\n**"
+          $srcdir/uptexdir/ptriptest.test    || echo -e "**\n** failed: uptexdir/ptriptest.test\n**"
+          $srcdir/uptexdir/uptriptest.test   || echo -e "**\n** failed: uptexdir/uptriptest.test\n**"
+          $srcdir/eptexdir/eptriptest.test   || echo -e "**\n** failed: eptexdir/eptriptest.test\n**"
+          $srcdir/euptexdir/euptriptest.test || echo -e "**\n** failed: euptexdir/euptriptest.test\n**"
+        env:
+          srcdir: "../../../texk/web2c"
+          TEXMFCNF: "../../../texk/kpathsea"
+
+      - name: web2c make check
+        shell: bash
+        run: |
+          cd ./Work/texk/web2c
           make check
 
       - run: echo "⛄ This job's status is ${{ job.status }}."
