@@ -1,6 +1,6 @@
 #! /bin/sh -vx
 # $Id$
-# Copyright 2022-2023 Japanese TeX Development Community <issue@texjp.org>
+# Copyright 2023 Japanese TeX Development Community <issue@texjp.org>
 # Copyright 2017-2018 Karl Berry <tex-live@tug.org>
 # Copyright 2010-2014 Peter Breitenlohner <tex-live@tug.org>
 # You may freely use, modify and/or distribute this file.
@@ -59,11 +59,11 @@ cat >>filter <<-\_EOF
 
 # pTeX
 cat >>filter <<-\_EOF
-	s/This is .*TeX,/This is \*TeX,/
+	s/This is .*TeX,/This is *TeX,/
 	s/ (utf8[^)]*)/ /
-	s/ Version 3\.141592653-[^ ]* / Version 3\.141592653/
-	s/ before: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / before: XXX\&XXX; /
-	s/ after: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / after: XXX\&XXX; /
+	s/ Version 3\.141592653-[^ ]* / Version 3.141592653/
+	s/ before: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / before: XXX\&YYY; /
+	s/ after: [1-9][0-9][0-9][0-9]*&[1-9][0-9][0-9][0-9]*; / after: XXX\&YYY; /
 	s/ still untouched: [1-9][0-9][0-9][0-9]*/ still untouched: XXX/
 	_EOF
 
@@ -116,7 +116,6 @@ diff $testdir/tripos.tex ptripos.tex || is_OK=false
 eval $_dvitype $dvitype_args trip.dvi >ptrip.typ || exit 1
 #$DIFF $DIFFFLAGS $testdir/trip.typ ptrip.typ
 
-#for f in tripin.log trip.fot trip.log trip.typ; do
 for f in trip.fot trip.typ; do
   sed -f filter $testdir/$f >a/$f
   sed -f filter p$f >b/$f
